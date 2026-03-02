@@ -35,49 +35,6 @@ Maps all four VSAM file types (KSDS, ESDS, RRDS, LDS). Extracts field definition
 ### 5. EBCDIC Translator
 Converts EBCDIC-encoded data to UTF-8 across 10 international code pages. Handles packed decimal (COMP-3) and binary data types.
 
-## Quick Start
-
-### Installation
-
-```bash
-npm install -g cobol-bridge-mcp
-```
-
-### Usage with Claude Desktop
-
-Add to your `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "cobol-bridge": {
-      "command": "npx",
-      "args": ["-y", "cobol-bridge-mcp"]
-    }
-  }
-}
-```
-
-### Usage with Cursor IDE
-
-Add to your Cursor MCP settings:
-
-```json
-{
-  "mcpServers": {
-    "cobol-bridge": {
-      "command": "npx",
-      "args": ["-y", "cobol-bridge-mcp"]
-    }
-  }
-}
-```
-
-## Live Deployment
-
-- **Health Check**: https://cobol-bridge-9xxbtxxi5-niks-projects-0a2ef942.vercel.app/health
-- **MCP Endpoint**: https://cobol-bridge-9xxbtxxi5-niks-projects-0a2ef942.vercel.app/mcp/sse
-
 ## Deployment Options
 
 - **SaaS**: Global edge network with 99.9% uptime SLA
@@ -105,12 +62,6 @@ Add to your Cursor MCP settings:
 | Professional | $2,499 | Core three tools (unlimited) |
 | Enterprise | $4,999 | All five tools + on-prem + SLA + CSM |
 
-## Links
-
-- **Product**: https://csga-global.org/mcp/cobol-bridge
-- **Documentation**: https://csga-global.org/docs
-- **NPM Package**: https://www.npmjs.com/package/cobol-bridge-mcp
-- **Live Demo**: https://cobol-bridge-9xxbtxxi5-niks-projects-0a2ef942.vercel.app/health
 
 ## About CSGA Global
 
