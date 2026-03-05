@@ -1,18 +1,19 @@
 {
-    "version": 2,
-    "builds": [
-          { "src": "server.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-          { "src": "/health", "dest": "server.js" },
-          { "src": "/mcp/(.*)", "dest": "server.js" },
-          { "src": "/platform$", "dest": "/platform.html" },
-          { "src": "/about$", "dest": "/about.html" },
-          { "src": "/sectors$", "dest": "/sectors.html" },
-          { "src": "/pricing$", "dest": "/pricing.html" },
-          { "src": "/docs$", "dest": "/docs.html" },
-          { "src": "/contact$", "dest": "/contact.html" },
-          { "src": "/assets/(.*)", "dest": "/assets/$1" },
-          { "src": "^/$", "dest": "/index.html" }
-    ]
+        "version": 2,
+        "builds": [
+                    { "src": "server.js", "use": "@vercel/node" },
+                    { "src": "*.html", "use": "@vercel/static" }
+        ],
+        "routes": [
+                    { "src": "/health", "dest": "server.js" },
+                    { "src": "/mcp/(.*)", "dest": "server.js" },
+                    { "src": "/platform$", "dest": "/platform.html" },
+                    { "src": "/about$", "dest": "/about.html" },
+                    { "src": "/sectors$", "dest": "/sectors.html" },
+                    { "src": "/pricing$", "dest": "/pricing.html" },
+                    { "src": "/docs$", "dest": "/docs.html" },
+                    { "src": "/contact$", "dest": "/contact.html" },
+                    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+                    { "src": "^/$", "dest": "/index.html" }
+        ]
 }
