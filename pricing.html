@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — COBOL Bridge | MCP-Native COBOL Governance</title>
+    <meta name="description" content="Transparent pricing for COBOL Bridge MCP governance tools. Starting at $999/month with CASA certification. Enterprise and sector bundles available.">
+    <link rel="canonical" href="https://cobolbridge.ai/pricing.html">
+    <meta property="og:title" content="Pricing — COBOL Bridge | Plans from $999/mo">
+    <meta property="og:description" content="Transparent pricing for COBOL Bridge MCP governance. Basic $999/mo, Professional $2,499/mo, Enterprise $4,999/mo. Plus sector-specific bundles for banking, insurance, government, healthcare, and logistics.">
+    <meta property="og:image" content="https://cobolbridge.ai/assets/brand/slide-cover.png">
+    <meta property="og:url" content="https://cobolbridge.ai/pricing.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="COBOL Bridge">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pricing — COBOL Bridge">
+    <meta name="twitter:description" content="Transparent pricing for COBOL Bridge MCP governance. Plans from $999/mo.">
+    <meta name="twitter:image" content="https://cobolbridge.ai/assets/brand/slide-cover.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-elevated: #f8f9fb;
+            --bg-surface: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8f9fb;
+            --border-subtle: rgba(0, 0, 0, 0.06);
+            --border-medium: rgba(0, 0, 0, 0.10);
+            --border-bright: rgba(26, 92, 212, 0.3);
+            --blue: #1a5cd4;
+            --blue-bright: #1a5cd4;
+            --blue-glow: rgba(26, 92, 212, 0.08);
+            --accent: #d4941f;
+            --accent-bright: #e5a42d;
+            --accent-glow: rgba(212, 148, 31, 0.08);
+            --gold: var(--accent);
+            --gold-glow: var(--accent-glow);
+            --success: #10b981;
+            --danger: #ef4444;
+            --text-primary: #1a1e25;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --text-muted: #94a3b8;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px;
+            --space-xl: 32px; --space-2xl: 48px; --space-3xl: 64px; --space-4xl: 96px;
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 48px rgba(0,0,0,0.12);
+            --shadow-glow-accent: 0 0 40px rgba(212,148,31,0.10);
+            --shadow-glow-blue: 0 0 40px rgba(26,92,212,0.10);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --duration-fast: 150ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            animation: pageEnter 0.6s var(--ease-out);
+        }
+        body.nav-open { overflow: hidden; }
+
+        @keyframes pageEnter { from { opacity: 0; } to { opacity: 1; } }
+
+        a { color: var(--accent); text-decoration: none; transition: color var(--duration-normal) var(--ease-out); }
+        a:hover { color: var(--accent-bright); }
+
+        ::selection {
+            background: var(--blue);
+            color: #ffffff;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(24px) saturate(1.4);
+            -webkit-backdrop-filter: blur(24px) saturate(1.4);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background var(--duration-normal) var(--ease-out), border-color var(--duration-normal) var(--ease-out);
+        }
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom-color: var(--border-medium);
+        }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px; padding: 0 var(--space-lg);
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 12px;
+            font-weight: 700; font-size: 18px; color: var(--text-primary);
+        }
+        .nav-logo .bridge-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--blue), var(--accent));
+            border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+            color: #ffffff; letter-spacing: -1px;
+        }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a.active { color: var(--text-primary); }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
+            color: #ffffff !important;
+            padding: 10px 24px; border-radius: var(--radius-sm);
+            font-weight: 600; font-size: 14px;
+        }
+        .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+        .nav-mobile {
+            display: none; background: none; border: none; color: var(--text-primary);
+            font-size: 24px; cursor: pointer; padding: 8px; width: 44px; height: 44px;
+            align-items: center; justify-content: center;
+        }
+        .nav-mobile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+        .nav-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px; left: 0; right: 0; bottom: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: var(--space-lg);
+            z-index: 99;
+            flex-direction: column;
+            gap: var(--space-md);
+            animation: slideDown 0.3s var(--ease-out);
+        }
+        .nav-mobile-menu.open { display: flex; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-mobile-menu a {
+            padding: var(--space-md); border-radius: var(--radius-sm);
+            transition: background var(--duration-normal) var(--ease-out);
+        }
+        .nav-mobile-menu a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+        .nav-mobile-menu a:hover { background: var(--bg-surface); }
+        .nav-mobile-menu a.active { color: var(--accent-bright); background: var(--bg-surface); }
+
+        /* ── HERO ── */
+        .pricing-hero {
+            padding: 160px var(--space-lg) 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-hero::before {
+            content: '';
+            position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(26,92,212,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .pricing-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(212,148,31,0.15);
+            border-radius: 100px; padding: 6px 20px;
+            font-size: 13px; font-weight: 600; color: var(--accent-bright);
+            margin-bottom: var(--space-lg);
+        }
+        .pricing-badge .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .pricing-hero h1 {
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 900; letter-spacing: -0.04em;
+            line-height: 1.05; margin-bottom: var(--space-md);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--blue-bright) 0%, var(--accent) 50%, var(--accent-bright) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .pricing-hero p {
+            font-size: 18px; color: var(--text-secondary);
+            max-width: 560px; margin: 0 auto; line-height: 1.6;
+        }
+
+        /* ── TOGGLE ── */
+        .toggle-wrap {
+            display: flex; justify-content: center;
+            margin-bottom: var(--space-3xl);
+        }
+        .toggle {
+            display: flex;
+            background: var(--bg-surface);
+            border-radius: var(--radius-md);
+            padding: 4px;
+            border: 1px solid var(--border-subtle);
+        }
+        .toggle button {
+            padding: 12px 28px; border: none;
+            background: transparent; color: var(--text-secondary);
+            font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+            border-radius: var(--radius-sm); cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+        .toggle button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .toggle button.active {
+            background: linear-gradient(135deg, var(--blue), var(--accent));
+            color: #ffffff;
+            box-shadow: 0 4px 16px rgba(26,92,212,0.15);
+            animation: toggleSlide 0.4s var(--ease-out);
+        }
+        @keyframes toggleSlide { from { transform: scale(0.95); opacity: 0.8; } to { transform: scale(1); opacity: 1; } }
+        .toggle button:hover:not(.active) { color: var(--text-primary); }
+        .save-badge {
+            display: inline-block;
+            background: var(--accent-glow);
+            color: var(--accent-bright);
+            font-size: 11px; font-weight: 700;
+            padding: 2px 8px; border-radius: 4px; margin-left: 6px;
+        }
+
+        /* ── PRICING GRID ── */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-lg); }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg); margin-bottom: var(--space-4xl);
+            align-items: start;
+        }
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 40px 32px;
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+            animation: cardReveal 0.6s var(--ease-out) backwards;
+        }
+        .price-card:nth-child(1) { animation-delay: 0.1s; }
+        .price-card:nth-child(2) { animation-delay: 0.2s; }
+        .price-card:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes cardReveal { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
+        .price-card:hover {
+            border-color: var(--border-bright);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+        .price-card:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--accent-glow);
+        }
+        .price-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(180deg, var(--bg-card-hover) 0%, var(--bg-card) 100%);
+            box-shadow: 0 0 60px rgba(212,148,31,0.06);
+        }
+        .price-card.featured:hover {
+            border-color: var(--accent-bright);
+            box-shadow: var(--shadow-glow-accent);
+        }
+        .popular-tag {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+            color: #000; font-size: 11px; font-weight: 800;
+            padding: 5px 20px; border-radius: 100px;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            box-shadow: 0 4px 16px rgba(212,148,31,0.20);
+        }
+        .price-card .tier {
+            font-size: 13px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; margin-bottom: var(--space-md);
+        }
+        .price-card:nth-child(1) .tier { color: var(--blue-bright); }
+        .price-card:nth-child(2) .tier { color: var(--accent-bright); }
+        .price-card:nth-child(3) .tier { color: var(--text-secondary); }
+        .price-card .amount {
+            font-size: 56px; font-weight: 900;
+            letter-spacing: -0.03em;
+            margin-bottom: 4px; color: var(--text-primary);
+            line-height: 1;
+        }
+        .price-card .amount small {
+            font-size: 18px; color: var(--text-tertiary); font-weight: 400;
+        }
+        .price-card .per {
+            font-size: 13px; color: var(--text-tertiary);
+            margin-bottom: var(--space-lg);
+        }
+        .price-card .desc {
+            font-size: 14px; color: var(--text-secondary);
+            line-height: 1.6; margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .price-card ul { list-style: none; margin-bottom: var(--space-xl); }
+        .price-card ul li {
+            padding: 8px 0; font-size: 14px; color: var(--text-secondary);
+            display: flex; align-items: flex-start; gap: 12px;
+        }
+        .price-card ul li::before {
+            content: '';
+            width: 20px; height: 20px;
+            display: inline-flex; align-items: center; justify-content: center;
+            color: var(--success); font-weight: 700;
+            font-size: 14px; flex-shrink: 0; margin-top: 1px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2310b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') no-repeat center / contain;
+        }
+        .price-card.featured ul li::before {
+            stroke: var(--accent);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') no-repeat center / contain;
+        }
+
+        .btn-primary {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: #1a5cd4;
+            color: #ffffff; padding: 16px 28px;
+            border-radius: var(--radius-md); font-weight: 700; font-size: 15px;
+            border: none; cursor: pointer; width: 100%;
+            transition: all var(--duration-normal) var(--ease-out);
+            text-align: center; min-height: 44px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px); color: #ffffff;
+            box-shadow: 0 8px 32px rgba(26,92,212,0.25);
+        }
+        .btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .btn-outline {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: transparent; color: var(--text-primary);
+            padding: 16px 28px; border-radius: var(--radius-md);
+            font-weight: 600; font-size: 15px;
+            border: 1px solid var(--border-medium); cursor: pointer; width: 100%;
+            transition: all var(--duration-normal) var(--ease-out);
+            text-align: center; min-height: 44px;
+        }
+        .btn-outline:hover {
+            border-color: var(--blue); color: var(--blue-bright);
+            transform: translateY(-2px); background: var(--blue-glow);
+        }
+        .btn-outline:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+        /* ── SECTOR BUNDLES ── */
+        .bundles-section {
+            padding: var(--space-4xl) var(--space-lg);
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            position: relative;
+        }
+        .bundles-section::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.5;
+        }
+        .bundles-section::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.5;
+        }
+        .section-label {
+            font-size: 12px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--accent);
+            text-align: center; margin-bottom: var(--space-md);
+        }
+        .section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 800; letter-spacing: -0.03em;
+            text-align: center; margin-bottom: var(--space-md);
+        }
+        .section-sub {
+            font-size: 17px; color: var(--text-secondary);
+            text-align: center; max-width: 600px;
+            margin: 0 auto var(--space-3xl); line-height: 1.6;
+        }
+        .bundles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+        }
+        .bundle-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            transition: all var(--duration-normal) var(--ease-out);
+            display: flex; flex-direction: column;
+            animation: cardReveal 0.6s var(--ease-out) backwards;
+        }
+        .bundle-card:nth-child(1) { animation-delay: 0.1s; }
+        .bundle-card:nth-child(2) { animation-delay: 0.15s; }
+        .bundle-card:nth-child(3) { animation-delay: 0.2s; }
+        .bundle-card:nth-child(4) { animation-delay: 0.25s; }
+        .bundle-card:nth-child(5) { animation-delay: 0.3s; }
+        .bundle-card:hover {
+            border-color: rgba(212,148,31,0.20);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .bundle-card:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--accent-glow);
+        }
+        .bundle-header {
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: var(--space-lg);
+        }
+        .bundle-icon {
+            width: 48px; height: 48px; border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; flex-shrink: 0;
+        }
+        .bundle-card:nth-child(1) .bundle-icon { background: rgba(26,92,212,0.08); }
+        .bundle-card:nth-child(2) .bundle-icon { background: rgba(16,185,129,0.12); }
+        .bundle-card:nth-child(3) .bundle-icon { background: rgba(139,92,246,0.12); }
+        .bundle-card:nth-child(4) .bundle-icon { background: rgba(212,148,31,0.08); }
+        .bundle-card:nth-child(5) .bundle-icon { background: rgba(239,68,68,0.12); }
+        .bundle-card h3 { font-size: 18px; font-weight: 700; }
+        .bundle-price {
+            font-size: 32px; font-weight: 900; color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .bundle-price small { font-size: 14px; color: var(--text-tertiary); font-weight: 400; }
+        .bundle-card ul { list-style: none; margin-bottom: var(--space-lg); flex: 1; }
+        .bundle-card ul li {
+            padding: 6px 0; font-size: 13px; color: var(--text-secondary);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .bundle-card ul li::before {
+            content: '';
+            width: 16px; height: 16px;
+            display: inline-flex; align-items: center; justify-content: center;
+            color: var(--accent); font-weight: 700; flex-shrink: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') no-repeat center / contain;
+        }
+        .casa-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--accent-glow); color: var(--accent-bright);
+            font-size: 12px; font-weight: 700;
+            padding: 6px 14px; border-radius: var(--radius-sm);
+            border: 1px solid rgba(212,148,31,0.12);
+            width: fit-content;
+        }
+
+        /* ── COMPARISON TABLE ── */
+        .comparison-section {
+            padding: var(--space-4xl) var(--space-lg);
+            background: var(--bg-primary);
+        }
+        .table-wrapper {
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-subtle);
+            overflow: hidden;
+            background: var(--bg-card);
+        }
+        @media (max-width: 768px) {
+            .table-wrapper { overflow-x: auto; }
+        }
+        .comparison-table { width: 100%; border-collapse: collapse; }
+        .comparison-table th, .comparison-table td {
+            padding: 18px 24px; text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .comparison-table thead th {
+            background: var(--bg-surface);
+            font-weight: 600; color: var(--text-tertiary);
+            font-size: 12px; text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .comparison-table thead th:nth-child(2) {
+            color: var(--accent-bright);
+        }
+        .comparison-table td { color: var(--text-secondary); }
+        .comparison-table tbody tr:hover td { background: rgba(26,92,212,0.02); }
+        .comparison-table tbody tr:last-child td { border-bottom: none; }
+        .comparison-table .check {
+            color: var(--success); font-weight: 700;            display: inline-flex; align-items: center; justify-content: center;
+            width: 20px; height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2310b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') no-repeat center / contain;
+        }
+        .comparison-table .cross {
+            color: var(--text-muted);
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 20px; height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23475569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>') no-repeat center / contain;
+        }
+        .comparison-table .highlight { color: var(--accent-bright); font-weight: 700; }
+
+        /* ── FAQ ── */
+        .faq-section {
+            padding: var(--space-4xl) var(--space-lg);
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border-subtle);
+            position: relative;
+        }
+        .faq-section::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--blue), transparent);
+            opacity: 0.5;
+        }
+        .faq-grid { max-width: 720px; margin: 0 auto; }
+        .faq-item {
+            border-bottom: 1px solid var(--border-subtle);
+            padding: var(--space-lg) 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-q {
+            font-size: 16px; font-weight: 600; color: var(--text-primary);
+            margin-bottom: 12px; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: color var(--duration-normal) var(--ease-out);
+            padding: 8px; margin: -8px; border-radius: var(--radius-sm);
+        }
+        .faq-q:hover { color: var(--accent-bright); }
+        .faq-q:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .faq-q .arrow {
+            width: 20px; height: 20px;
+            display: inline-flex; align-items: center; justify-content: center;
+            color: var(--text-tertiary);
+            transition: transform var(--duration-normal) var(--ease-out);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>') no-repeat center / contain;
+        }
+        .faq-item.open .faq-q .arrow { transform: rotate(90deg); }
+        .faq-a {
+            color: var(--text-secondary); font-size: 15px;
+            line-height: 1.7; max-height: 0; overflow: hidden;
+            transition: max-height var(--duration-slow) var(--ease-out), opacity var(--duration-normal);
+            opacity: 0;
+        }
+        .faq-item.open .faq-a { max-height: 300px; opacity: 1; }
+
+        /* ── CTA ── */
+        .cta-section {
+            padding: var(--space-4xl) var(--space-lg);
+            background: var(--bg-primary);
+        }
+        .cta-box {
+            max-width: 800px; margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl) var(--space-2xl);
+            text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .cta-box::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blue), var(--accent), transparent);
+        }
+        .cta-box h2 {
+            font-size: 32px; font-weight: 800;
+            letter-spacing: -0.02em; margin-bottom: var(--space-md);
+        }
+        .cta-box p {
+            font-size: 16px; color: var(--text-secondary);
+            max-width: 480px; margin: 0 auto var(--space-xl); line-height: 1.6;
+        }
+        .cta-buttons {
+            display: flex; gap: var(--space-md);
+            justify-content: center; flex-wrap: wrap;
+        }
+        .cta-buttons .btn-primary,
+        .cta-buttons .btn-outline { width: auto; padding: 16px 32px; }
+
+        /* ── BACK TO TOP ── */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px; right: 32px;
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, var(--blue), var(--accent));
+            border: none; border-radius: var(--radius-md);
+            color: #ffffff; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s var(--ease-out), visibility 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+            z-index: 50;
+            box-shadow: 0 4px 16px rgba(26,92,212,0.2);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow-blue);
+        }
+        .back-to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .back-to-top svg {
+            width: 20px; height: 20px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-subtle);
+            padding: var(--space-3xl) var(--space-lg);
+        }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: var(--space-lg);
+        }
+        .footer-left { color: var(--text-tertiary); font-size: 13px; }
+        .footer-links { display: flex; gap: var(--space-lg); }
+        .footer-links a { color: var(--text-tertiary); font-size: 13px; }
+        .footer-links a:hover { color: var(--text-primary); }
+        .footer-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .compliance-row {
+            width: 100%; display: flex; justify-content: center;
+            gap: var(--space-lg); flex-wrap: wrap;
+            padding-top: var(--space-lg); margin-top: var(--space-lg);
+            border-top: 1px solid var(--border-subtle);
+        }
+        .compliance-badge {
+            font-size: 11px; font-weight: 600; color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* ── SCROLL REVEAL ── */
+        .reveal {
+            opacity: 0; transform: translateY(32px);
+            transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+            .price-card.featured { order: -1; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-mobile { display: flex; }
+            .pricing-hero { padding: 120px var(--space-lg) 60px; }
+            .pricing-hero h1 { font-size: clamp(32px, 5vw, 48px); }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .price-card { padding: 32px 24px; }
+            .price-card ul li { font-size: 13px; }
+            .btn-primary, .btn-outline { font-size: 14px; padding: 14px 20px; }
+            .bundles-grid { grid-template-columns: 1fr; }
+            .comparison-table th, .comparison-table td { padding: 12px 16px; font-size: 13px; }
+            .cta-box { padding: var(--space-2xl) var(--space-lg); }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { justify-content: center; }
+            .back-to-top { bottom: 24px; right: 24px; width: 40px; height: 40px; }
+        }
+        @media (max-width: 480px) {
+            .pricing-hero { padding: 100px var(--space-lg) 40px; }
+            .pricing-hero h1 { font-size: clamp(28px, 5vw, 40px); }
+            .toggle { flex-direction: column; }
+            .toggle button { padding: 10px 20px; font-size: 13px; }
+            .cta-buttons { flex-direction: column; }
+            .cta-buttons .btn-primary,
+            .cta-buttons .btn-outline { width: 100%; }
+        }
+
+        .hero-brand-bg {
+            position: absolute;
+            inset: 0;
+            background: url('assets/visuals/cover-bridge.png') center/cover no-repeat;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+    
+    
+    /* ── CTA Banner ── */
+    .cta-banner { background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 50%, #f0f2f5 100%); border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 64px 48px; text-align: center; margin: 80px auto; max-width: 900px; position: relative; overflow: hidden; }
+    .cta-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(26,92,212,0.04) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(212,148,31,0.03) 0%, transparent 50%); pointer-events: none; }
+    .cta-banner h2 { font-size: 32px; font-weight: 700; color: #1a1e25; margin: 0 0 12px; position: relative; }
+    .cta-banner h2 .gold { color: #d4941f; }
+    .cta-banner p { color: #475569; font-size: 17px; margin: 0 0 32px; max-width: 550px; margin-left: auto; margin-right: auto; line-height: 1.7; position: relative; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+    .cta-btn-primary { padding: 14px 32px; background: #1a5cd4; color: #ffffff; border: none; border-radius: 10px; font-weight: 700; font-size: 15px; text-decoration: none; cursor: pointer; transition: all 0.3s; font-family: inherit; display: inline-flex; align-items: center; gap: 8px; }
+    .cta-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,92,212,0.2); }
+    .cta-btn-outline { padding: 14px 32px; background: transparent; color: #1a1e25; border: 1px solid rgba(0,0,0,0.15); border-radius: 10px; font-weight: 600; font-size: 15px; text-decoration: none; cursor: pointer; transition: all 0.3s; font-family: inherit; }
+    .cta-btn-outline:hover { border-color: #1a5cd4; color: #1a5cd4; }
+
+    /* ── Branded Footer ── */
+    .site-footer { background: #f8f9fb; border-top: 1px solid rgba(0,0,0,0.06); padding: 64px 0 0; margin-top: 80px; }
+    .footer-wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .footer-brand { }
+    .footer-brand-logo { font-size: 20px; font-weight: 700; color: #1a1e25; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .footer-brand-logo span { color: #d4941f; }
+    .footer-brand p { color: #475569; font-size: 14px; line-height: 1.7; margin: 0 0 20px; max-width: 300px; }
+    .footer-newsletter { display: flex; gap: 8px; max-width: 340px; }
+    .footer-newsletter input { flex: 1; padding: 10px 14px; background: #ffffff; border: 1px solid rgba(0,0,0,0.12); border-radius: 8px; color: #1a1e25; font-size: 14px; font-family: inherit; outline: none; }
+    .footer-newsletter input::placeholder { color: #94a3b8; }
+    .footer-newsletter input:focus { border-color: #1a5cd4; }
+    .footer-newsletter button { padding: 10px 18px; background: #1a5cd4; color: #ffffff; border: none; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap; font-family: inherit; }
+    .footer-newsletter button:hover { opacity: 0.9; }
+    .footer-col h4 { color: #1a1e25; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; margin: 0 0 16px; }
+    .footer-col a { display: block; color: #475569; font-size: 14px; text-decoration: none; padding: 5px 0; transition: color 0.2s; }
+    .footer-col a:hover { color: #1a5cd4; }
+    .footer-badges { display: flex; flex-wrap: wrap; gap: 8px; padding: 32px 0; justify-content: center; }
+    .footer-badge { padding: 4px 12px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); border-radius: 20px; color: #64748b; font-size: 11px; font-weight: 500; letter-spacing: 0.5px; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-top: 1px solid rgba(0,0,0,0.06); }
+    .footer-bottom p { color: #475569; font-size: 13px; margin: 0; }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { color: #64748b; font-size: 13px; text-decoration: none; }
+    .footer-bottom-links a:hover { color: #1a5cd4; }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .footer-newsletter { flex-direction: column; }
+    }
+
+  
+    .bundle-btn { display: block; text-align: center; padding: 12px 24px; background: #1a5cd4; color: #ffffff; font-weight: 700; font-size: 14px; border-radius: 10px; text-decoration: none; transition: all 0.3s; }
+    .bundle-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .bundle-btn-outline { display: block; text-align: center; padding: 12px 24px; border: 1px solid rgba(0,0,0,0.15); color: #475569; font-weight: 600; font-size: 14px; border-radius: 10px; text-decoration: none; transition: all 0.3s; background: transparent; }
+    .bundle-btn-outline:hover { border-color: #1a5cd4; color: #1a5cd4; }
+
+  
+    /* ═══════ SCROLL REVEAL SYSTEM ═══════ */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-60px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(60px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale { opacity: 0; transform: scale(0.92); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    .stagger-1 { transition-delay: 0.08s; }
+    .stagger-2 { transition-delay: 0.16s; }
+    .stagger-3 { transition-delay: 0.24s; }
+    .stagger-4 { transition-delay: 0.32s; }
+    .stagger-5 { transition-delay: 0.40s; }
+
+    /* ═══════ GEOMETRIC DECORATORS ═══════ */
+    .geo-decorator { position: absolute; pointer-events: none; z-index: 0; }
+    .geo-dots { background-image: radial-gradient(rgba(26, 92, 212, 0.06) 1px, transparent 1px); background-size: 24px 24px; }
+    .geo-grid { background-image: linear-gradient(rgba(26, 92, 212, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 92, 212, 0.04) 1px, transparent 1px); background-size: 48px 48px; }
+    .geo-circle { border-radius: 50%; border: 1px solid rgba(26, 92, 212, 0.08); }
+
+    /* ═══════ FLOATING ACCENT ORBS ═══════ */
+    .accent-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.5; z-index: 0; pointer-events: none; animation: orbFloat 8s ease-in-out infinite; }
+    .accent-orb-blue { background: rgba(26, 92, 212, 0.12); }
+    .accent-orb-gold { background: rgba(212, 148, 31, 0.10); animation-delay: -4s; }
+    @keyframes orbFloat { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(20px, -20px); } }
+
+    /* ═══════ HERO VISUAL CONTAINER ═══════ */
+    .hero-visual-container {
+        position: relative; margin: 2.5rem auto 2rem; max-width: 820px;
+        border-radius: 20px; overflow: hidden;
+        background: linear-gradient(135deg, rgba(26,92,212,0.04), rgba(212,148,31,0.03));
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 12px 40px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-visual-container:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 12px rgba(0,0,0,0.03), 0 20px 60px rgba(26,92,212,0.10), 0 0 0 1px rgba(26,92,212,0.08);
+    }
+    .hero-visual-container img { display: block; width: 100%; }
+
+    /* ═══════ SECTION DIVIDERS ═══════ */
+    .section-divider {
+        width: 120px; height: 2px; margin: 0 auto;
+        background: linear-gradient(90deg, transparent, rgba(26,92,212,0.25), rgba(212,148,31,0.20), transparent);
+        border-radius: 2px;
+    }
+
+    /* ═══════ TRUST BADGES ═══════ */
+    .trust-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 2rem; }
+    .trust-badge {
+        display: flex; align-items: center; gap: 6px;
+        padding: 6px 14px; border-radius: 24px;
+        background: rgba(26, 92, 212, 0.03);
+        border: 1px solid rgba(26, 92, 212, 0.08);
+        font-size: 12px; font-weight: 600; color: #475569;
+        letter-spacing: 0.3px;
+        transition: all 0.3s ease;
+    }
+    .trust-badge:hover { background: rgba(26, 92, 212, 0.06); border-color: rgba(26, 92, 212, 0.15); }
+    .trust-badge svg { width: 14px; height: 14px; fill: none; stroke: #1a5cd4; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ═══════ SHIMMER TEXT ═══════ */
+    @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+    .shimmer-text {
+        background: linear-gradient(90deg, #1a5cd4 0%, #d4941f 25%, #1a5cd4 50%, #d4941f 75%, #1a5cd4 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        animation: shimmer 6s linear infinite;
+    }
+
+    /* ═══════ PREMIUM SVG GRAPHIC CONTAINERS ═══════ */
+    .svg-graphic-section {
+        position: relative; padding: 3rem 0; overflow: hidden;
+    }
+    .svg-graphic-wrapper {
+        max-width: 960px; margin: 0 auto; position: relative; z-index: 1;
+    }
+    .svg-graphic-wrapper svg {
+        width: 100%; height: auto; display: block;
+    }
+
+    /* ═══════ INLINE SVG HERO GRAPHIC ═══════ */
+    .hero-svg-graphic {
+        position: relative; margin: 2rem auto; max-width: 800px;
+        filter: drop-shadow(0 8px 32px rgba(26, 92, 212, 0.08));
+    }
+    .hero-svg-graphic svg { width: 100%; height: auto; }
+
+    /* ═══════ TOOL ICON UPGRADED ═══════ */
+    .tool-icon-upgraded {
+        width: 56px; height: 56px; border-radius: 16px;
+        background: linear-gradient(135deg, rgba(26,92,212,0.06) 0%, rgba(212,148,31,0.04) 100%);
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.3s ease;
+    }
+    .tool-card:hover .tool-icon-upgraded {
+        background: linear-gradient(135deg, rgba(26,92,212,0.12) 0%, rgba(212,148,31,0.08) 100%);
+        transform: scale(1.05);
+    }
+
+    /* ═══════ CARD HOVER EFFECTS ═══════ */
+    .tool-card, .feature-card, .sector-card, .pricing-card {
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tool-card:hover, .feature-card:hover, .sector-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(26, 92, 212, 0.06), 0 0 0 1px rgba(26, 92, 212, 0.06);
+    }
+
+    /* ═══════ GRADIENT TEXT ACCENT ═══════ */
+    .gradient-text {
+        background: linear-gradient(135deg, #1a5cd4 0%, #d4941f 100%);
+        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    /* ═══════ ANIMATED UNDERLINE LINKS ═══════ */
+    .animated-link {
+        position: relative; text-decoration: none;
+    }
+    .animated-link::after {
+        content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+        background: linear-gradient(90deg, #1a5cd4, #d4941f);
+        transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .animated-link:hover::after { width: 100%; }
+
+    /* ═══════ PULSE DOT (FOR LIVE INDICATORS) ═══════ */
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
+    .pulse-dot {
+        width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ═══════ STATS COUNTER ANIMATION ═══════ */
+    @keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .stat-animated { animation: countUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+    /* ═══════ REDUCED MOTION ═══════ */
+    @media (prefers-reduced-motion: reduce) {
+        .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; transition: none; }
+        .accent-orb { animation: none; }
+        .shimmer-text { animation: none; }
+        .pulse-dot { animation: none; }
+    }
+
+  </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "COBOL Bridge",
+  "description": "MCP-native AI governance platform for COBOL modernisation",
+  "brand": {"@type": "Brand", "name": "CSGA Global"},
+  "offers": [
+    {"@type": "Offer", "name": "Basic", "price": "999", "priceCurrency": "USD", "priceSpecification": {"@type": "UnitPriceSpecification", "billingDuration": "P1M"}},
+    {"@type": "Offer", "name": "Professional", "price": "2499", "priceCurrency": "USD", "priceSpecification": {"@type": "UnitPriceSpecification", "billingDuration": "P1M"}},
+    {"@type": "Offer", "name": "Enterprise", "price": "4999", "priceCurrency": "USD", "priceSpecification": {"@type": "UnitPriceSpecification", "billingDuration": "P1M"}}
+  ]
+}
+    </script>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <div class="bridge-icon">CB</div>COBOL Bridge
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="platform.html">Platform</a>
+            <a href="pricing.html" class="active">Pricing</a>
+            <a href="sectors.html">Sectors</a>
+            <a href="about.html">About</a>
+            <a href="docs.html">Docs</a>
+            <a href="contact.html" class="nav-cta">Get Started →</a>
+        </div>
+        <button class="nav-mobile" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+    </div>
+    <div class="nav-mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="platform.html">Platform</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="sectors.html">Sectors</a>
+        <a href="about.html">About</a>
+        <a href="docs.html">Docs</a>
+        <a href="contact.html" class="nav-cta">Get Started →</a>
+    </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="pricing-hero">
+    <div class="hero-brand-bg"></div>
+    <div class="pricing-badge"><span class="dot"></span> No hidden fees · Cancel anytime</div>
+    <h1>Simple, <span class="gradient-text">Transparent</span> Pricing</h1>
+    <p>Every plan includes enterprise-grade security, CASA certification, and dedicated onboarding. Start with a 14-day free trial.</p>
+</section>
+
+<!-- ── TOGGLE + PRICING GRID ── -->
+<div class="container">
+    <div class="toggle-wrap reveal">
+        <div class="toggle">
+            <button class="active" onclick="setPricing('monthly', this)">Monthly</button>
+            <button onclick="setPricing('annual', this)">Annual <span class="save-badge">Save 20%</span></button>
+        </div>
+    </div>
+
+    <div class="pricing-grid" id="pricingGrid">
+        <!-- BASIC -->
+        <div class="price-card reveal">
+            <div class="tier">Basic</div>
+            <div class="amount" data-monthly="$999" data-annual="$799">$999<small>/mo</small></div>
+            <div class="per" data-monthly="Billed monthly" data-annual="$9,590/year · Save $2,398">Billed monthly</div>
+            <p class="desc">Core governance tools for teams beginning their COBOL modernisation journey.</p>
+            <ul>
+                <li>2 MCP governance tools</li>
+                <li>100 analyses per month</li>
+                <li>Email support (48hr SLA)</li>
+                <li>CASA CA-10 certification</li>
+                <li>SaaS deployment</li>
+                <li>Standard API access</li>
+                <li>Basic reporting dashboard</li>
+            </ul>
+            <a href="https://buy.stripe.com/28EfZj1Il5fGf42gpfdMI0A" class="btn-outline">Start Free Trial</a>
+        </div>
+
+        <!-- PROFESSIONAL -->
+        <div class="price-card featured reveal">
+            <div class="popular-tag">Most Popular</div>
+            <div class="tier">Professional</div>
+            <div class="amount" data-monthly="$2,499" data-annual="$1,999">$2,499<small>/mo</small></div>
+            <div class="per" data-monthly="Billed monthly" data-annual="$23,990/year · Save $5,998">Billed monthly</div>
+            <p class="desc">Full platform access for organisations actively modernising COBOL workloads with AI governance.</p>
+            <ul>
+                <li>All 5 MCP governance tools</li>
+                <li>500 analyses per month</li>
+                <li>Priority support + Slack channel</li>
+                <li>CASA CA-20 certification</li>
+                <li>SaaS or VPC deployment</li>
+                <li>Full API access + webhooks</li>
+                <li>Advanced analytics + exports</li>
+                <li>Custom integration support</li>
+                <li>Quarterly governance review</li>
+            </ul>
+            <a href="https://buy.stripe.com/28E8wRaeRfUk1dca0RdMI0B" class="btn-primary">Start Free Trial →</a>
+        </div>
+
+        <!-- ENTERPRISE -->
+        <div class="price-card reveal">
+            <div class="tier">Enterprise</div>
+            <div class="amount" data-monthly="$4,999" data-annual="$3,999">$4,999<small>/mo</small></div>
+            <div class="per" data-monthly="Billed monthly" data-annual="$47,990/year · Save $11,998">Billed monthly</div>
+            <p class="desc">White-glove service for large organisations requiring maximum governance, compliance, and flexibility.</p>
+            <ul>                <li>Unlimited analyses</li>
+                <li>Dedicated Customer Success Manager</li>
+                <li>CASA CA-30 certification</li>
+                <li>All deployment options (incl. on-prem)</li>
+                <li>Air-gapped environment support</li>
+                <li>Custom SLAs (99.99% uptime)</li>
+                <li>SSO / SAML integration</li>
+                <li>Audit log &amp; compliance reporting</li>
+                <li>Executive quarterly reviews</li>
+                <li>Custom tool development</li>
+            </ul>
+            <a href="https://buy.stripe.com/cNi9AV72F7nObRQeh7dMI0C" class="btn-outline">Contact Sales</a>
+        </div>
+    </div>
+</div>
+
+<!-- ── SECTOR BUNDLES ── -->
+<section class="bundles-section">
+    <div class="section-label reveal">Industry Solutions</div>
+    <h2 class="section-title reveal">Sector Bundles</h2>
+    <p class="section-sub reveal">Pre-configured packages with industry-specific MCPs, compliance frameworks, and dedicated governance tailored to your vertical.</p>
+    <div class="container">
+        <div class="bundles-grid">
+            <div class="bundle-card reveal">
+                <div class="bundle-header">
+                    <div class="bundle-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1a5cd4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2z"></path><polyline points="16 11 12 7 8 11"></polyline></svg>
+                    </div>
+                    <h3>COBOL Banking</h3>
+                </div>
+                <div class="bundle-price">$7,999<small>/mo</small></div>
+                <ul>
+                    <li>All 5 governance tools</li>
+                    <li>Banking sector MCPs (12+)</li>
+                    <li>SOX compliance automation</li>
+                    <li>Core banking analysis</li>
+                    <li>Payment system mapping</li>
+                    <li>PCI DSS alignment</li>
+                </ul>
+                <a href="https://buy.stripe.com/7sY14pfzb37yaNM6OFdMI0D" class="bundle-btn">Subscribe →</a>
+                <span class="casa-tag">CASA CA-30</span>
+            </div>
+            <div class="bundle-card reveal">
+                <div class="bundle-header">
+                    <div class="bundle-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><path d="M3 12a9 9 0 1 0 18 0A9 9 0 0 0 3 12z"></path><path d="M12 6v6l4 2"></path></svg>
+                    </div>
+                    <h3>COBOL Government</h3>
+                </div>
+                <div class="bundle-price">$6,999<small>/mo</small></div>
+                <ul>
+                    <li>All 5 governance tools</li>
+                    <li>Government sector MCPs (8+)</li>
+                    <li>FedRAMP alignment tools</li>
+                    <li>Citizen services analysis</li>
+                    <li>Tax system modernisation</li>
+                    <li>Data sovereignty controls</li>
+                </ul>
+                <a href="https://buy.stripe.com/bJeeVf3Qt7nObRQ2ypdMI0E" class="bundle-btn">Subscribe →</a>
+                <span class="casa-tag">CASA CA-30</span>
+            </div>
+            <div class="bundle-card reveal">
+                <div class="bundle-header">
+                    <div class="bundle-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    </div>
+                    <h3>COBOL Healthcare</h3>
+                </div>
+                <div class="bundle-price">$7,499<small>/mo</small></div>
+                <ul>
+                    <li>All 5 governance tools</li>
+                    <li>Healthcare sector MCPs (10+)</li>
+                    <li>HIPAA compliance engine</li>
+                    <li>Claims processing analysis</li>
+                    <li>EHR integration mapping</li>
+                    <li>PHI data protection</li>
+                </ul>
+                <a href="https://buy.stripe.com/7sYcN7gDffUkf42eh7dMI0F" class="bundle-btn">Subscribe →</a>
+                <span class="casa-tag">CASA CA-30</span>
+            </div>
+            <div class="bundle-card reveal">
+                <div class="bundle-header">
+                    <div class="bundle-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4941f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>COBOL Insurance</h3>
+                </div>
+                <div class="bundle-price">$6,499<small>/mo</small></div>
+                <ul>
+                    <li>All 5 governance tools</li>
+                    <li>Insurance sector MCPs (6+)</li>
+                    <li>Regulatory mapping engine</li>
+                    <li>Policy management analysis</li>
+                    <li>Actuarial system modernisation</li>
+                    <li>Claims workflow optimisation</li>
+                </ul>
+                <a href="https://buy.stripe.com/14A9AVfzbeQg3lk6OFdMI0G" class="bundle-btn">Subscribe →</a>
+                <span class="casa-tag">CASA CA-20</span>
+            </div>
+            <div class="bundle-card reveal">
+                <div class="bundle-header">
+                    <div class="bundle-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><circle cx="12" cy="12" r="1"></circle><path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m2.12 2.12l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m2.12-2.12l4.24-4.24"></path></svg>
+                    </div>
+                    <h3>COBOL Defence</h3>
+                </div>
+                <div class="bundle-price">Custom<small> pricing</small></div>
+                <ul>
+                    <li>All 5 governance tools</li>
+                    <li>Defence sector MCPs (11+)</li>
+                    <li>Air-gapped deployment</li>
+                    <li>Classified system support</li>
+                    <li>ITAR / EAR compliance</li>
+                    <li>Quantum-safe encryption</li>
+                </ul>
+                <a href="contact.html" class="bundle-btn-outline">Contact Sales</a>
+                <span class="casa-tag">CASA CA-40</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── COMPARISON TABLE ── -->
+<section class="comparison-section">
+    <div class="section-label reveal">Why COBOL Bridge</div>
+    <h2 class="section-title reveal">How We Compare</h2>
+    <p class="section-sub reveal">The only MCP-native solution with built-in AI governance certification — at a fraction of the cost.</p>
+    <div class="container">
+        <div class="table-wrapper reveal">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>COBOL Bridge</th>
+                        <th>IBM watsonx</th>
+                        <th>AWS Mainframe Mod</th>
+                        <th>Rocket Software</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>MCP Native</td><td class="check"></td><td class="cross"></td><td class="cross"></td><td class="cross"></td></tr>
+                    <tr><td>AI Governance (CASA)</td><td>Built-in</td><td class="cross"></td><td class="cross"></td><td class="cross"></td></tr>
+                    <tr><td>Real-time Analysis</td><td>Instant</td><td>Batch</td><td>Batch</td><td>Batch</td></tr>
+                    <tr><td>Open Protocol</td><td>MCP</td><td>Proprietary</td><td>Proprietary</td><td>Proprietary</td></tr>
+                    <tr><td>Starting Price</td><td class="highlight">$999/mo</td><td>$50,000+</td><td>$25,000+</td><td>Custom</td></tr>
+                    <tr><td>Time to Deploy</td><td class="highlight">Hours</td><td>Months</td><td>Weeks</td><td>Months</td></tr>
+                    <tr><td>Air-Gapped Support</td><td class="check"></td><td class="check"></td><td class="cross"></td><td class="check"></td></tr>
+                    <tr><td>Sector Bundles</td><td>5 sectors</td><td class="cross"></td><td class="cross"></td><td class="cross"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="faq-section">
+    <div class="section-label reveal">Support</div>
+    <h2 class="section-title reveal">Frequently Asked Questions</h2>
+    <div class="faq-grid">
+        <div class="faq-item open reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">What's included in the free trial? <span class="arrow"></span></div>
+            <div class="faq-a">All Professional plan features for 14 days. No credit card required. Full access to all 5 MCP governance tools with 50 analyses included. Your dedicated onboarding specialist will help you get started.</div>
+        </div>
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">Can I upgrade or downgrade at any time? <span class="arrow"></span></div>
+            <div class="faq-a">Yes. Changes take effect immediately. When upgrading, you'll receive prorated credit for the remainder of your current billing period. No penalties for downgrades.</div>
+        </div>
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">What deployment options are available? <span class="arrow"></span></div>
+            <div class="faq-a">SaaS (multi-tenant cloud), VPC (dedicated instance on AWS/Azure/GCP), On-Premises (behind your firewall), and Hybrid (including air-gapped support for defence and government environments).</div>
+        </div>
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">How does CASA certification work? <span class="arrow"></span></div>
+            <div class="faq-a">CASA (Certified AI Safety Assurance) is CSGA's governance framework. Each tier includes a CASA level — from CA-10 (awareness) through CA-40 (defence-grade). Certification ensures every AI analysis meets documented safety and compliance standards.</div>
+        </div>
+        <div class="faq-item reveal">
+            <div class="faq-q" onclick="toggleFaq(this)">Do you offer volume discounts? <span class="arrow"></span></div>
+            <div class="faq-a">Yes. Annual plans save 20%. Multi-year agreements and large deployment discounts are available for Enterprise customers. Contact our sales team for custom pricing tailored to your organisation's needs.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+    <div class="cta-box reveal">
+        <h2>Ready to Modernise Your COBOL?</h2>
+        <p>Start your 14-day free trial today. No credit card required. Full access to all Professional-tier features.</p>
+        <div class="cta-buttons">
+            <a href="https://buy.stripe.com/28E8wRaeRfUk1dca0RdMI0B" class="btn-primary">Start Free Trial →</a>
+            <a href="https://buy.stripe.com/cNi9AV72F7nObRQeh7dMI0C" class="btn-outline">Talk to Sales</a>
+        </div>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+
+
+<!-- ── BACK TO TOP ── -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="scrollToTop()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script>
+// Nav scroll state
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    updateBackToTopButton();
+}, { passive: true });
+
+// Mobile menu toggle with full functionality
+function toggleMobileMenu(btn) {
+    const menu = document.getElementById('mobile-menu');
+    const isOpen = menu.classList.contains('open');
+
+    if (isOpen) {
+        menu.classList.remove('open');
+        document.body.classList.remove('nav-open');
+        btn.setAttribute('aria-expanded', 'false');
+    } else {
+        menu.classList.add('open');
+        document.body.classList.add('nav-open');
+        btn.setAttribute('aria-expanded', 'true');
+        menu.querySelector('a').focus();
+    }
+}
+
+// Close mobile menu on link click
+document.querySelectorAll('.nav-mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        const menu = document.getElementById('mobile-menu');
+        const btn = document.querySelector('.nav-mobile');
+        menu.classList.remove('open');
+        document.body.classList.remove('nav-open');
+        btn.setAttribute('aria-expanded', 'false');
+    });
+});
+
+// Close mobile menu on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const menu = document.getElementById('mobile-menu');
+        const btn = document.querySelector('.nav-mobile');
+        if (menu.classList.contains('open')) {
+            menu.classList.remove('open');
+            document.body.classList.remove('nav-open');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.focus();
+        }
+    }
+});
+
+// Pricing toggle
+function setPricing(mode, btn) {
+    btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.amount').forEach(el => {
+        const val = mode === 'annual' ? el.dataset.annual : el.dataset.monthly;
+        el.innerHTML = val + '<small>/mo</small>';
+    });
+    document.querySelectorAll('.per').forEach(el => {
+        el.textContent = mode === 'annual' ? el.dataset.annual : el.dataset.monthly;
+    });
+}
+
+// FAQ accordion
+function toggleFaq(el) {
+    const item = el.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+}
+
+// Back to top button
+const backToTopBtn = document.getElementById('backToTop');
+function updateBackToTopButton() {
+    if (window.scrollY > 600) {
+        backToTopBtn.classList.add('visible');
+    } else {
+        backToTopBtn.classList.remove('visible');
+    }
+}
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+
+  
+  <!-- ── CTA Banner ── -->
+  <section class="cta-banner">
+    <h2>Ready to <span class="gold">Get Started</span>?</h2>
+    <p>Start with a free trial or talk to our team about enterprise deployment.</p>
+    <div class="cta-buttons">
+      <a href="https://buy.stripe.com/28E8wRaeRfUk1dca0RdMI0B" class="cta-btn-primary">Start Free Trial →</a>
+      <a href="https://buy.stripe.com/cNi9AV72F7nObRQeh7dMI0C" class="cta-btn-outline">Talk to Sales</a>
+    </div>
+  </section>
+
+  <!-- ── Branded Footer ── -->
+  <footer class="site-footer">
+    <div class="footer-wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-logo"><span>⬡</span> COBOL Bridge</a>
+          <p>The world's first MCP-native AI governance platform for legacy COBOL infrastructure. Govern your legacy — don't rewrite it.</p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="Enter your email" aria-label="Email for newsletter">
+            <button type="button" onclick="alert('Thank you! You\'ll receive our next update.')">Subscribe</button>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="platform.html">Features</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="docs.html">Documentation</a>
+          <a href="docs.html">API Reference</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="sectors.html">Sectors</a>
+          <a href="about.html#team">Leadership</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="docs.html">Getting Started</a>
+          <a href="about.html#compliance">Compliance</a>
+          <a href="about.html#casa">CASA Framework</a>
+          <a href="contact.html">Support</a>
+        </div>
+      </div>
+      <div class="footer-badges">
+        <span class="footer-badge">SOC 2 Type II</span>
+        <span class="footer-badge">ISO 27001</span>
+        <span class="footer-badge">GDPR</span>
+        <span class="footer-badge">HIPAA</span>
+        <span class="footer-badge">PCI DSS</span>
+        <span class="footer-badge">CASA Certified</span>
+        <span class="footer-badge">TLS 1.3</span>
+        <span class="footer-badge">AES-256</span>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 COBOL Bridge. A <strong>CSGA Global</strong> company.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="assets/chat-widget.js" defer></script>
+
+    <!-- VISUAL UPGRADE: Scroll Reveal Observer -->
+    <script>
+    (function() {
+        const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        if (!reveals.length) return;
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => obs.observe(el));
+    })();
+    </script>
+
+</body>
+</html>
