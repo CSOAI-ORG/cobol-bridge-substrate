@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="COBOL Defence: Mission-critical COBOL modernisation for defence and national security agencies. CASA CA-40 certified, air-gapped deployment, CMMC Level 3 compliant.">
+    <meta name="keywords" content="COBOL modernisation, defence, national security, air-gapped, CASA CA-40, CMMC, NIST 800-171">
+    <meta property="og:title" content="COBOL Defence - Mission-Critical COBOL Maximum Assurance">
+    <meta property="og:description" content="Defence-grade COBOL modernisation with CASA CA-40 certification and air-gapped deployment">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cobolbridge.ai/defence">
+    <meta property="og:image" content="https://cobolbridge.ai/og-defence.png">
+    <meta name="theme-color" content="#ffffff">
+    <title>COBOL Defence - Mission-Critical COBOL Maximum Assurance</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-elevated: #f8f9fb;
+            --blue: #1a5cd4;
+            --accent: #d4941f;
+            --text-primary: #1a1e25;
+            --text-secondary: #475569;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-w: 1200px;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(26, 30, 37, 0.08);
+        }
+
+        .nav-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--blue);
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta:hover {
+            background: #0d47a1;
+            transform: translateX(4px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 0.4rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-elevated) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(26, 92, 212, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 148, 31, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h2 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: rgba(212, 148, 31, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(212, 148, 31, 0.3);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(26, 92, 212, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--blue);
+            border: 2px solid var(--blue);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(26, 92, 212, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .hero-svg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-svg svg {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(26, 92, 212, 0.15));
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--bg-elevated);
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(26, 30, 37, 0.08);
+            border-bottom: 1px solid rgba(26, 30, 37, 0.08);
+        }
+
+        .stats-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Why Defence Section */
+        .why-defence {
+            padding: 6rem 2rem;
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: var(--bg-elevated);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(26, 30, 37, 0.08);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(26, 92, 212, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* MCP Tools Section */
+        .mcp-section {
+            padding: 6rem 2rem;
+            background: var(--bg-elevated);
+        }
+
+        .mcp-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: var(--bg-primary);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            border: 2px solid rgba(26, 30, 37, 0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue) 0%, var(--accent) 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .tool-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(26, 92, 212, 0.15);
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+
+        .tool-badge {
+            display: inline-block;
+            background: rgba(26, 92, 212, 0.1);
+            color: var(--blue);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .tool-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Compliance Section */
+        .compliance {
+            padding: 4rem 2rem;
+            background: var(--bg-primary);
+            border-top: 1px solid rgba(26, 30, 37, 0.08);
+        }
+
+        .compliance-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .compliance-item {
+            padding: 1.5rem;
+            background: var(--bg-elevated);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(26, 30, 37, 0.08);
+        }
+
+        .compliance-check {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .compliance-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            padding: 6rem 2rem;
+            background: var(--bg-elevated);
+        }
+
+        .use-cases-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .case-item {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(26, 30, 37, 0.08);
+            transition: var(--transition);
+        }
+
+        .case-item:hover {
+            border-color: var(--accent);
+            box-shadow: 0 12px 24px rgba(212, 148, 31, 0.1);
+        }
+
+        .case-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .case-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .case-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            background: var(--bg-primary);
+        }
+
+        .pricing-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-elevated);
+            border: 2px solid var(--blue);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pricing-header {
+            margin-bottom: 2rem;
+        }
+
+        .pricing-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: rgba(26, 92, 212, 0.1);
+            color: var(--blue);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .pricing-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin: 1.5rem 0;
+            line-height: 1.8;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(26, 30, 37, 0.08);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .pricing-cta {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--blue) 0%, #0d47a1 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--blue);
+            display: inline-flex;
+        }
+
+        .btn-white:hover {
+            background: var(--bg-elevated);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            z-index: 999;
+            font-size: 1.25rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(26, 92, 212, 0.4);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-reveal {
+            animation: slideInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-svg {
+                order: -1;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .pricing-card {
+                padding: 1.5rem;
+            }
+
+            .stats-container {
+                gap: 1.5rem;
+            }
+
+            .tools-grid,
+            .features-grid,
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav .nav-container {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .pricing-card {
+                padding: 1.25rem;
+            }
+
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⬡ COBOL Bridge</a>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Platform</a></li>
+                <li><a href="defence.html" class="active">Sectors</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Book Demo →</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h2>⬡ Defence & National Security</h2>
+                <h1>Mission-Critical COBOL<br><span class="gradient-text">Maximum Assurance</span></h1>
+                <p class="hero-subtitle">Defence and national security agencies operate mission-critical COBOL systems requiring the highest governance and security clearance. COBOL Bridge provides air-gapped deployment with CASA CA-40 certification — the highest assurance level.</p>
+                <div class="hero-ctas">
+                    <a href="contact.html" class="btn btn-primary">Request Briefing →</a>
+                    <a href="contact.html" class="btn btn-secondary">View Security Details</a>
+                </div>
+            </div>
+            <div class="hero-svg">
+                <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Shield background -->
+                    <path d="M 200 50 L 300 100 L 300 200 Q 300 280 200 330 Q 100 280 100 200 L 100 100 Z" stroke="#1a5cd4" stroke-width="2" fill="rgba(26, 92, 212, 0.05)"/>
+
+                    <!-- Shield inner -->
+                    <path d="M 200 70 L 280 110 L 280 200 Q 280 265 200 310 Q 120 265 120 200 L 120 110 Z" stroke="#d4941f" stroke-width="1.5" fill="none"/>
+
+                    <!-- Lock icon -->
+                    <rect x="170" y="160" width="60" height="70" rx="6" stroke="#1a5cd4" stroke-width="2" fill="none"/>
+                    <path d="M 185 160 Q 185 145 200 145 Q 215 145 215 160" stroke="#1a5cd4" stroke-width="2" fill="none"/>
+                    <circle cx="200" cy="200" r="6" fill="#1a5cd4"/>
+
+                    <!-- Data flows -->
+                    <line x1="80" y1="150" x2="140" y2="180" stroke="#d4941f" stroke-width="2" opacity="0.6"/>
+                    <line x1="320" y1="150" x2="260" y2="180" stroke="#d4941f" stroke-width="2" opacity="0.6"/>
+                    <line x1="150" y1="250" x2="150" y2="290" stroke="#1a5cd4" stroke-width="2" opacity="0.6"/>
+                    <line x1="250" y1="250" x2="250" y2="290" stroke="#1a5cd4" stroke-width="2" opacity="0.6"/>
+
+                    <!-- Checkmarks -->
+                    <g transform="translate(100, 300)">
+                        <circle cx="0" cy="0" r="12" fill="#d4941f" opacity="0.2"/>
+                        <path d="M -5 0 L -2 3 L 4 -3" stroke="#d4941f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <g transform="translate(300, 300)">
+                        <circle cx="0" cy="0" r="12" fill="#d4941f" opacity="0.2"/>
+                        <path d="M -5 0 L -2 3 L 4 -3" stroke="#d4941f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-value">CA-40</div>
+                <div class="stat-label">Highest CASA Level</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Air-Gapped</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">IL-5+</div>
+                <div class="stat-label">Impact Level</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">FIPS</div>
+                <div class="stat-label">140-3 Validated</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Defence Section -->
+    <section class="why-defence">
+        <h2 class="section-title">Why COBOL Bridge for Defence</h2>
+        <div class="features-grid">
+            <div class="feature-card scroll-reveal">
+                <div class="feature-icon">🔒</div>
+                <h3>Air-Gapped Deployment</h3>
+                <p>Complete on-premises installation with zero external connectivity. Total control and isolation of all COBOL systems within your classified environments.</p>
+            </div>
+            <div class="feature-card scroll-reveal">
+                <div class="feature-icon">📋</div>
+                <h3>CMMC Level 3</h3>
+                <p>Full Cybersecurity Maturity Model Certification mapping. Automated compliance tracking and continuous monitoring of all security controls.</p>
+            </div>
+            <div class="feature-card scroll-reveal">
+                <div class="feature-icon">⚖️</div>
+                <h3>Export Control</h3>
+                <p>Built-in ITAR and EAR compliance tracking. Automated classification marking, access control, and audit trails for controlled technical data.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MCP Tools Section -->
+    <section class="mcp-section">
+        <div class="mcp-container">
+            <h2 class="section-title">MCP Governance Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card scroll-reveal">
+                    <span class="tool-badge">Logistics MCP</span>
+                    <h3>Military Logistics Systems</h3>
+                    <p>Analyse COBOL supply chain and logistics systems. Map inventory management, procurement workflows, and military readiness reporting systems.</p>
+                </div>
+                <div class="tool-card scroll-reveal">
+                    <span class="tool-badge">CMMC Level 3</span>
+                    <h3>CMMC Compliance Mapping</h3>
+                    <p>Full CMMC mapping with automated NIST 800-171/172 control alignment. Comprehensive CUI handling documentation and continuous assessment.</p>
+                </div>
+                <div class="tool-card scroll-reveal">
+                    <span class="tool-badge">Air-Gapped MCP</span>
+                    <h3>Air-Gapped Deployment</h3>
+                    <p>On-premises installation with zero external connectivity. FIPS 140-3 validated cryptography, HSM integration, and secure enclave support.</p>
+                </div>
+                <div class="tool-card scroll-reveal">
+                    <span class="tool-badge">ITAR/EAR</span>
+                    <h3>Export Control Compliance</h3>
+                    <p>ITAR and EAR compliance tracking for controlled technical data. Automated classification marking, access restrictions, and audit logging.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section class="compliance">
+        <div class="compliance-container">
+            <h2 class="section-title">Compliance & Certifications</h2>
+            <div class="compliance-grid">
+                <div class="compliance-item">
+                    <div class="compliance-check">✓</div>
+                    <div class="compliance-name">CMMC Level 3</div>
+                </div>
+                <div class="compliance-item">
+                    <div class="compliance-check">✓</div>
+                    <div class="compliance-name">NIST 800-171/172</div>
+                </div>
+                <div class="compliance-item">
+                    <div class="compliance-check">✓</div>
+                    <div class="compliance-name">FIPS 140-3</div>
+                </div>
+                <div class="compliance-item">
+                    <div class="compliance-check">✓</div>
+                    <div class="compliance-name">ITAR/EAR</div>
+                </div>
+                <div class="compliance-item">
+                    <div class="compliance-check">✓</div>
+                    <div class="compliance-name">CASA CA-40</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="use-cases-container">
+            <h2 class="section-title">Defence Deployment Use Cases</h2>
+            <div class="cases-grid">
+                <div class="case-item scroll-reveal">
+                    <div class="case-number">01</div>
+                    <h3>Logistics Modernisation</h3>
+                    <p>Assess and modernise supply chain COBOL systems powering military readiness and inventory management across defence networks.</p>
+                </div>
+                <div class="case-item scroll-reveal">
+                    <div class="case-number">02</div>
+                    <h3>Secure Enclave Deployment</h3>
+                    <p>Deploy air-gapped MCP tools within classified environments and secure enclaves with zero network exposure and maximum governance.</p>
+                </div>
+                <div class="case-item scroll-reveal">
+                    <div class="case-number">03</div>
+                    <h3>CUI Protection</h3>
+                    <p>Track and protect Controlled Unclassified Information during modernisation with automated classification and access controls.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title">Defence Programme Pricing</h2>
+            <div class="pricing-card scroll-reveal">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Custom Pricing</h3>
+                    <span class="pricing-badge">CASA CA-40</span>
+                </div>
+                <p class="pricing-description">Defence deployments require custom scoping, security clearance coordination, and air-gapped installation. Contact our defence team for a tailored proposal.</p>
+                <ul class="pricing-features">
+                    <li>All 5 MCP Governance Tools (Air-Gapped)</li>
+                    <li>CMMC Level 3 Compliance Mapping</li>
+                    <li>NIST 800-171/172 Documentation</li>
+                    <li>FIPS 140-3 Validated Cryptography</li>
+                    <li>ITAR/EAR Export Control Tracking</li>
+                    <li>HSM Integration Support</li>
+                    <li>Dedicated Defence Programme Manager</li>
+                    <li>Continuous Security Monitoring</li>
+                </ul>
+                <div class="pricing-cta">
+                    <a href="contact.html" class="btn btn-primary">Request Defence Briefing →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <h2>Ready to Transform COBOL Systems?</h2>
+        <p>Schedule a confidential briefing with our defence programme specialists.</p>
+        <a href="contact.html" class="btn btn-white">Contact Defence Team →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 COBOL Bridge. A CSGA Global company. All rights reserved.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "COBOL Defence - Mission-Critical COBOL Maximum Assurance",
+        "description": "Defence-grade COBOL modernisation with CASA CA-40 certification, air-gapped deployment, and CMMC Level 3 compliance.",
+        "url": "https://cobolbridge.ai/defence",
+        "publisher": {
+            "@type": "Organization",
+            "name": "COBOL Bridge",
+            "url": "https://cobolbridge.ai",
+            "logo": "https://cobolbridge.ai/logo.png"
+        },
+        "mainEntity": {
+            "@type": "Service",
+            "name": "COBOL Bridge Defence",
+            "description": "Air-gapped COBOL modernisation for defence and national security agencies",
+            "provider": {
+                "@type": "Organization",
+                "name": "COBOL Bridge"
+            }
+        }
+    }
+    </script>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 0.6s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
