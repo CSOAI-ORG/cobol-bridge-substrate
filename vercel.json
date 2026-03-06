@@ -19,6 +19,11 @@
         { "src": "/insurance$", "dest": "/insurance.html" },
         { "src": "/defence$", "dest": "/defence.html" },
         { "src": "/finance$", "dest": "/finance.html" },
+        { "src": "/dora-compliance$", "dest": "/dora-compliance.html" },
+        { "src": "/ai-explainability$", "dest": "/ai-explainability.html" },
+        { "src": "/regulatory-digital-twin$", "dest": "/regulatory-digital-twin.html" },
+        { "src": "/real-time-payments$", "dest": "/real-time-payments.html" },
+        { "src": "/cobol-bridge-express$", "dest": "/cobol-bridge-express.html" },
         { "src": "/assets/(.*)", "dest": "/assets/$1" },
         { "src": "^/$", "dest": "/index.html" }
     ]
