@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modernise financial COBOL systems with MCP-native governance tools. MiFID II, Dodd-Frank, and SEC compliance mapping for capital markets.">
+    <meta name="keywords" content="COBOL modernisation, financial services, compliance, MiFID II, Dodd-Frank, trading systems, settlement">
+    <meta name="author" content="COBOL Bridge">
+    <meta property="og:title" content="COBOL Finance - Modernise Financial COBOL with Compliance">
+    <meta property="og:description" content="Capital markets, asset management, and financial services firms run critical COBOL systems. COBOL Bridge provides MCP-native governance tools for safe modernisation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cobolbridge.ai/finance.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>COBOL Finance - Modernise with Compliance | COBOL Bridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-elevated: #f8f9fb;
+            --blue: #1a5cd4;
+            --accent: #d4941f;
+            --text-primary: #1a1e25;
+            --text-secondary: #475569;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-w: 1200px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--blue);
+        }
+
+        .cta-button {
+            background-color: var(--blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-button:hover {
+            background-color: #1450c0;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 0.4rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 5rem;
+            padding: 4rem 2rem;
+            background-color: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(26, 92, 212, 0.08), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h2 {
+            display: inline-block;
+            background-color: var(--bg-elevated);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--blue), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background-color: var(--blue);
+            color: white;
+            padding: 1rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .cta-primary:hover {
+            background-color: #1450c0;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-secondary {
+            background-color: var(--bg-elevated);
+            color: var(--blue);
+            padding: 1rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--bg-elevated);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .cta-secondary:hover {
+            background-color: transparent;
+            border-color: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Stats Section */
+        .stats {
+            max-width: var(--max-w);
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--bg-elevated);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--blue), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Why Finance Section */
+        .why-finance {
+            padding: 4rem 2rem;
+            background-color: var(--bg-elevated);
+            margin: 4rem 0;
+        }
+
+        .section-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .why-card {
+            background-color: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--blue);
+        }
+
+        .why-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .why-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* MCP Tools Section */
+        .mcp-tools {
+            padding: 4rem 2rem;
+            background-color: var(--bg-primary);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, var(--bg-elevated) 0%, rgba(26, 92, 212, 0.02) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(26, 92, 212, 0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--blue);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(26, 92, 212, 0.1);
+            border-radius: 8px;
+        }
+
+        .tool-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .tool-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        /* Compliance Section */
+        .compliance {
+            padding: 3rem 2rem;
+            background-color: var(--bg-elevated);
+            margin: 4rem 0;
+        }
+
+        .compliance-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .compliance-list {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+
+        .compliance-item {
+            background-color: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .compliance-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .compliance-check {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .compliance-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            padding: 4rem 2rem;
+            background-color: var(--bg-primary);
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .case-card {
+            background-color: var(--bg-elevated);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .case-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .case-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 4rem 2rem;
+            background-color: var(--bg-elevated);
+        }
+
+        .pricing-card {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(26, 92, 212, 0.02) 100%);
+            border: 1px solid rgba(26, 92, 212, 0.1);
+            border-radius: 16px;
+            padding: 3rem;
+            transition: var(--transition);
+        }
+
+        .pricing-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--blue);
+        }
+
+        .pricing-header {
+            margin-bottom: 2rem;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .pricing-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        .pricing-includes {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-includes h4 {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .includes-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .includes-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .includes-item::before {
+            content: '\2713';
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .pricing-cta {
+            background-color: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .pricing-cta:hover {
+            background-color: #c1850a;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--blue), rgba(26, 92, 212, 0.8));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-banner-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-banner-button {
+            background-color: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .cta-banner-button:hover {
+            background-color: #c1850a;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background-color: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .back-to-top:hover {
+            background-color: #1450c0;
+            transform: translateY(-4px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        /* Scroll Reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .compliance-list {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-primary);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem 2rem;
+                display: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .hero {
+                margin-top: 4rem;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content h2 {
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin: 2rem auto;
+            }
+
+            .stat-item {
+                padding: 1.5rem;
+            }
+
+            .why-finance,
+            .mcp-tools,
+            .use-cases,
+            .pricing {
+                padding: 2rem 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .compliance-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-includes {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card {
+                padding: 1.5rem;
+            }
+
+            .cta-banner {
+                padding: 2rem 1rem;
+            }
+
+            .cta-banner h2 {
+                font-size: 1.5rem;
+            }
+
+            .back-to-top {
+                width: 44px;
+                height: 44px;
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.85rem;
+            }
+
+            .nav-container {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-links {
+                padding: 1rem;
+            }
+
+            .hero-ctas {
+                gap: 1rem;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .why-card h3,
+            .case-card h3 {
+                font-size: 1rem;
+            }
+
+            .pricing-cta {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">&#x2B21; COBOL Bridge</a>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Platform</a></li>
+                <li><a href="finance.html" class="active">Sectors</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="cta-button">Book Demo &#x2192;</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content scroll-reveal">
+                <h2>&#x2B21; Financial Services &amp; Capital Markets</h2>
+                <h1>Modernise Financial COBOL<br><span class="gradient-text">Maintain Compliance</span></h1>
+                <p>Capital markets, asset management, and financial services firms run critical trading, settlement, and risk systems on COBOL. COBOL Bridge provides MCP-native governance tools for safe modernisation with MiFID II, Dodd-Frank, and SEC compliance mapping.</p>
+                <div class="hero-ctas">
+                    <a href="contact.html" class="cta-primary">Start Free Assessment &#x2192;</a>
+                    <a href="contact.html" class="cta-secondary">Book a Briefing &#x2192;</a>
+                </div>
+            </div>
+            <div class="hero-visual scroll-reveal">
+                <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                    <!-- Background circle -->
+                    <circle cx="200" cy="200" r="180" fill="none" stroke="rgba(26, 92, 212, 0.1)" stroke-width="2"/>
+
+                    <!-- Chart bars -->
+                    <rect x="80" y="280" width="30" height="80" fill="url(#gradient1)" rx="4"/>
+                    <rect x="130" y="220" width="30" height="140" fill="url(#gradient2)" rx="4"/>
+                    <rect x="180" y="160" width="30" height="200" fill="url(#gradient3)" rx="4"/>
+                    <rect x="230" y="200" width="30" height="160" fill="url(#gradient4)" rx="4"/>
+                    <rect x="280" y="240" width="30" height="120" fill="url(#gradient5)" rx="4"/>
+
+                    <!-- Data flow lines -->
+                    <path d="M 100 250 Q 150 180 200 150 T 300 120" stroke="rgba(26, 92, 212, 0.3)" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                    <path d="M 100 300 Q 150 280 200 260 T 300 240" stroke="rgba(212, 148, 31, 0.3)" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+
+                    <!-- Connection nodes -->
+                    <circle cx="100" cy="250" r="6" fill="rgba(26, 92, 212, 0.6)"/>
+                    <circle cx="200" cy="150" r="6" fill="rgba(26, 92, 212, 0.6)"/>
+                    <circle cx="300" cy="120" r="6" fill="rgba(26, 92, 212, 0.6)"/>
+                    <circle cx="100" cy="300" r="6" fill="rgba(212, 148, 31, 0.6)"/>
+                    <circle cx="200" cy="260" r="6" fill="rgba(212, 148, 31, 0.6)"/>
+                    <circle cx="300" cy="240" r="6" fill="rgba(212, 148, 31, 0.6)"/>
+
+                    <!-- Gradient definitions -->
+                    <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(26, 92, 212, 0.8);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(26, 92, 212, 0.3);stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(212, 148, 31, 0.8);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(212, 148, 31, 0.3);stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="gradient3" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(26, 92, 212, 0.8);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(26, 92, 212, 0.3);stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="gradient4" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(212, 148, 31, 0.8);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(212, 148, 31, 0.3);stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="gradient5" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(26, 92, 212, 0.8);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(26, 92, 212, 0.3);stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stat-item scroll-reveal">
+            <div class="stat-number">$100T+</div>
+            <div class="stat-label">Assets Under Management</div>
+        </div>
+        <div class="stat-item scroll-reveal">
+            <div class="stat-number">60%</div>
+            <div class="stat-label">Settlement on COBOL</div>
+        </div>
+        <div class="stat-item scroll-reveal">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Regulatory Requirements</div>
+        </div>
+        <div class="stat-item scroll-reveal">
+            <div class="stat-number">30B+</div>
+            <div class="stat-label">Daily Transactions</div>
+        </div>
+    </section>
+
+    <!-- Why Finance Section -->
+    <section class="why-finance">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Why COBOL Bridge for Finance</h2>
+                <p>Purpose-built governance tools for capital markets modernisation</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card scroll-reveal">
+                    <h3>Trading System Safety</h3>
+                    <p>Analyse order management and execution COBOL without market impact. Understand interdependencies across trading desks and execution algorithms before modernisation.</p>
+                </div>
+                <div class="why-card scroll-reveal">
+                    <h3>Regulatory Compliance</h3>
+                    <p>MiFID II, Dodd-Frank, and SEC reporting mapped automatically. Ensure pre- and post-trade obligations, best execution requirements, and transaction reporting continuity.</p>
+                </div>
+                <div class="why-card scroll-reveal">
+                    <h3>Settlement Protection</h3>
+                    <p>Safeguard clearing and settlement during modernisation. Map T+1 settlement, netting calculations, margin requirements, and reconciliation workflows safely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MCP Tools Section -->
+    <section class="mcp-tools">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>MCP Governance Tools</h2>
+                <p>Four integrated tools for comprehensive financial COBOL analysis</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card scroll-reveal">
+                    <div class="tool-icon">&#x1F4CA;</div>
+                    <h3>Trading System Analysis</h3>
+                    <p>Map order management, execution algorithms, and position-keeping COBOL programs. Identify interdependencies across trading desks and asset classes.</p>
+                </div>
+                <div class="tool-card scroll-reveal">
+                    <div class="tool-icon">&#x2696;&#xFE0F;</div>
+                    <h3>MiFID II/Dodd-Frank Mapping</h3>
+                    <p>Automated regulatory mapping for pre- and post-trade reporting, best execution requirements, and transaction reporting obligations.</p>
+                </div>
+                <div class="tool-card scroll-reveal">
+                    <div class="tool-icon">&#x1F504;</div>
+                    <h3>Settlement &amp; Clearing Modernisation</h3>
+                    <p>Analyse T+1 settlement COBOL programs. Map netting calculations, margin requirements, and reconciliation workflows for safe modernisation.</p>
+                </div>
+                <div class="tool-card scroll-reveal">
+                    <div class="tool-icon">&#x1F4C8;</div>
+                    <h3>Risk Model Assessment</h3>
+                    <p>Evaluate COBOL-based VaR, stress testing, and counterparty risk calculation engines. Ensure model integrity during modernisation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section class="compliance">
+        <div class="compliance-container">
+            <div class="section-header" style="margin-bottom: 2rem;">
+                <h2>Regulatory Coverage</h2>
+            </div>
+            <div class="compliance-list">
+                <div class="compliance-item scroll-reveal">
+                    <div class="compliance-check">&#x2713;</div>
+                    <p>MiFID II</p>
+                </div>
+                <div class="compliance-item scroll-reveal">
+                    <div class="compliance-check">&#x2713;</div>
+                    <p>Dodd-Frank</p>
+                </div>
+                <div class="compliance-item scroll-reveal">
+                    <div class="compliance-check">&#x2713;</div>
+                    <p>SEC Reporting</p>
+                </div>
+                <div class="compliance-item scroll-reveal">
+                    <div class="compliance-check">&#x2713;</div>
+                    <p>SOX Section 302/404</p>
+                </div>
+                <div class="compliance-item scroll-reveal">
+                    <div class="compliance-check">&#x2713;</div>
+                    <p>CASA CA-30</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Common Use Cases</h2>
+                <p>Financial services scenarios we help modernise</p>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card scroll-reveal">
+                    <h3>Trading Infrastructure</h3>
+                    <p>Modernise order management and execution systems safely without disrupting market operations or risking execution quality.</p>
+                </div>
+                <div class="case-card scroll-reveal">
+                    <h3>Settlement Upgrade</h3>
+                    <p>Map clearing and settlement COBOL for T+1 compliance. Ensure netting calculations and margin requirements are preserved.</p>
+                </div>
+                <div class="case-card scroll-reveal">
+                    <h3>Risk &amp; Reporting</h3>
+                    <p>Ensure regulatory reporting continuity through modernisation. Validate VaR, stress testing, and counterparty risk calculations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Financial Services Pricing</h2>
+            </div>
+            <div class="pricing-card scroll-reveal">
+                <div class="pricing-header">
+                    <h3>Custom Pricing</h3>
+                    <p>Financial services deployments require custom scoping based on regulatory environment, trading volume, and system complexity.</p>
+                </div>
+                <div class="pricing-includes">
+                    <h4>Includes</h4>
+                    <div class="includes-list">
+                        <div class="includes-item">All 5 MCP Governance Tools</div>
+                        <div class="includes-item">Trading System Analysis</div>
+                        <div class="includes-item">MiFID II/Dodd-Frank Mapping</div>
+                        <div class="includes-item">Settlement &amp; Clearing Assessment</div>
+                        <div class="includes-item">Risk Model Evaluation</div>
+                        <div class="includes-item">SEC Reporting Documentation</div>
+                        <div class="includes-item">Dedicated Financial Services Manager</div>
+                        <div class="includes-item">Quarterly Regulatory Reviews</div>
+                    </div>
+                </div>
+                <a href="contact.html" class="pricing-cta">Request Finance Briefing &#x2192;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="cta-banner-container scroll-reveal">
+            <h2>Ready to Modernise Your Financial Systems?</h2>
+            <p>Start with a free governance assessment of your COBOL infrastructure</p>
+            <a href="contact.html" class="cta-banner-button">Schedule Your Assessment &#x2192;</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 COBOL Bridge. A CSGA Global company.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">&#x2191;</button>
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "COBOL Finance - Modernise Financial COBOL with Compliance",
+        "description": "Capital markets, asset management, and financial services firms run critical COBOL systems. COBOL Bridge provides MCP-native governance tools for safe modernisation with MiFID II, Dodd-Frank, and SEC compliance mapping.",
+        "url": "https://cobolbridge.ai/finance.html",
+        "publisher": {
+            "@type": "Organization",
+            "name": "COBOL Bridge",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cobolbridge.ai/logo.png"
+            }
+        },
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "COBOL Bridge Finance",
+            "description": "MCP-native governance tools for financial COBOL modernisation",
+            "applicationCategory": "BusinessApplication",
+            "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": "Custom"
+            }
+        }
+    }
+    </script>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Analytics tracking (placeholder)
+        function trackEvent(eventName, eventData) {
+            if (window.gtag) {
+                gtag('event', eventName, eventData);
+            }
+            console.log('Event:', eventName, eventData);
+        }
+
+        // Track CTA clicks
+        document.querySelectorAll('a[href="contact.html"]').forEach(link => {
+            link.addEventListener('click', () => {
+                trackEvent('cta_click', {
+                    'link_text': link.innerText,
+                    'link_url': link.href
+                });
+            });
+        });
+
+        // Prevent right-click context menu on certain elements (optional)
+        document.addEventListener('contextmenu', (e) => {
+            // Allow normal context menu for most elements
+            // Can customize if needed
+        });
+    </script>
+</body>
+</html>
