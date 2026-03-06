@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COBOL Government — COBOL Bridge</title>
+    <meta name="description" content="Government agencies manage trillions in public funds through COBOL-based systems. COBOL Bridge delivers FedRAMP-aligned modernisation tools with full NIST 800-53 compliance tracking.">
+    <meta name="keywords" content="COBOL, government modernisation, FedRAMP, NIST 800-53, legacy systems, modernisation">
+    <meta name="author" content="COBOL Bridge">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="COBOL Government — COBOL Bridge">
+    <meta property="og:description" content="Modernise government systems with confidence using FedRAMP-aligned COBOL modernisation tools.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cobolbridge.ai/government">
+    <meta property="og:image" content="https://cobolbridge.ai/og-government.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "COBOL Bridge — Government",
+        "url": "https://cobolbridge.ai/government",
+        "description": "FedRAMP-aligned COBOL modernisation platform for government agencies",
+        "image": "https://cobolbridge.ai/og-government.png",
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "price": "6999",
+            "pricingModel": "Subscription",
+            "description": "Enterprise Government Plan with FedRAMP compliance mapping and NIST 800-53 documentation"
+        }
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-elevated: #f8f9fb;
+            --bg-surface: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8f9fb;
+            --border-subtle: rgba(0, 0, 0, 0.06);
+            --border-medium: rgba(0, 0, 0, 0.10);
+            --border-bright: rgba(26, 92, 212, 0.3);
+            --blue: #1a5cd4;
+            --blue-bright: #1a5cd4;
+            --blue-glow: rgba(26, 92, 212, 0.08);
+            --accent: #d4941f;
+            --accent-bright: #e5a42d;
+            --accent-glow: rgba(212, 148, 31, 0.08);
+            --success: #10b981;
+            --text-primary: #1a1e25;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --text-muted: #94a3b8;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-w: 1200px;
+            --radius: 12px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            white-space: nowrap;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue);
+        }
+
+        .nav-cta {
+            background-color: var(--blue);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background-color: #1549b8;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 5rem;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-elevated) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--blue-glow);
+            color: var(--blue);
+            padding: 0.6rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            width: fit-content;
+            border: 1px solid var(--border-bright);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .cta-primary {
+            background-color: var(--blue);
+            color: white;
+            padding: 0.95rem 2rem;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-primary:hover {
+            background-color: #1549b8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(26, 92, 212, 0.2);
+        }
+
+        .cta-secondary {
+            color: var(--blue);
+            padding: 0.95rem 2rem;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--blue);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-secondary:hover {
+            background-color: var(--blue-glow);
+        }
+
+        .hero-graphic {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.08));
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 2rem;
+            background-color: var(--bg-elevated);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .stats-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .stat:nth-child(1) { animation-delay: 0.1s; }
+        .stat:nth-child(2) { animation-delay: 0.2s; }
+        .stat:nth-child(3) { animation-delay: 0.3s; }
+        .stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Why Government Section */
+        .why-government {
+            padding: 6rem 2rem;
+            background-color: var(--bg-primary);
+        }
+
+        .section-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .why-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .why-card:nth-child(1) { animation-delay: 0.1s; }
+        .why-card:nth-child(2) { animation-delay: 0.2s; }
+        .why-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .why-card:hover {
+            border-color: var(--border-medium);
+            background-color: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .why-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .why-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* MCP Tools Section */
+        .mcp-tools {
+            padding: 6rem 2rem;
+            background-color: var(--bg-elevated);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .tool-card:nth-child(1) { animation-delay: 0.1s; }
+        .tool-card:nth-child(2) { animation-delay: 0.2s; }
+        .tool-card:nth-child(3) { animation-delay: 0.3s; }
+        .tool-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .tool-card:hover {
+            border-color: var(--blue);
+            background-color: var(--bg-card-hover);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(26, 92, 212, 0.15);
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--blue-glow);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .tool-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .tool-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Compliance Section */
+        .compliance {
+            padding: 4rem 2rem;
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .compliance-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .compliance h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .compliance-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .compliance-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: var(--bg-elevated);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-subtle);
+            font-weight: 600;
+            color: var(--text-primary);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .compliance-badge:nth-child(1) { animation-delay: 0.1s; }
+        .compliance-badge:nth-child(2) { animation-delay: 0.2s; }
+        .compliance-badge:nth-child(3) { animation-delay: 0.3s; }
+        .compliance-badge:nth-child(4) { animation-delay: 0.4s; }
+        .compliance-badge:nth-child(5) { animation-delay: 0.5s; }
+
+        .compliance-check {
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            padding: 6rem 2rem;
+            background-color: var(--bg-elevated);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .use-case-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .use-case-card:nth-child(1) { animation-delay: 0.1s; }
+        .use-case-card:nth-child(2) { animation-delay: 0.2s; }
+        .use-case-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .use-case-card:hover {
+            border-color: var(--accent);
+            background-color: var(--bg-card-hover);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(212, 148, 31, 0.15);
+        }
+
+        .use-case-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .use-case-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .use-case-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .pricing-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-surface) 100%);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius);
+            padding: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card .billing {
+            color: var(--text-tertiary);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-cta:hover {
+            background-color: #1549b8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(26, 92, 212, 0.2);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--blue) 0%, #0f3a99 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-elevated);
+            border-top: 1px solid var(--border-subtle);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: var(--max-w);
+            margin: 0 auto 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--blue);
+        }
+
+        .footer-bottom {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background-color: #1549b8;
+            transform: translateY(-4px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-container {
+                gap: 1rem;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                padding: 2rem;
+                display: none;
+                gap: 1rem;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-graphic {
+                height: 300px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .why-grid,
+            .tools-grid,
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card {
+                padding: 2rem;
+            }
+
+            .compliance-badges {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">⬡ COBOL Bridge</a>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="platform.html">Platform</a></li>
+                <li><a href="sectors.html" class="active">Sectors</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Book Demo →</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="badge">⬡ Government & Public Sector</div>
+                <h1>Modernise Government Systems<br><span class="gradient-text">With Confidence</span></h1>
+                <p class="hero-subtitle">Government agencies manage trillions in public funds through COBOL-based systems. COBOL Bridge delivers FedRAMP-aligned modernisation tools with full NIST 800-53 compliance tracking.</p>
+                <div class="hero-ctas">
+                    <a href="https://buy.stripe.com/bJeeVf3Qt7nObRQ2ypdMI0E" class="cta-primary">Start Free Assessment →</a>
+                    <a href="contact.html" class="cta-secondary">Book a Briefing</a>
+                </div>
+            </div>
+            <div class="hero-graphic">
+                <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Government/Public Sector Themed Graphic -->
+                    <!-- Main columns/pillars -->
+                    <rect x="50" y="100" width="60" height="200" fill="none" stroke="#1a5cd4" stroke-width="2" rx="4"/>
+                    <rect x="130" y="80" width="60" height="220" fill="none" stroke="#1a5cd4" stroke-width="2" rx="4"/>
+                    <rect x="210" y="100" width="60" height="200" fill="none" stroke="#1a5cd4" stroke-width="2" rx="4"/>
+                    <rect x="290" y="90" width="60" height="210" fill="none" stroke="#1a5cd4" stroke-width="2" rx="4"/>
+
+                    <!-- Data flows connecting columns -->
+                    <path d="M 110 150 Q 130 140 170 140" stroke="#d4941f" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M 190 170 Q 210 160 240 160" stroke="#d4941f" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M 270 150 Q 290 145 320 150" stroke="#d4941f" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+                    <!-- Security shield -->
+                    <path d="M 200 30 L 240 50 L 240 120 Q 200 140 200 140 Q 200 140 160 120 L 160 50 Z" fill="none" stroke="#10b981" stroke-width="2"/>
+
+                    <!-- Lock icon inside shield -->
+                    <circle cx="200" cy="90" r="8" fill="none" stroke="#10b981" stroke-width="1.5"/>
+                    <path d="M 195 90 L 195 100 Q 195 105 200 105 Q 205 105 205 100 L 205 90" fill="none" stroke="#10b981" stroke-width="1.5"/>
+
+                    <!-- Network nodes -->
+                    <circle cx="80" cy="320" r="6" fill="#1a5cd4" opacity="0.6"/>
+                    <circle cx="150" cy="330" r="6" fill="#1a5cd4" opacity="0.6"/>
+                    <circle cx="220" cy="335" r="6" fill="#1a5cd4" opacity="0.6"/>
+                    <circle cx="290" cy="325" r="6" fill="#1a5cd4" opacity="0.6"/>
+                    <circle cx="350" cy="330" r="6" fill="#1a5cd4" opacity="0.6"/>
+
+                    <!-- Connecting lines between nodes -->
+                    <line x1="80" y1="320" x2="150" y2="330" stroke="#1a5cd4" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="150" y1="330" x2="220" y2="335" stroke="#1a5cd4" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="220" y1="335" x2="290" y2="325" stroke="#1a5cd4" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="290" y1="325" x2="350" y2="330" stroke="#1a5cd4" stroke-width="1.5" opacity="0.4"/>
+
+                    <!-- Decorative geometric elements -->
+                    <polygon points="20,200 30,190 40,200 30,210" fill="#1a5cd4" opacity="0.3"/>
+                    <polygon points="370,250 380,240 390,250 380,260" fill="#d4941f" opacity="0.3"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat">
+                <div class="stat-number">$3T</div>
+                <div class="stat-label">Federal IT Spend</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">70%</div>
+                <div class="stat-label">Legacy Systems</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">$100B+</div>
+                <div class="stat-label">Annual Maintenance</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">10M+</div>
+                <div class="stat-label">Daily Transactions</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Government Section -->
+    <section class="why-government">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Why Government Agencies Choose COBOL Bridge</h2>
+                <p>Purpose-built tools designed specifically for the complexities of government modernisation</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <h3>FedRAMP-Aligned</h3>
+                    <p>Tools built to FedRAMP Moderate and High baselines from the ground up. Every feature designed with federal security requirements as a core principle, not an afterthought.</p>
+                </div>
+                <div class="why-card">
+                    <h3>Full NIST Mapping</h3>
+                    <p>Automated NIST 800-53 revision 5 control mapping for every modernisation action. Know exactly how your changes impact your compliance posture in real-time.</p>
+                </div>
+                <div class="why-card">
+                    <h3>ATO Documentation</h3>
+                    <p>Generates Authority to Operate documentation and security impact assessments automatically. Reduce the time to ATO from months to weeks with comprehensive compliance artifacts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MCP Tools Section -->
+    <section class="mcp-tools">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Government-Focused MCP Tools</h2>
+                <p>Specialised modernisation capabilities built for government systems</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">📋</div>
+                    <h3>Benefits Processing Modernisation</h3>
+                    <p>Assess and modernise Social Security, Medicare, and unemployment COBOL systems with FedRAMP-aligned tools.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">✓</div>
+                    <h3>FedRAMP Compliance Mapping</h3>
+                    <p>Automated mapping of modernisation changes to FedRAMP Moderate and High control requirements.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">💰</div>
+                    <h3>Tax Processing Analysis</h3>
+                    <p>Map IRS-pattern COBOL tax processing systems for phased modernisation with compliance tracking.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">🔐</div>
+                    <h3>Security Control Mapping</h3>
+                    <p>Real-time NIST 800-53 rev5 control mapping and documentation generation for every change.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section class="compliance">
+        <div class="compliance-container">
+            <h3>Built for Government Compliance</h3>
+            <div class="compliance-badges">
+                <div class="compliance-badge">
+                    <span class="compliance-check">✓</span>
+                    <span>FedRAMP Moderate/High</span>
+                </div>
+                <div class="compliance-badge">
+                    <span class="compliance-check">✓</span>
+                    <span>NIST 800-53 rev5</span>
+                </div>
+                <div class="compliance-badge">
+                    <span class="compliance-check">✓</span>
+                    <span>FISMA</span>
+                </div>
+                <div class="compliance-badge">
+                    <span class="compliance-check">✓</span>
+                    <span>Section 508</span>
+                </div>
+                <div class="compliance-badge">
+                    <span class="compliance-check">✓</span>
+                    <span>CASA CA-30</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Government Modernisation Use Cases</h2>
+                <p>Real scenarios where government agencies are transforming their systems</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-number">01</div>
+                    <h3>Benefits Modernisation</h3>
+                    <p>Assess Social Security, Medicare, and unemployment COBOL systems. Plan and execute phased modernisation with full compliance tracking and zero downtime for citizen services.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-number">02</div>
+                    <h3>Tax System Upgrade</h3>
+                    <p>Map IRS-pattern COBOL tax processing for modernisation. Maintain accuracy for billions in tax collection while upgrading to modern architectures with automated control mapping.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-number">03</div>
+                    <h3>Agency IT Consolidation</h3>
+                    <p>Consolidate legacy mainframe environments across departments. Reduce infrastructure costs and complexity while improving service delivery and reducing security risk.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Government Enterprise Plan</h2>
+                <p>Built for agencies that need compliance-first modernisation</p>
+            </div>
+            <div class="pricing-card">
+                <h3>COBOL Government</h3>
+                <div class="price">$6,999</div>
+                <div class="billing">/month • CASA CA-30 Certified</div>
+                <ul class="pricing-features">
+                    <li>All 5 MCP Governance Tools</li>
+                    <li>Benefits Processing Analysis</li>
+                    <li>FedRAMP Compliance Mapping</li>
+                    <li>NIST 800-53 rev5 Documentation</li>
+                    <li>Tax System Assessment Tools</li>
+                    <li>FISMA Continuous Monitoring</li>
+                    <li>Dedicated Government Account Manager</li>
+                    <li>Quarterly Security Reviews</li>
+                </ul>
+                <a href="https://buy.stripe.com/bJeeVf3Qt7nObRQ2ypdMI0E" class="pricing-cta">Get Started →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <h2>Ready to Modernise Your Government Systems?</h2>
+        <p>Start with a free compliance assessment. See how FedRAMP-aligned tools can accelerate your modernisation timeline.</p>
+        <a href="https://buy.stripe.com/bJeeVf3Qt7nObRQ2ypdMI0E" class="cta-primary" style="background-color: white; color: #1a5cd4; display: inline-block;">Start Free Assessment →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="platform.html">Platform</a></li>
+                    <li><a href="sectors.html">Sectors</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="docs.html">Documentation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/">Blog</a></li>
+                    <li><a href="/">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="/">Privacy Policy</a></li>
+                    <li><a href="/">Terms of Service</a></li>
+                    <li><a href="/">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="/">Twitter</a></li>
+                    <li><a href="/">LinkedIn</a></li>
+                    <li><a href="/">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 COBOL Bridge. A CSGA Global company. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script>
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('show');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('show');
+            });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements with animation classes
+        document.querySelectorAll('.stat, .why-card, .tool-card, .use-case-card, .compliance-badge, .pricing-card, .section-header').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
