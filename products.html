@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products | COBOL Bridge — AI Governance Solutions</title>
+<meta name="description" content="Explore COBOL Bridge's suite of AI governance products: DORA Compliance, AI Explainability, Regulatory Digital Twin, Real-Time Payments, and COBOL Bridge Express.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#00D4AA;--bg-dark:#0a0f1c;--bg-card:#1a1f2e;--bg-card-hover:#242938;--text-primary:#fff;--text-secondary:#94a3b8;--text-muted:#64748b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg-dark);color:var(--text-primary);line-height:1.6}
+a{text-decoration:none;color:inherit}
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,15,28,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1400px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:.75rem;font-weight:700;font-size:1.1rem;color:var(--text-primary)}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--primary),#00a88a);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;letter-spacing:-0.5px}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{color:var(--text-secondary);font-size:.9rem;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text-primary)}
+.nav-cta{background:var(--primary)!important;color:#0a0f1c!important;padding:.5rem 1.25rem;border-radius:8px;font-weight:600}
+.hero{text-align:center;padding:5rem 2rem 3rem;max-width:900px;margin:0 auto}
+.hero-badge{display:inline-block;padding:.5rem 1.25rem;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.2);border-radius:50px;font-size:.85rem;color:var(--primary);margin-bottom:2rem;font-weight:500}
+.hero h1{font-size:3.2rem;font-weight:800;line-height:1.1;margin-bottom:1.5rem;letter-spacing:-0.03em}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--primary),#4ade80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.2rem;color:var(--text-secondary);max-width:680px;margin:0 auto;line-height:1.7}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:2rem;padding:0 2rem 4rem;max-width:1400px;margin:0 auto}
+.product-card{background:var(--bg-card);border-radius:16px;padding:2.5rem;border:1px solid rgba(255,255,255,0.06);transition:all .3s ease;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.product-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.12);background:var(--bg-card-hover)}
+.product-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.card-dora::before{background:linear-gradient(90deg,#ef4444,#f87171)}
+.card-ai::before{background:linear-gradient(90deg,#8b5cf6,#a78bfa)}
+.card-twin::before{background:linear-gradient(90deg,#06b6d4,#22d3ee)}
+.card-payments::before{background:linear-gradient(90deg,#22c55e,#4ade80)}
+.card-express::before{background:linear-gradient(90deg,#facc15,#fde047)}
+.card-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.5rem}
+.card-dora .card-icon{background:rgba(239,68,68,0.15);color:#ef4444}
+.card-ai .card-icon{background:rgba(139,92,246,0.15);color:#8b5cf6}
+.card-twin .card-icon{background:rgba(6,182,212,0.15);color:#06b6d4}
+.card-payments .card-icon{background:rgba(34,197,94,0.15);color:#22c55e}
+.card-express .card-icon{background:rgba(250,204,21,0.15);color:#facc15}
+.card-tag{display:inline-block;padding:.25rem .75rem;border-radius:50px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:1rem;width:fit-content}
+.card-dora .card-tag{background:rgba(239,68,68,0.1);color:#ef4444}
+.card-ai .card-tag{background:rgba(139,92,246,0.1);color:#8b5cf6}
+.card-twin .card-tag{background:rgba(6,182,212,0.1);color:#06b6d4}
+.card-payments .card-tag{background:rgba(34,197,94,0.1);color:#22c55e}
+.card-express .card-tag{background:rgba(250,204,21,0.1);color:#facc15}
+.product-card h3{font-size:1.4rem;font-weight:700;margin-bottom:.75rem;letter-spacing:-0.02em}
+.product-card p{color:var(--text-secondary);font-size:.95rem;line-height:1.7;margin-bottom:1.5rem;flex-grow:1}
+.card-features{list-style:none;margin-bottom:2rem}
+.card-features li{padding:.4rem 0;color:var(--text-secondary);font-size:.85rem;display:flex;align-items:center;gap:.5rem}
+.card-features li::before{content:'\2713';color:var(--primary);font-weight:700;font-size:.8rem}
+.card-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:10px;font-weight:600;font-size:.9rem;transition:all .3s;border:1px solid rgba(255,255,255,0.1);color:var(--text-primary);background:transparent;cursor:pointer;justify-content:center}
+.card-btn:hover{background:rgba(0,212,170,0.1);border-color:var(--primary);color:var(--primary)}
+.card-btn .arrow{transition:transform .3s}
+.card-btn:hover .arrow{transform:translateX(4px)}
+.cta-section{text-align:center;padding:5rem 2rem;max-width:800px;margin:0 auto}
+.cta-section h2{font-size:2.4rem;font-weight:800;margin-bottom:1rem;letter-spacing:-0.03em}
+.cta-section p{color:var(--text-secondary);font-size:1.1rem;margin-bottom:2rem;line-height:1.7}
+.cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--primary);color:#0a0f1c;padding:.85rem 2rem;border-radius:10px;font-weight:700;font-size:1rem;transition:all .3s;border:none;cursor:pointer}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,170,0.3)}
+.btn-secondary{background:transparent;color:var(--text-primary);padding:.85rem 2rem;border-radius:10px;font-weight:600;font-size:1rem;border:1px solid rgba(255,255,255,0.15);transition:all .3s;cursor:pointer}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+footer{border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem 2rem;max-width:1400px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem}
+.footer-brand p{color:var(--text-muted);font-size:.85rem;line-height:1.7;margin-top:.75rem}
+.footer-col h4{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);margin-bottom:1rem}
+.footer-col a{display:block;color:var(--text-muted);font-size:.85rem;padding:.3rem 0;transition:color .2s}
+.footer-col a:hover{color:var(--primary)}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06);color:var(--text-muted);font-size:.8rem}
+.mobile-menu-btn{display:none;background:none;border:none;color:var(--text-primary);font-size:1.5rem;cursor:pointer}
+@media(max-width:768px){.nav-links{display:none}.mobile-menu-btn{display:block}.hero h1{font-size:2rem}.hero p{font-size:1rem}.products-grid{grid-template-columns:1fr;padding:0 1rem 3rem}.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}.cta-section h2{font-size:1.8rem}}
+</style>
+</head>
+<body>
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo"><div class="logo-icon">CB</div> COBOL Bridge</a>
+<div class="nav-links">
+<a href="platform.html">Platform</a>
+<a href="products.html" class="active">Products</a>
+<a href="pricing.html">Pricing</a>
+<a href="sectors.html">Sectors</a>
+<a href="about.html">About</a>
+<a href="docs.html">Docs</a>
+<a href="contact.html" class="nav-cta">Book Demo</a>
+</div>
+<button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">\u2630</button>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-badge">\u26A1 AI Governance Product Suite</div>
+<h1>Enterprise Solutions for <span class="gradient">COBOL Modernisation</span></h1>
+<p>Purpose-built AI governance tools for financial services, government, and healthcare. Each product is MCP-native, regulation-mapped, and designed for mainframe environments processing billions in daily transactions.</p>
+</section>
+
+<section class="products-grid">
+<a href="dora-compliance.html" class="product-card card-dora">
+<div class="card-icon">\u26A0</div>
+<span class="card-tag">Regulatory Compliance</span>
+<h3>DORA Compliance Engine</h3>
+<p>Automated Digital Operational Resilience Act compliance for 22,000+ EU financial entities. 4-hour incident reporting, ICT risk management, and third-party oversight.</p>
+<ul class="card-features">
+<li>Automated ICT risk assessment for COBOL systems</li>
+<li>4-hour incident reporting automation</li>
+<li>Third-party provider dependency mapping</li>
+<li>Real-time compliance dashboard</li>
+</ul>
+<span class="card-btn">Explore DORA Engine <span class="arrow">\u2192</span></span>
+</a>
+
+<a href="ai-explainability.html" class="product-card card-ai">
+<div class="card-icon">\u{1F9E0}</div>
+<span class="card-tag">EU AI Act</span>
+<h3>AI Explainability for COBOL</h3>
+<p>Article 13 transparency compliance for AI systems processing COBOL business logic. Transform opaque mainframe decisions into auditable, explainable AI outputs.</p>
+<ul class="card-features">
+<li>Decision-path tracing through COBOL programs</li>
+<li>Natural language explanation generation</li>
+<li>High-risk AI classification mapping</li>
+<li>Audit-ready documentation output</li>
+</ul>
+<span class="card-btn">Explore AI Explainability <span class="arrow">\u2192</span></span>
+</a>
+
+<a href="regulatory-digital-twin.html" class="product-card card-twin">
+<div class="card-icon">\u{1F30D}</div>
+<span class="card-tag">Simulation</span>
+<h3>Regulatory Digital Twin</h3>
+<p>Simulate regulation changes against your COBOL estate before they go live. Test DORA, Basel IV, Solvency II, and 70+ international regulations in a sandboxed environment.</p>
+<ul class="card-features">
+<li>Pre-deployment regulation impact analysis</li>
+<li>Multi-jurisdiction simulation engine</li>
+<li>Cost-of-change forecasting</li>
+<li>What-if scenario modelling</li>
+</ul>
+<span class="card-btn">Explore Digital Twin <span class="arrow">\u2192</span></span>
+</a>
+
+<a href="real-time-payments.html" class="product-card card-payments">
+<div class="card-icon">\u26A1</div>
+<span class="card-tag">Payments</span>
+<h3>Real-Time Payments &amp; ISO 20022</h3>
+<p>Bridge legacy payment systems to ISO 20022 messaging standards. SWIFT migration compliance, real-time settlement, and COBOL-to-API payment orchestration.</p>
+<ul class="card-features">
+<li>COBOL copybook to ISO 20022 mapping</li>
+<li>Real-time payment message validation</li>
+<li>SWIFT MT to MX migration tooling</li>
+<li>Settlement reconciliation engine</li>
+</ul>
+<span class="card-btn">Explore Payments <span class="arrow">\u2192</span></span>
+</a>
+
+<a href="cobol-bridge-express.html" class="product-card card-express">
+<div class="card-icon">\u{1F680}</div>
+<span class="card-tag">Mid-Market</span>
+<h3>COBOL Bridge Express</h3>
+<p>Enterprise-grade COBOL governance for mid-market organisations. Rapid deployment, pre-configured compliance, and transparent pricing from \u00A3999/month.</p>
+<ul class="card-features">
+<li>48-hour deployment guarantee</li>
+<li>Pre-configured for UK/EU regulations</li>
+<li>3 tiers: Basic, Professional, Enterprise</li>
+<li>Self-service onboarding portal</li>
+</ul>
+<span class="card-btn">Explore Express <span class="arrow">\u2192</span></span>
+</a>
+
+</section>
+
+<section class="cta-section">
+<h2>Ready to Modernise Your <span class="gradient">COBOL Estate</span>?</h2>
+<p>Join 150+ financial institutions using COBOL Bridge to achieve AI governance compliance without rewriting a single line of COBOL.</p>
+<div class="cta-buttons">
+<a href="contact.html" class="btn-primary">Book a Demo</a>
+<a href="pricing.html" class="btn-secondary">View Pricing</a>
+</div>
+</section>
+
+<footer>
+<div class="footer-grid">
+<div class="footer-brand">
+<a href="index.html" class="logo"><div class="logo-icon">CB</div> COBOL Bridge</a>
+<p>The world's first MCP-native AI governance platform for legacy COBOL infrastructure. By CSGA Global.</p>
+</div>
+<div class="footer-col">
+<h4>Platform</h4>
+<a href="platform.html">Overview</a>
+<a href="products.html">Products</a>
+<a href="docs.html">Documentation</a>
+<a href="pricing.html">Pricing</a>
+</div>
+<div class="footer-col">
+<h4>Solutions</h4>
+<a href="dora-compliance.html">DORA Compliance</a>
+<a href="ai-explainability.html">AI Explainability</a>
+<a href="regulatory-digital-twin.html">Digital Twin</a>
+<a href="real-time-payments.html">Payments</a>
+<a href="cobol-bridge-express.html">Express</a>
+</div>
+<div class="footer-col">
+<h4>Company</h4>
+<a href="about.html">About</a>
+<a href="sectors.html">Sectors</a>
+<a href="contact.html">Contact</a>
+</div>
+</div>
+<div class="footer-bottom">
+<p>\u00A9 2025 CSGA Global. All rights reserved. COBOL Bridge is a registered trademark.</p>
+</div>
+</footer>
+
+</body>
+</html>
