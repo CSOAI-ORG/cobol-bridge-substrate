@@ -24,6 +24,7 @@
         { "src": "/regulatory-digital-twin$", "dest": "/regulatory-digital-twin.html" },
         { "src": "/real-time-payments$", "dest": "/real-time-payments.html" },
         { "src": "/cobol-bridge-express$", "dest": "/cobol-bridge-express.html" },
+                    { "src": "/products$", "dest": "/products.html" },
         { "src": "/assets/(.*)", "dest": "/assets/$1" },
         { "src": "^/$", "dest": "/index.html" }
     ]
