@@ -407,16 +407,6 @@ server.tool('ebcdic-translator', { ebcdicData: { type: 'string', description: 'E
         }
       }
     }
-          detectedFields.push({
-            name: field, pic: pic, comp: comp || 'none',
-            currentEncoding: encoding, targetEncoding: 'UTF-8', modernType: modernType,
-            translationNotes: comp === 'COMP-3' ? 'Packed decimal \u2014 requires nibble unpacking'
-              : comp ? 'Binary \u2014 direct numeric conversion'
-              : 'Character display \u2014 direct EBCDIC->ASCII mapping'
-          });
-        }
-      }
-    }
 
     return safeJsonResponse({
       translated: true,
