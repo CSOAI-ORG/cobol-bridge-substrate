@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regulatory Digital Twin — COBOL Bridge</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --primary: #00D4AA; --accent: #06b6d4; --accent-blue: #3b82f6; --bg: #0a0f1c; --surface: #1a1f2e; --border: #2a2f3e; --text: #e2e8f0; --text-secondary: #94a3b8; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+.nav { padding: 1rem 2rem; border-bottom: 1px solid var(--border); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; background: rgba(10,15,28,0.9); }
+.nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 1.25rem; font-weight: 700; color: var(--text); text-decoration: none; }
+.nav-logo span { color: var(--primary); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.hero { text-align: center; padding: 6rem 2rem 4rem; max-width: 900px; margin: 0 auto; }
+.hero-badge { display: inline-block; background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.3); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; color: var(--accent); margin-bottom: 1.5rem; }
+.hero h1 { font-size: 3rem; font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem; }
+.highlight { background: linear-gradient(135deg, var(--accent), var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: 1.15rem; color: var(--text-secondary); max-width: 650px; margin: 0 auto 2rem; }
+.hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-blue)); color: white; padding: 0.75rem 1.75rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; border: none; cursor: pointer; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(6,182,212,0.3); }
+.btn-secondary { border: 1px solid var(--border); color: var(--text); padding: 0.75rem 1.75rem; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: all 0.2s; }
+.btn-secondary:hover { border-color: var(--primary); background: rgba(0,212,170,0.05); }.stats-bar { display: flex; justify-content: center; gap: 3rem; padding: 2rem; background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.2); border-radius: 12px; margin: 2rem auto; max-width: 900px; }
+.stat-item { text-align: center; }
+.stat-number { font-size: 2rem; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem; }
+.section { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+.section-title { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; }
+.section-subtitle { text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: all 0.3s ease; }
+.feature-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(6,182,212,0.15); }
+.feature-icon { font-size: 2rem; margin-bottom: 1rem; }
+.feature-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; }
+.feature-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+.feature-tag { display: inline-block; background: rgba(6,182,212,0.15); color: var(--accent); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-top: 0.75rem; }
+.cta-section { text-align: center; padding: 5rem 2rem; background: linear-gradient(135deg, rgba(6,182,212,0.1), rgba(59,130,246,0.05)); border-radius: 24px; margin: 2rem; }
+.cta-section h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+.cta-section p { color: var(--text-secondary); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.85rem; }
+@media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 2rem; } .stats-bar { flex-direction: column; gap: 1.5rem; } .feature-grid { grid-template-columns: 1fr; } }
+</style>
+</head><body>
+<nav class="nav">
+    <div class="nav-container">
+        <a href="/" class="nav-logo">COBOL<span>Bridge</span></a>
+        <div class="nav-links">
+            <a href="/platform">Platform</a>
+            <a href="/sectors">Sectors</a>
+            <a href="/pricing">Pricing</a>
+            <a href="/docs">Docs</a>
+            <a href="/regulatory-digital-twin" style="color: var(--accent);">Digital Twin</a>
+        </div>
+        <a href="/contact" class="btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">Get Started</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-badge">🌐 Regulatory Simulation — Test Before You Deploy</div>
+    <h1><span class="highlight">Regulatory Digital Twin</span><br>for COBOL Infrastructure</h1>
+    <p>Simulate regulatory changes against your live COBOL systems before they take effect. Predict compliance gaps, model impact scenarios, and validate remediation — all without touching production.</p>
+    <div class="hero-actions">
+        <a href="/contact" class="btn-primary">Request Digital Twin Demo</a>
+        <a href="/docs" class="btn-secondary">Technical Documentation</a>
+    </div>
+</section>
+
+<div class="stats-bar">
+    <div class="stat-item"><div class="stat-number">1,200+</div><div class="stat-label">Regulations Modelled</div></div>
+    <div class="stat-item"><div class="stat-number">94%</div><div class="stat-label">Gap Detection Rate</div></div>
+    <div class="stat-item"><div class="stat-number">Real-Time</div><div class="stat-label">Impact Analysis</div></div>
+    <div class="stat-item"><div class="stat-number">Zero</div><div class="stat-label">Production Risk</div></div>
+</div>
+<section class="section">
+    <h2 class="section-title">Digital Twin Capabilities</h2>
+    <p class="section-subtitle">Six core capabilities for regulatory simulation across legacy COBOL environments</p>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🔮</div>
+            <h3>Regulatory Impact Simulation</h3>
+            <p>Model how upcoming regulations affect your COBOL business logic before enforcement. Simulate DORA, EU AI Act, Basel IV, and PSD3 changes against live system replicas.</p>
+            <span class="feature-tag">PREDICTIVE</span>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏗️</div>
+            <h3>System Topology Mapping</h3>
+            <p>Automatically discover and map all COBOL programs, copybooks, CICS transactions, and batch jobs into a navigable digital twin of your mainframe estate.</p>
+            <span class="feature-tag">DISCOVERY</span>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Change Impact Analysis</h3>
+            <p>Before modifying a single line of COBOL, understand exactly which programs, interfaces, and downstream systems will be affected by regulatory-driven changes.</p>
+            <span class="feature-tag">ANALYSIS</span>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🧪</div>
+            <h3>Compliance Scenario Testing</h3>
+            <p>Run what-if scenarios against multiple regulatory frameworks simultaneously. Test DORA incident reporting flows, AI transparency requirements, and cross-border payment rules.</p>
+            <span class="feature-tag">TESTING</span>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Gap Detection Engine</h3>
+            <p>Continuous scanning compares your COBOL system state against regulatory requirements, highlighting compliance gaps with severity scoring and remediation timelines.</p>
+            <span class="feature-tag">MONITORING</span>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔗</div>
+            <h3>MCP-Native Integration</h3>
+            <p>Every simulation runs through the Model Context Protocol, ensuring full auditability. Digital twin state is accessible to any MCP-compliant AI agent for governance queries.</p>
+            <span class="feature-tag">MCP NATIVE</span>
+        </div>
+    </div>
+</section>
+<div class="cta-section">
+    <h2>Simulate Compliance <span class="highlight">Before Enforcement</span></h2>
+    <p>Don't wait for regulators to find your gaps. Build a digital twin of your COBOL infrastructure and stay ahead of every regulatory change.</p>
+    <a href="/contact" class="btn-primary">Request Digital Twin Demo</a>
+</div>
+
+<footer>
+    <p>&copy; 2025 COBOL Bridge by CSGA Global — AI Governance for Legacy Systems</p>
+</footer>
+</body>
+</html>
