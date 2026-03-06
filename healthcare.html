@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="COBOL Healthcare - Modernise healthcare COBOL systems with HIPAA-first design and claims intelligence. Protect patient data across modernisation.">
+    <meta name="keywords" content="COBOL, healthcare, HIPAA, claims adjudication, modernisation, PHI, HL7, FHIR">
+    <meta property="og:title" content="COBOL Healthcare — COBOL Bridge">
+    <meta property="og:description" content="Modernise Healthcare COBOL. Protect Patient Data. HIPAA-first design with PHI tracking.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cobolbridge.ai/healthcare">
+    <meta property="og:image" content="https://cobolbridge.ai/og-healthcare.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="COBOL Healthcare — COBOL Bridge">
+    <meta name="twitter:description" content="Modernise Healthcare COBOL. Protect Patient Data.">
+    <meta name="twitter:image" content="https://cobolbridge.ai/og-healthcare.png">
+    <title>COBOL Healthcare — COBOL Bridge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-elevated: #f8f9fb;
+            --bg-surface: #f0f2f5;
+            --bg-card: #ffffff;
+            --border-subtle: rgba(0,0,0,0.06);
+            --border-medium: rgba(0,0,0,0.10);
+            --blue: #1a5cd4;
+            --accent: #d4941f;
+            --accent-bright: #e5a42d;
+            --text-primary: #1a1e25;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --text-muted: #94a3b8;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --max-w: 1200px;
+            --radius: 12px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo:hover {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .nav-links a.active {
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--blue);
+            border-radius: 1px;
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta:hover {
+            background: #0f4ab3;
+            transform: translateX(2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 0.35rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 1px;
+            transition: all 0.3s ease;
+        }
+
+        /* Main content offset */
+        main {
+            margin-top: 4rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--bg-elevated);
+            padding: 0.75rem 1.25rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--blue);
+            width: fit-content;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #1a5cd4 0%, #d4941f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0f4ab3;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(26, 92, 212, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--blue);
+            border: 2px solid var(--blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-elevated);
+            transform: translateY(-2px);
+        }
+
+        .hero-graphic {
+            width: 100%;
+            height: 400px;
+            background: var(--bg-elevated);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--bg-elevated);
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .stats-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Why Healthcare Section */
+        .why-healthcare {
+            max-width: var(--max-w);
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .why-healthcare h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-medium);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .why-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .why-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1a5cd4 0%, #d4941f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        /* MCP Tools Section */
+        .mcp-tools {
+            max-width: var(--max-w);
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .mcp-tools h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mcp-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        .mcp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .mcp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .mcp-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--blue);
+            box-shadow: 0 16px 40px rgba(26, 92, 212, 0.15);
+        }
+
+        .mcp-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .mcp-tag {
+            display: inline-block;
+            background: var(--bg-elevated);
+            color: var(--blue);
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .mcp-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Compliance Section */
+        .compliance {
+            background: var(--bg-elevated);
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .compliance-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .compliance h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .compliance-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .compliance-badge {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .compliance-badge p {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .compliance-badge .checkmark {
+            color: #10b981;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            max-width: var(--max-w);
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .use-cases h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .use-case-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--accent));
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .use-case-number {
+            display: inline-block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1a5cd4 0%, #d4941f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .use-case-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .use-case-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            max-width: var(--max-w);
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .pricing h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 3rem 2rem;
+            max-width: 500px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--blue);
+            box-shadow: 0 20px 48px rgba(26, 92, 212, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .pricing-header {
+            margin-bottom: 2rem;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .pricing-certification {
+            display: inline-block;
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--blue) 0%, #0f4ab3 100%);
+            color: white;
+            padding: 4rem 2rem;
+            margin: 4rem 0 0 0;
+            text-align: center;
+        }
+
+        .cta-banner-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--blue);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--blue);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 999;
+            font-size: 1.25rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            background: #0f4ab3;
+            transform: translateY(-4px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--bg-primary);
+                border-bottom: 1px solid var(--border-subtle);
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-graphic {
+                height: 300px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mcp-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .compliance-badges {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1,
+            .why-healthcare h2,
+            .mcp-tools h2,
+            .use-cases h2,
+            .pricing h2,
+            .cta-banner h2 {
+                font-size: 1.75rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .nav-logo {
+                font-size: 1rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .stat-item h3 {
+                font-size: 1.25rem;
+            }
+
+            .pricing-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .pricing-price {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">⬡ COBOL Bridge</a>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Platform</a></li>
+                <li><a href="#sectors" class="active">Sectors</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#docs">Docs</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Book Demo →</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="badge">
+                    <span>⬡</span>
+                    <span>Healthcare & Life Sciences</span>
+                </div>
+                <h1>Modernise Healthcare COBOL<br><span class="gradient-text">Protect Patient Data</span></h1>
+                <p class="hero-subtitle">Healthcare payers and providers depend on COBOL for claims adjudication, member enrolment, and clinical data processing. COBOL Bridge includes HIPAA compliance mapping with PHI tracking across every modernisation step.</p>
+                <div class="hero-ctas">
+                    <a href="https://buy.stripe.com/7sYcN7gDffUkf42eh7dMI0F" class="btn btn-primary">Start Free Assessment →</a>
+                    <a href="contact.html" class="btn btn-secondary">Book a Briefing</a>
+                </div>
+            </div>
+            <div class="hero-graphic">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width: 90%; height: 90%; opacity: 0.8;">
+                    <!-- Healthcare themed geometric graphic -->
+                    <defs>
+                        <linearGradient id="healthGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a5cd4;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#d4941f;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Background hexagons -->
+                    <polygon points="80,50 110,35 140,50 140,80 110,95 80,80" fill="none" stroke="url(#healthGrad)" stroke-width="2" opacity="0.3"/>
+                    <polygon points="260,80 290,65 320,80 320,110 290,125 260,110" fill="none" stroke="url(#healthGrad)" stroke-width="2" opacity="0.5"/>
+                    <!-- Central medical cross concept -->
+                    <rect x="175" y="100" width="50" height="50" fill="none" stroke="url(#healthGrad)" stroke-width="2" rx="4"/>
+                    <line x1="200" y1="110" x2="200" y2="140" stroke="url(#healthGrad)" stroke-width="2"/>
+                    <line x1="185" y1="125" x2="215" y2="125" stroke="url(#healthGrad)" stroke-width="2"/>
+                    <!-- Data flow lines -->
+                    <path d="M 100 200 Q 150 180 200 200 T 300 200" fill="none" stroke="url(#healthGrad)" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+                    <!-- Circles representing data nodes -->
+                    <circle cx="80" cy="200" r="8" fill="url(#healthGrad)" opacity="0.7"/>
+                    <circle cx="150" cy="190" r="6" fill="url(#healthGrad)" opacity="0.5"/>
+                    <circle cx="250" cy="210" r="6" fill="url(#healthGrad)" opacity="0.5"/>
+                    <circle cx="320" cy="200" r="8" fill="url(#healthGrad)" opacity="0.7"/>
+                    <!-- Shield element for security -->
+                    <path d="M 175 220 L 200 240 L 225 220 L 225 250 Q 200 265 175 250 Z" fill="none" stroke="url(#healthGrad)" stroke-width="2"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="stats-container">
+                <div class="stat-item scroll-reveal">
+                    <h3>$4.3T</h3>
+                    <p>US Healthcare Spend</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <h3>6B+</h3>
+                    <p>Annual Claims</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <h3>80%</h3>
+                    <p>Payers on COBOL</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <h3>15K+</h3>
+                    <p>ICD-10 Codes</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Healthcare Section -->
+        <section class="why-healthcare">
+            <h2>Why COBOL Healthcare?</h2>
+            <div class="why-grid">
+                <div class="why-card scroll-reveal">
+                    <h3>
+                        <div class="icon-circle">🔒</div>
+                        HIPAA-First Design
+                    </h3>
+                    <p>PHI tracking built into every analysis step. Automated Security Rule mapping with complete compliance documentation across all modernisation initiatives.</p>
+                </div>
+                <div class="why-card scroll-reveal">
+                    <h3>
+                        <div class="icon-circle">📊</div>
+                        Claims Intelligence
+                    </h3>
+                    <p>Parse billions in claims adjudication logic safely. Understand pricing rules, benefit determinations, and provider payment calculations with complete accuracy.</p>
+                </div>
+                <div class="why-card scroll-reveal">
+                    <h3>
+                        <div class="icon-circle">🔗</div>
+                        HL7 FHIR Ready
+                    </h3>
+                    <p>Map legacy data structures to modern interoperability standards. Generate compliant migration paths for CMS Interoperability Rule requirements.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MCP Tools Section -->
+        <section class="mcp-tools">
+            <h2>COBOL Healthcare MCP Tools</h2>
+            <p class="mcp-subtitle">Specialised tools designed for healthcare modernisation</p>
+            <div class="mcp-grid">
+                <div class="mcp-card scroll-reveal">
+                    <div class="mcp-tag">Claims MCP</div>
+                    <h3>Claims Adjudication Analysis</h3>
+                    <p>Parse COBOL claims adjudication engines. Map pricing rules, benefit logic, and provider payment calculations. Understand every claim processing rule your system applies.</p>
+                </div>
+                <div class="mcp-card scroll-reveal">
+                    <div class="mcp-tag">HIPAA Compliance</div>
+                    <h3>PHI Data Flow Tracking</h3>
+                    <p>Track Protected Health Information across COBOL programs. Automated HIPAA Security Rule mapping with §164.312 technical safeguard documentation.</p>
+                </div>
+                <div class="mcp-card scroll-reveal">
+                    <div class="mcp-tag">Enrolment MCP</div>
+                    <h3>Member Enrolment Systems</h3>
+                    <p>Analyse member enrolment and eligibility determination. Map coverage rules, family dependency logic, and open enrolment batch processes.</p>
+                </div>
+                <div class="mcp-card scroll-reveal">
+                    <div class="mcp-tag">HL7/FHIR</div>
+                    <h3>Interoperability Mapping</h3>
+                    <p>Map legacy COBOL data structures to HL7 FHIR resources. Generate migration plans for CMS Interoperability Rule compliance and modern EHR integration.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compliance Section -->
+        <section class="compliance">
+            <div class="compliance-container">
+                <h2>Built for Healthcare Compliance</h2>
+                <div class="compliance-badges">
+                    <div class="compliance-badge scroll-reveal">
+                        <div class="checkmark">✓</div>
+                        <p>HIPAA Security Rule</p>
+                    </div>
+                    <div class="compliance-badge scroll-reveal">
+                        <div class="checkmark">✓</div>
+                        <p>HITRUST CSF</p>
+                    </div>
+                    <div class="compliance-badge scroll-reveal">
+                        <div class="checkmark">✓</div>
+                        <p>HL7 FHIR</p>
+                    </div>
+                    <div class="compliance-badge scroll-reveal">
+                        <div class="checkmark">✓</div>
+                        <p>CMS Interoperability</p>
+                    </div>
+                    <div class="compliance-badge scroll-reveal">
+                        <div class="checkmark">✓</div>
+                        <p>CASA CA-30</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section class="use-cases">
+            <h2>Healthcare Modernisation Use Cases</h2>
+            <div class="use-cases-grid">
+                <div class="use-case-card scroll-reveal">
+                    <div class="use-case-number">1</div>
+                    <h3>Claims System Modernisation</h3>
+                    <p>Assess and document claims adjudication engines processing billions annually. Understand every rule, exception, and business logic decision before modernisation.</p>
+                </div>
+                <div class="use-case-card scroll-reveal">
+                    <div class="use-case-number">2</div>
+                    <h3>PHI Protection</h3>
+                    <p>Map and protect patient health information flows during any modernisation initiative. Ensure HIPAA compliance at every step with automated tracking and documentation.</p>
+                </div>
+                <div class="use-case-card scroll-reveal">
+                    <div class="use-case-number">3</div>
+                    <h3>Interoperability Compliance</h3>
+                    <p>Meet CMS Interoperability Rule requirements by mapping COBOL to FHIR. Generate compliant migration paths for modern API-based healthcare systems.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing">
+            <h2>Healthcare Modernisation Plan</h2>
+            <div class="pricing-card scroll-reveal">
+                <div class="pricing-header">
+                    <div class="pricing-price">$7,499<span>/month</span></div>
+                    <div class="pricing-certification">CASA CA-30 Certified</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>All 5 MCP Governance Tools</li>
+                    <li>Claims Adjudication Analysis</li>
+                    <li>HIPAA Security Rule Mapping</li>
+                    <li>PHI Data Flow Documentation</li>
+                    <li>HL7 FHIR Mapping Tools</li>
+                    <li>Member Enrolment Assessment</li>
+                    <li>Dedicated Healthcare Success Manager</li>
+                    <li>Quarterly Compliance Reviews</li>
+                </ul>
+                <div class="pricing-cta">
+                    <a href="https://buy.stripe.com/7sYcN7gDffUkf42eh7dMI0F" class="btn btn-primary">Get Started →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banner -->
+        <section class="cta-banner">
+            <div class="cta-banner-container">
+                <h2>Ready to Modernise Healthcare COBOL?</h2>
+                <p>Start a free assessment of your claims and enrolment systems today.</p>
+                <a href="https://buy.stripe.com/7sYcN7gDffUkf42eh7dMI0F" class="btn btn-primary" style="background: white; color: var(--blue);">Start Free Assessment →</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Platform</h3>
+                    <a href="index.html">Overview</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="index.html#docs">Documentation</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Sectors</h3>
+                    <a href="healthcare.html">Healthcare</a>
+                    <a href="index.html#sectors">Financial Services</a>
+                    <a href="index.html#sectors">Insurance</a>
+                    <a href="index.html#sectors">Government</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="index.html#about">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="index.html#blog">Blog</a>
+                    <a href="index.html#careers">Careers</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="index.html#privacy">Privacy</a>
+                    <a href="index.html#terms">Terms</a>
+                    <a href="index.html#security">Security</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 COBOL Bridge. A CSGA Global company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <!-- Breadcrumb JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://cobolbridge.ai"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Sectors",
+                "item": "https://cobolbridge.ai/sectors"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Healthcare",
+                "item": "https://cobolbridge.ai/healthcare"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Scripts -->
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Track page view and user engagement
+        window.addEventListener('load', () => {
+            // Analytics tracking can be added here
+            console.log('Healthcare sector page loaded');
+        });
+    </script>
+</body>
+</html>
