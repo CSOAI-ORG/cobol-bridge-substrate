@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="COBOL Bridge Insurance - Modernise insurance COBOL systems. Policy administration, actuarial engines, claims processing, and regulatory compliance.">
+    <meta name="keywords" content="COBOL, insurance, modernisation, policy administration, actuarial, claims processing, Solvency II, NAIC">
+    <meta property="og:title" content="COBOL Insurance - Modernise Insurance COBOL | COBOL Bridge">
+    <meta property="og:description" content="Specialised tools for modernising insurance COBOL systems. Policy intelligence, Solvency II compliance, actuarial safety.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cobolbridge.ai/insurance">
+    <meta property="og:image" content="https://cobolbridge.ai/og-insurance.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="COBOL Insurance - Modernise Insurance COBOL | COBOL Bridge">
+    <meta name="twitter:description" content="Specialised tools for modernising insurance COBOL systems.">
+    <title>COBOL Insurance - Modernise Insurance COBOL | COBOL Bridge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-elevated: #f8f9fb;
+            --blue: #1a5cd4;
+            --accent: #d4941f;
+            --text-primary: #1a1e25;
+            --text-secondary: #475569;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-w: 1200px;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--blue), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .nav-logo:hover {
+            opacity: 0.7;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue);
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: #0f3aa8;
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 0.35rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 1px;
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 4rem;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--bg-elevated);
+            color: var(--blue);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(26, 92, 212, 0.2);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        h1 br {
+            display: block;
+            content: "";
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 1.75rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0f3aa8;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--bg-elevated);
+            color: var(--blue);
+            border: 1px solid rgba(26, 92, 212, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: #f0f4fb;
+            transform: translateY(-2px);
+        }
+
+        .hero-graphic {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            max-width: 400px;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--bg-elevated);
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .stats-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            animation: slideInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Why Insurance Section */
+        .why-insurance {
+            padding: 5rem 2rem;
+        }
+
+        .why-insurance-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-card {
+            background: var(--bg-elevated);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(26, 92, 212, 0.2);
+        }
+
+        .why-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .why-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* MCP Tools Section */
+        .mcp-tools {
+            background: var(--bg-elevated);
+            padding: 5rem 2rem;
+        }
+
+        .mcp-tools-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--blue);
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--blue), var(--accent));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .tool-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Compliance Section */
+        .compliance {
+            padding: 5rem 2rem;
+        }
+
+        .compliance-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .compliance-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .compliance-item {
+            padding: 1.5rem;
+            background: var(--bg-elevated);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .compliance-checkmark {
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .compliance-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            background: var(--bg-elevated);
+            padding: 5rem 2rem;
+        }
+
+        .use-cases-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .use-case-card {
+            background: var(--bg-primary);
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            position: relative;
+            padding-left: 3.5rem;
+        }
+
+        .use-case-card::before {
+            content: "→";
+            position: absolute;
+            left: 1.5rem;
+            top: 1.5rem;
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .use-case-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .use-case-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 2rem;
+        }
+
+        .pricing-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .pricing-box {
+            background: var(--bg-elevated);
+            padding: 3rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            margin-top: 2rem;
+        }
+
+        .pricing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .pricing-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .pricing-period {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .pricing-cta {
+            margin-top: 2rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--blue), #0f3aa8);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 5rem 0;
+        }
+
+        .cta-banner-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .btn-white:hover {
+            background: #f0f4fb;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background: #0f3aa8;
+            transform: translateY(-4px);
+        }
+
+        .back-to-top.visible {
+            display: flex;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-graphic {
+                display: none;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .why-grid,
+            .tools-grid,
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .compliance-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .pricing-header {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-container {
+                padding: 0.75rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+                margin-top: 3rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cta-banner h2 {
+                font-size: 1.5rem;
+            }
+
+            .pricing-amount {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">⬡ COBOL Bridge</a>
+            <ul class="nav-links">
+                <li><a href="#platform">Platform</a></li>
+                <li><a href="#sectors" class="active">Sectors</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#docs">Docs</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="nav-cta">Book Demo →</a>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="badge">⬡ Insurance & Actuarial</div>
+                <h1>Modernise Insurance COBOL<br><span class="gradient-text">Protect Your Book</span></h1>
+                <p class="hero-subtitle">The global insurance industry runs on COBOL for policy administration, claims processing, and actuarial calculations. COBOL Bridge provides specialised tools for modernising underwriting engines and regulatory reporting systems.</p>
+                <div class="hero-ctas">
+                    <a href="https://buy.stripe.com/14A9AVfzbeQg3lk6OFdMI0G" class="btn btn-primary">Start Free Assessment →</a>
+                    <a href="contact.html" class="btn btn-secondary">Book a Briefing</a>
+                </div>
+            </div>
+            <div class="hero-graphic">
+                <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Shield background -->
+                    <defs>
+                        <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a5cd4;stop-opacity:0.1" />
+                            <stop offset="100%" style="stop-color:#d4941f;stop-opacity:0.1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Geometric shapes -->
+                    <circle cx="200" cy="200" r="180" fill="url(#shieldGradient)" stroke="#1a5cd4" stroke-width="2" opacity="0.3"/>
+                    <polygon points="200,100 280,160 280,280 200,340 120,280 120,160" fill="none" stroke="#1a5cd4" stroke-width="2.5" opacity="0.6"/>
+                    <polygon points="200,140 260,180 260,260 200,300 140,260 140,180" fill="none" stroke="#d4941f" stroke-width="2" opacity="0.4"/>
+                    <!-- Center diamond -->
+                    <rect x="185" y="185" width="30" height="30" fill="#1a5cd4" opacity="0.8" transform="rotate(45 200 200)"/>
+                    <!-- Accent circles -->
+                    <circle cx="140" cy="160" r="8" fill="#d4941f" opacity="0.5"/>
+                    <circle cx="260" cy="160" r="8" fill="#d4941f" opacity="0.5"/>
+                    <circle cx="200" cy="320" r="8" fill="#1a5cd4" opacity="0.5"/>
+                    <!-- Connecting lines -->
+                    <line x1="140" y1="160" x2="200" y2="200" stroke="#1a5cd4" stroke-width="1" opacity="0.3"/>
+                    <line x1="260" y1="160" x2="200" y2="200" stroke="#1a5cd4" stroke-width="1" opacity="0.3"/>
+                    <line x1="200" y1="200" x2="200" y2="320" stroke="#d4941f" stroke-width="1" opacity="0.3"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item" style="animation-delay: 0.1s;">
+                <div class="stat-number">$6.3T</div>
+                <div class="stat-label">Global Premiums</div>
+            </div>
+            <div class="stat-item" style="animation-delay: 0.2s;">
+                <div class="stat-number">75%</div>
+                <div class="stat-label">Core Systems COBOL</div>
+            </div>
+            <div class="stat-item" style="animation-delay: 0.3s;">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Years of Policy Data</div>
+            </div>
+            <div class="stat-item" style="animation-delay: 0.4s;">
+                <div class="stat-number">$300B</div>
+                <div class="stat-label">Annual Claims Paid</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Insurance Section -->
+    <section class="why-insurance">
+        <div class="why-insurance-container">
+            <h2 class="section-title">Why Insurance Needs COBOL Bridge</h2>
+            <p class="section-subtitle">Insurance systems are uniquely complex. We've built specialised capabilities for your challenges.</p>
+            <div class="why-grid">
+                <div class="why-card reveal">
+                    <h3>Policy Intelligence</h3>
+                    <p>Deep analysis of rating engines, endorsement logic, and renewal workflows. Understand how policies are underwritten, priced, and renewed across all lines of business.</p>
+                </div>
+                <div class="why-card reveal">
+                    <h3>Solvency II Ready</h3>
+                    <p>Automated regulatory mapping for capital calculations and statutory reporting. Stay compliant with evolving requirements while modernising core systems.</p>
+                </div>
+                <div class="why-card reveal">
+                    <h3>Actuarial Safety</h3>
+                    <p>Safe extraction and modernisation of reserve calculation and pricing algorithms. Protect critical actuarial logic while enabling innovation and efficiency gains.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MCP Tools Section -->
+    <section class="mcp-tools">
+        <div class="mcp-tools-container">
+            <h2 class="section-title">Specialised Insurance MCP Tools</h2>
+            <p class="section-subtitle">Four purpose-built tools for insurance modernisation.</p>
+            <div class="tools-grid">
+                <div class="tool-card reveal">
+                    <div class="tool-icon">📋</div>
+                    <h3>Policy Administration Analysis</h3>
+                    <p>Analyse COBOL policy admin systems for life, P&C, and specialty lines. Map rating engines, endorsement logic, renewal workflows.</p>
+                </div>
+                <div class="tool-card reveal">
+                    <div class="tool-icon">⚖️</div>
+                    <h3>NAIC/Solvency II Compliance</h3>
+                    <p>Automated mapping for NAIC state filing and Solvency II capital calculations. Track modernisation impact on statutory reporting.</p>
+                </div>
+                <div class="tool-card reveal">
+                    <div class="tool-icon">📊</div>
+                    <h3>Actuarial Engine Modernisation</h3>
+                    <p>Evaluate COBOL actuarial calculation engines. Map reserve calculations, loss ratio models, pricing algorithms.</p>
+                </div>
+                <div class="tool-card reveal">
+                    <div class="tool-icon">🔄</div>
+                    <h3>Claims Processing Optimisation</h3>
+                    <p>Analyse FNOL through settlement workflows. Identify automation in adjudication rules, fraud detection, payment disbursement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section class="compliance">
+        <div class="compliance-container">
+            <h3 class="compliance-title">Regulatory & Compliance Standards</h3>
+            <div class="compliance-grid">
+                <div class="compliance-item">
+                    <div class="compliance-checkmark">✓</div>
+                    <div class="compliance-label">NAIC Guidelines</div>
+                </div>
+                <div class="compliance-item">
+                    <div class="compliance-checkmark">✓</div>
+                    <div class="compliance-label">Solvency II</div>
+                </div>
+                <div class="compliance-item">
+                    <div class="compliance-checkmark">✓</div>
+                    <div class="compliance-label">IFRS 17</div>
+                </div>
+                <div class="compliance-item">
+                    <div class="compliance-checkmark">✓</div>
+                    <div class="compliance-label">SOC 2 Type II</div>
+                </div>
+                <div class="compliance-item">
+                    <div class="compliance-checkmark">✓</div>
+                    <div class="compliance-label">CASA CA-20</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="use-cases-container">
+            <h2 class="section-title">Common Use Cases</h2>
+            <div class="use-cases-grid">
+                <div class="use-case-card reveal">
+                    <h3>Policy Admin Migration</h3>
+                    <p>Assess and modernise policy administration systems across all lines of business. De-risk complex migrations with deep system intelligence.</p>
+                </div>
+                <div class="use-case-card reveal">
+                    <h3>Actuarial Modernisation</h3>
+                    <p>Safely extract and modernise pricing and reserving calculation engines. Preserve logic integrity while enabling new capabilities.</p>
+                </div>
+                <div class="use-case-card reveal">
+                    <h3>Claims Automation</h3>
+                    <p>Identify automation opportunities in FNOL-to-settlement workflows. Streamline claims handling while maintaining policy compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <div class="pricing-box">
+                <div class="pricing-header">
+                    <div>
+                        <div class="pricing-amount">$6,499<span class="pricing-period">/month</span></div>
+                    </div>
+                    <div class="pricing-badge">CASA CA-20</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>All 5 MCP Governance Tools</li>
+                    <li>Policy Administration Analysis</li>
+                    <li>NAIC/Solvency II Mapping</li>
+                    <li>IFRS 17 Documentation</li>
+                    <li>Actuarial Engine Assessment</li>
+                    <li>Claims Workflow Analysis</li>
+                    <li>Dedicated Insurance Success Manager</li>
+                    <li>Quarterly Regulatory Reviews</li>
+                </ul>
+                <a href="https://buy.stripe.com/14A9AVfzbeQg3lk6OFdMI0G" class="btn btn-primary pricing-cta">Get Started →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="cta-banner-container">
+            <h2>Ready to Modernise Your Insurance COBOL?</h2>
+            <p>Start with a free assessment of your policy administration systems.</p>
+            <a href="https://buy.stripe.com/14A9AVfzbeQg3lk6OFdMI0G" class="btn btn-white">Start Free Assessment →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2026 COBOL Bridge. A CSGA Global company.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "COBOL Bridge",
+                "item": "https://cobolbridge.ai"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Sectors",
+                "item": "https://cobolbridge.ai/sectors"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Insurance",
+                "item": "https://cobolbridge.ai/insurance"
+            }
+        ]
+    }
+    </script>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger?.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Back to top button
+        const backToTopBtn = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+
+        // Stat counter animation
+        const statItems = document.querySelectorAll('.stat-item');
+        let hasAnimated = false;
+
+        const animateStats = () => {
+            const statsSection = document.querySelector('.stats');
+            const statsSectionTop = statsSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (statsSectionTop < windowHeight && !hasAnimated) {
+                hasAnimated = true;
+                statItems.forEach((item, index) => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                });
+            }
+        };
+
+        window.addEventListener('scroll', animateStats);
+    </script>
+</body>
+</html>
