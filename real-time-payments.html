@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Payments & ISO 20022 | COBOL Bridge</title>
+  <meta name="description" content="Modernise COBOL payment systems for ISO 20022 compliance. Real-time payment processing, SWIFT migration, and instant settlement — without rewriting legacy code.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00D4AA;
+      --accent: #22c55e;
+      --accent-light: #10b981;
+      --bg-dark: #0a0f1c;
+      --bg-card: #1a1f2e;
+      --bg-card-hover: #242938;
+      --text-primary: #ffffff;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 5%; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .hero { text-align: center; padding: 5rem 5% 3rem; max-width: 900px; margin: 0 auto; }
+    .hero-badge { display: inline-block; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: var(--accent); padding: 0.5rem 1.25rem; border-radius: 50px; font-size: 0.85rem; font-weight: 500; margin-bottom: 1.5rem; }
+    .hero h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem; }
+    .highlight { background: linear-gradient(135deg, var(--accent), var(--accent-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7; max-width: 700px; margin: 0 auto 2rem; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: #000; padding: 0.9rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(34,197,94,0.3); }
+    .btn-secondary { border: 1px solid rgba(255,255,255,0.15); color: var(--text-primary); padding: 0.9rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: border-color 0.2s; }
+    .btn-secondary:hover { border-color: var(--accent); }
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto 4rem; padding: 2rem; background: var(--bg-card); border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; padding: 0 5% 4rem; }
+    .feature-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 2rem; transition: transform 0.2s, border-color 0.2s; }
+    .feature-card:hover { transform: translateY(-4px); border-color: rgba(34,197,94,0.3); }
+    .feature-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .feature-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+    .feature-tag { display: inline-block; background: rgba(34,197,94,0.1); color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.7rem; font-weight: 600; margin-top: 0.75rem; letter-spacing: 0.05em; }
+    .cta-section { text-align: center; padding: 4rem 5%; }
+    .cta-section h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+    .cta-section p { color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    footer { text-align: center; padding: 2rem 5%; border-top: 1px solid rgba(255,255,255,0.06); color: var(--text-muted); font-size: 0.85rem; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .features { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo">COBOL Bridge</a>
+    <ul class="nav-links">
+      <li><a href="/platform">Platform</a></li>
+      <li><a href="/sectors">Sectors</a></li>
+      <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+  <section class="hero">
+    <div class="hero-badge">⚡ ISO 20022 Migration — SWIFT Deadline November 2025</div>
+    <h1><span class="highlight">Real-Time Payments</span><br>for COBOL Infrastructure</h1>
+    <p>The global payments industry is migrating to ISO 20022 and real-time settlement. Your COBOL payment systems need to keep pace — without a full rewrite. COBOL Bridge enables compliant, real-time payment processing through MCP governance.</p>
+    <div class="hero-actions">
+      <a href="/contact" class="btn-primary">Start ISO 20022 Assessment</a>
+      <a href="/docs" class="btn-secondary">Read Documentation</a>
+    </div>
+  </section>
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-number">ISO 20022</div><div class="stat-label">Full Compliance</div></div>
+    <div class="stat-item"><div class="stat-number">&lt;100ms</div><div class="stat-label">Processing Latency</div></div>
+    <div class="stat-item"><div class="stat-number">SWIFT</div><div class="stat-label">Migration Ready</div></div>
+    <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Real-Time Settlement</div></div>
+  </div>
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">📨</div>
+      <h3>ISO 20022 Message Translation</h3>
+      <p>Automatically translate legacy MT message formats to ISO 20022 MX standards. Full COBOL copybook mapping to XML/JSON payment schemas with zero data loss.</p>
+      <span class="feature-tag">MT TO MX</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Real-Time Processing Engine</h3>
+      <p>Sub-100ms payment processing through optimised COBOL runtime bridges. Handle instant payments, faster payments, and SEPA Instant without batch delays.</p>
+      <span class="feature-tag">INSTANT</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌐</div>
+      <h3>SWIFT gpi Integration</h3>
+      <p>Full SWIFT gpi compliance with end-to-end tracking, unique end-to-end transaction references (UETR), and real-time payment status updates across correspondent networks.</p>
+      <span class="feature-tag">SWIFT GPI</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Payment Fraud Detection</h3>
+      <p>AI-powered fraud screening integrated directly with COBOL transaction processing. Real-time sanctions screening, AML checks, and anomaly detection on every payment.</p>
+      <span class="feature-tag">AML / CFT</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Settlement Reconciliation</h3>
+      <p>Automated real-time reconciliation between COBOL ledger systems and payment clearing networks. Instant exception handling and automatic nostro/vostro balancing.</p>
+      <span class="feature-tag">RECONCILIATION</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔗</div>
+      <h3>MCP Payment Governance</h3>
+      <p>Every payment transformation runs through the Model Context Protocol, ensuring full audit trails, regulatory compliance, and governance over AI-assisted payment processing.</p>
+      <span class="feature-tag">MCP NATIVE</span>
+    </div>
+  </section>
+  <div class="cta-section">
+    <h2>Modernise Payments <span class="highlight">Without Rewriting COBOL</span></h2>
+    <p>Don't let legacy infrastructure hold back your payment modernisation. Bridge your COBOL systems to real-time payments and ISO 20022 compliance today.</p>
+    <a href="/contact" class="btn-primary">Request Payments Assessment</a>
+  </div>
+  <footer>
+    <p>&copy; 2025 COBOL Bridge by CSGA Global &mdash; AI Governance for Legacy Systems</p>
+  </footer>
+</body>
+</html>
