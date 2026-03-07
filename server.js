@@ -16,6 +16,7 @@ const cors = require('cors');
 const path = require('path');
 const { McpServer } = require('@modelcontextprotocol/sdk/server/mcp.js');
 const { StreamableHTTPServerTransport } = require('@modelcontextprotocol/sdk/server/streamableHttp.js');
+var z = require('zod');
 
 const app = express();
 
@@ -132,7 +133,7 @@ const server = new McpServer({ name: 'cobol-bridge', version: '1.0.0' });
  * Tool 1: Copybook Parser
  * Parses COBOL copybook definitions into structured JSON schemas.
  */
-server.tool('copybook-parser', { copybook: { type: 'string', description: 'Raw COBOL copybook source text' } }, async function(args) {
+server.tool('copybook-parser', { copybook: z.string().describe('Raw COBOL copybook source text') }, async function(args) {
   try {
     var input = validateStringInput(args.copybook, 'copybook');
     var lines = input.split('\n').filter(function(l) { return l.trim() && !l.trim().startsWith('*'); });
@@ -186,7 +187,7 @@ server.tool('copybook-parser', { copybook: { type: 'string', description: 'Raw C
  * Tool 2: CICS Bridge Assessment
  * Evaluates CICS transaction configs for AI bridge readiness.
  */
-server.tool('cics-bridge-assessment', { cicsConfig: { type: 'string', description: 'CICS configuration or transaction definitions' } }, async function(args) {
+server.tool('cics-bridge-assessment', { cicsConfig: z.string().describe('CICS configuration or transaction definitions') }, async function(args) {
   try {
     var input = validateStringInput(args.cicsConfig, 'cicsConfig');
     var transactions = [];
@@ -232,7 +233,7 @@ server.tool('cics-bridge-assessment', { cicsConfig: { type: 'string', descriptio
  * Tool 3: JCL Batch Scanner
  * Scans JCL for batch job dependencies and modernisation opportunities.
  */
-server.tool('jcl-batch-scanner', { jcl: { type: 'string', description: 'JCL job control language source text' } }, async function(args) {
+server.tool('jcl-batch-scanner', { jcl: z.string().describe('JCL job control language source text') }, async function(args) {
   try {
     var input = validateStringInput(args.jcl, 'jcl');
     var lines = input.split('\n');
@@ -286,7 +287,7 @@ server.tool('jcl-batch-scanner', { jcl: { type: 'string', description: 'JCL job 
  * Tool 4: VSAM Mapper
  * Maps VSAM file layouts to modern data structures for AI consumption.
  */
-server.tool('vsam-mapper', { vsamLayout: { type: 'string', description: 'VSAM file or cluster definition text' } }, async function(args) {
+server.tool('vsam-mapper', { vsamLayout: z.string().describe('VSAM file or cluster definition text') }, async function(args) {
   try {
     var input = validateStringInput(args.vsamLayout, 'vsamLayout');
     var lines = input.split('\n').filter(function(l) { return l.trim(); });
@@ -347,7 +348,7 @@ server.tool('vsam-mapper', { vsamLayout: { type: 'string', description: 'VSAM fi
  * Tool 5: EBCDIC Translator
  * Translates EBCDIC-encoded data references to ASCII/UTF-8 for AI processing.
  */
-server.tool('ebcdic-translator', { ebcdicData: { type: 'string', description: 'EBCDIC data description, field definitions, or hex dump' } }, async function(args) {
+server.tool('ebcdic-translator', { ebcdicData: z.string().describe('EBCDIC data description, field definitions, or hex dump') }, async function(args) {
   try {
     var input = validateStringInput(args.ebcdicData, 'ebcdicData');
 
