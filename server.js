@@ -3,10 +3,10 @@
  * CSGA AI Research Institute | cobolbridge.ai
  *
  * 11 MCP Governance Tools:
- * - parse_copybook, assess_cics_bridge, scan_jcl_batch,
- *   map_vsam, translate_ebcdic (Core Legacy Tools)
- * - bridge_iso_20022, assess_pqc, fingerprint_regulatory,
- *   discover_cobol, generate_api, automate_tests (Platform Tools)
+ * - parse_copybook, assess_transaction_bridge, scan_batch_jobs,
+ *   map_data_files, translate_encoding (Core Legacy Tools)
+ * - bridge_payments, assess_cryptography, check_compliance,
+ *   discover_programs, generate_api, automate_tests (Platform Tools)
  *
  * MCP Resources & Prompts for full Smithery compliance
  * Streamable HTTP transport (Vercel serverless compatible)
@@ -70,7 +70,7 @@ function createServer() {
 
   // ---- TOOL 2: CICS Bridge Assessment ----
   server.tool(
-    'assess_cics_bridge',
+    'assess_transaction_bridge',
     'Analyze CICS transaction programs for API bridge compatibility. Identifies EXEC CICS commands, BMS maps, COMMAREA structures, and modernization complexity.',
     { source: z.string().describe('CICS COBOL program source code'), transactionId: z.string().optional().describe('CICS transaction ID') },
     { title: 'CICS Bridge Assessment', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -87,7 +87,7 @@ function createServer() {
 
   // ---- TOOL 3: JCL Batch Scanner ----
   server.tool(
-    'scan_jcl_batch',
+    'scan_batch_jobs',
     'Scan JCL job streams to extract step dependencies, dataset usage, program calls, and scheduling metadata for batch modernization planning.',
     { jcl: z.string().describe('JCL job stream source text') },
     { title: 'JCL Batch Scanner', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -106,7 +106,7 @@ function createServer() {
 
   // ---- TOOL 4: VSAM Mapper ----
   server.tool(
-    'map_vsam',
+    'map_data_files',
     'Map VSAM file structures (KSDS, ESDS, RRDS) to modern database schemas. Generates SQL DDL, index recommendations, and migration scripts.',
     { definition: z.string().describe('VSAM IDCAMS DEFINE or cluster definition'), targetDb: z.enum(['postgresql', 'mysql', 'mongodb', 'dynamodb']).optional().describe('Target database platform') },
     { title: 'VSAM Data Mapper', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -123,7 +123,7 @@ function createServer() {
 
   // ---- TOOL 5: EBCDIC Translator ----
   server.tool(
-    'translate_ebcdic',
+    'translate_encoding',
     'Translate EBCDIC-encoded data to ASCII/UTF-8 with support for packed decimal (COMP-3), binary (COMP), and zoned decimal conversions.',
     { hexData: z.string().describe('EBCDIC hex string to translate'), encoding: z.enum(['text', 'packed-decimal', 'binary', 'zoned-decimal']).optional().describe('Encoding type of the input data') },
     { title: 'EBCDIC Translator', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -144,7 +144,7 @@ function createServer() {
 
   // ---- TOOL 6: ISO 20022 Bridge ----
   server.tool(
-    'bridge_iso_20022',
+    'bridge_payments',
     'Transform legacy payment messages from MT (SWIFT) to MX (ISO 20022) format. Generates pacs, camt, and pain message types with compliance validation and migration tracking.',
     {
       mtMessage: z.string().describe('SWIFT MT message content (MT103, MT202, etc.)'),
@@ -167,7 +167,7 @@ function createServer() {
 
   // ---- TOOL 7: PQC Assessment ----
   server.tool(
-    'assess_pqc',
+    'assess_cryptography',
     'Assess cryptographic posture of COBOL systems for post-quantum readiness. Inventories crypto usage, maps to NIST-approved PQC algorithms (CRYSTALS-Kyber, CRYSTALS-Dilithium, SPHINCS+), and generates migration roadmaps.',
     {
       source: z.string().describe('COBOL source code or system configuration to analyze'),
@@ -187,7 +187,7 @@ function createServer() {
 
   // ---- TOOL 8: Regulatory Fingerprint ----
   server.tool(
-    'fingerprint_regulatory',
+    'check_compliance',
     'Map COBOL systems to 76+ global regulations including DORA, GDPR, Basel III, SOX, PCI-DSS, HIPAA, and MiFID II. Performs gap analysis and generates compliance evidence documentation.',
     {
       source: z.string().describe('COBOL source code or system documentation to fingerprint'),
@@ -210,7 +210,7 @@ function createServer() {
 
   // ---- TOOL 9: COBOL Discovery ----
   server.tool(
-    'discover_cobol',
+    'discover_programs',
     'AI-powered COBOL codebase discovery and cataloging. Performs dependency mapping, complexity analysis (cyclomatic, Halstead), dead code detection, and generates comprehensive modernization inventory.',
     {
       source: z.string().describe('COBOL source code to analyze'),
@@ -531,9 +531,9 @@ app.get('/', (req, res) => {
     mcp_endpoint: '/mcp',
     health_endpoint: '/health',
     tools: [
-      'parse_copybook', 'assess_cics_bridge', 'scan_jcl_batch',
-      'map_vsam', 'translate_ebcdic', 'bridge_iso_20022',
-      'assess_pqc', 'fingerprint_regulatory', 'discover_cobol',
+      'parse_copybook', 'assess_transaction_bridge', 'scan_batch_jobs',
+      'map_data_files', 'translate_encoding', 'bridge_payments',
+      'assess_cryptography', 'check_compliance', 'discover_programs',
       'generate_api', 'automate_tests'
     ],
     documentation: 'https://cobolbridge.ai',
