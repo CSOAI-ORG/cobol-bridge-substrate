@@ -7,7 +7,7 @@
  *   jcl-batch-scanner, vsam-mapper, ebcdic-translator)
  * - Static file serving with clean URLs (VPS-compatible)
  * - Security hardening (rate limiting, input validation, headers)
- * - SSE transport for MCP protocol
+ * - Streamable HTTP transport for MCP protocol (Vercel serverless compatible)
  * - Health check and monitoring endpoints
  */
 
@@ -15,7 +15,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const { McpServer } = require('@modelcontextprotocol/sdk/server/mcp.js');
-const { SSEServerTransport } = require('@modelcontextprotocol/sdk/server/sse.js');
+const { StreamableHTTPServerTransport } = require('@modelcontextprotocol/sdk/server/streamableHttp.js');
 
 const app = express();
 
@@ -125,6 +125,7 @@ function errorResponse(message) {
 // MCP Server + 5 Governance Tools
 // ──────────────────────────────────────────────
 
+function createServer() {
 const server = new McpServer({ name: 'cobol-bridge', version: '1.0.0' });
 
 /**
@@ -432,95 +433,63 @@ server.tool('ebcdic-translator', { ebcdicData: { type: 'string', description: 'E
     return errorResponse(err.message);
   }
 });
+  return server;
+}
 
-// ──────────────────────────────────────────────
-// Health & Monitoring
-// ──────────────────────────────────────────────
 
+// === API Routes ===
+
+// Health check
 app.get('/health', apiRateLimit, function(req, res) {
   res.json({
-    status: 'healthy', version: '1.0.0', tools: 5,
-    uptime: Math.floor(process.uptime()),
-    timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
+    status: 'healthy',
+    version: '1.0.0',
+    tools: 5,
+    transport: 'streamable-http',
+    timestamp: new Date().toISOString()
   });
 });
 
-// ──────────────────────────────────────────────
-// MCP SSE Transport
-// ──────────────────────────────────────────────
-
-var transport;
-
-app.get('/mcp/sse', mcpRateLimit, async function(req, res) {
+// Streamable HTTP MCP endpoint (stateless, Vercel-compatible)
+app.post('/mcp', mcpRateLimit, async function(req, res) {
   try {
-    res.setHeader('Content-Type', 'text/event-stream');
-    res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Connection', 'keep-alive');
-    res.setHeader('X-Accel-Buffering', 'no');
-    transport = new SSEServerTransport('/mcp/messages', res);
-    await server.connect(transport);
-    req.on('close', function() { transport = null; });
-  } catch (err) {
-    console.error('[MCP SSE Error]', err.message);
-    if (!res.headersSent) res.status(500).json({ error: 'SSE connection failed' });
-  }
-});
-
-app.post('/mcp/messages', mcpRateLimit, async function(req, res) {
-  try {
-    if (!transport) return res.status(400).json({ error: 'No active MCP session. Connect via /mcp/sse first.' });
-    await transport.handlePostMessage(req, res);
-  } catch (err) {
-    console.error('[MCP Message Error]', err.message);
-    if (!res.headersSent) res.status(500).json({ error: 'Message handling failed' });
-  }
-});
-
-// ──────────────────────────────────────────────
-// Static Files + Clean URL Routing (VPS)
-// ──────────────────────────────────────────────
-
-app.use(express.static(path.join(__dirname), { maxAge: '1d', etag: true, index: false }));
-
-var pages = ['platform', 'about', 'sectors', 'pricing', 'docs', 'contact',
-  'banking', 'government', 'healthcare', 'insurance', 'defence', 'finance'];
-
-pages.forEach(function(page) {
-  app.get('/' + page, function(req, res) {
-    res.sendFile(path.join(__dirname, page + '.html'), function(err) {
-      if (err) res.status(404).send('Page not found');
+    var server = createServer();
+    var transport = new StreamableHTTPServerTransport({
+      sessionIdGenerator: undefined
     });
+    res.on('close', function() {
+      transport.close();
+      server.close();
+    });
+    await server.connect(transport);
+    await transport.handleRequest(req, res);
+  } catch (err) {
+    console.error('MCP error:', err);
+    if (!res.headersSent) {
+      res.status(500).json({
+        jsonrpc: '2.0',
+        error: { code: -32603, message: 'Internal server error' },
+        id: null
+      });
+    }
+  }
+});
+
+// Stateless mode: GET and DELETE not supported
+app.get('/mcp', function(req, res) {
+  res.status(405).json({
+    jsonrpc: '2.0',
+    error: { code: -32000, message: 'Method not allowed. Use POST for stateless MCP.' },
+    id: null
+  });
+});
+app.delete('/mcp', function(req, res) {
+  res.status(405).json({
+    jsonrpc: '2.0',
+    error: { code: -32000, message: 'Method not allowed. Use POST for stateless MCP.' },
+    id: null
   });
 });
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'), function(err) {
-    if (err) res.status(500).send('Server error');
-  });
-});
-
-// ──────────────────────────────────────────────
-// Error Handling
-// ──────────────────────────────────────────────
-
-app.use(function(req, res) { res.status(404).json({ error: 'Not found', path: req.path }); });
-app.use(function(err, req, res, next) {
-  console.error('[Server Error]', err.message);
-  res.status(500).json({ error: 'Internal server error' });
-});
-
-// ──────────────────────────────────────────────
-// Start Server
-// ──────────────────────────────────────────────
-
-var PORT = process.env.PORT || 3000;
-app.listen(PORT, function() {
-  console.log('\n  COBOL Bridge MCP Server v1.0.0');
-  console.log('  Port:        ' + PORT);
-  console.log('  Environment: ' + (process.env.NODE_ENV || 'development'));
-  console.log('  Tools:       5 MCP Governance Tools');
-  console.log('  Health:      http://localhost:' + PORT + '/health');
-  console.log('  MCP SSE:     http://localhost:' + PORT + '/mcp/sse');
-  console.log('  Website:     http://localhost:' + PORT + '\n');
-});
+// Export for Vercel serverless
+module.exports = app;
