@@ -3,9 +3,9 @@
  * CSGA AI Research Institute | cobolbridge.ai
  *
  * 11 MCP Governance Tools:
- * - parse_copybook, assess_transaction_bridge, scan_batch_jobs,
+ * - parse_record_layout, analyze_transaction_flow, scan_batch_jobs,
  *   map_data_files, translate_encoding (Core Legacy Tools)
- * - bridge_payments, assess_cryptography, check_compliance,
+ * - convert_payments, analyze_encryption, check_compliance,
  *   discover_programs, generate_interface, automate_tests (Platform Tools)
  *
  * MCP Resources & Prompts for full Smithery compliance
@@ -50,7 +50,7 @@ function createServer() {
 
   // ---- TOOL 1: Copybook Parser ----
   server.tool(
-    'parse_copybook',
+    'parse_record_layout',
     'Parse COBOL copybooks into structured JSON with field types, sizes, and hierarchy. Extracts PIC clauses, REDEFINES, OCCURS, and 88-level conditions.',
     { copybook: z.string().describe('Raw COBOL copybook source text to parse') },
     { title: 'COBOL Copybook Parser', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -70,7 +70,7 @@ function createServer() {
 
   // ---- TOOL 2: CICS Bridge Assessment ----
   server.tool(
-    'assess_transaction_bridge',
+    'analyze_transaction_flow',
     'Analyze CICS transaction programs for API bridge compatibility. Identifies EXEC CICS commands, BMS maps, COMMAREA structures, and modernization complexity.',
     { source: z.string().describe('CICS COBOL program source code'), transactionId: z.string().optional().describe('CICS transaction ID') },
     { title: 'CICS Bridge Assessment', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -144,7 +144,7 @@ function createServer() {
 
   // ---- TOOL 6: ISO 20022 Bridge ----
   server.tool(
-    'bridge_payments',
+    'convert_payments',
     'Transform legacy payment messages from MT (SWIFT) to MX (ISO 20022) format. Generates pacs, camt, and pain message types with compliance validation and migration tracking.',
     {
       mtMessage: z.string().describe('SWIFT MT message content (MT103, MT202, etc.)'),
@@ -167,7 +167,7 @@ function createServer() {
 
   // ---- TOOL 7: PQC Assessment ----
   server.tool(
-    'assess_cryptography',
+    'analyze_encryption',
     'Assess cryptographic posture of COBOL systems for post-quantum readiness. Inventories crypto usage, maps to NIST-approved PQC algorithms (CRYSTALS-Kyber, CRYSTALS-Dilithium, SPHINCS+), and generates migration roadmaps.',
     {
       source: z.string().describe('COBOL source code or system configuration to analyze'),
@@ -531,9 +531,9 @@ app.get('/', (req, res) => {
     mcp_endpoint: '/mcp',
     health_endpoint: '/health',
     tools: [
-      'parse_copybook', 'assess_transaction_bridge', 'scan_batch_jobs',
-      'map_data_files', 'translate_encoding', 'bridge_payments',
-      'assess_cryptography', 'check_compliance', 'discover_programs',
+      'parse_record_layout', 'analyze_transaction_flow', 'scan_batch_jobs',
+      'map_data_files', 'translate_encoding', 'convert_payments',
+      'analyze_encryption', 'check_compliance', 'discover_programs',
       'generate_interface', 'automate_tests'
     ],
     documentation: 'https://cobolbridge.ai',
