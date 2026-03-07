@@ -3,10 +3,10 @@
  * CSGA AI Research Institute | cobolbridge.ai
  *
  * 11 MCP Governance Tools:
- * - copybook-parser, cics-bridge-assessment, jcl-batch-scanner,
- *   vsam-mapper, ebcdic-translator (Core Legacy Tools)
- * - iso-20022-bridge, pqc-assessment, regulatory-fingerprint,
- *   cobol-discovery, api-generator, test-automation (Platform Tools)
+ * - copybook_parser, cics_bridge_assessment, jcl_batch_scanner,
+ *   vsam_mapper, ebcdic_translator (Core Legacy Tools)
+ * - iso_20022_bridge, pqc_assessment, regulatory_fingerprint,
+ *   cobol_discovery, api_generator, test_automation (Platform Tools)
  *
  * MCP Resources & Prompts for full Smithery compliance
  * Streamable HTTP transport (Vercel serverless compatible)
@@ -50,7 +50,7 @@ function createServer() {
 
   // ---- TOOL 1: Copybook Parser ----
   server.tool(
-    'copybook-parser',
+    'copybook_parser',
     'Parse COBOL copybooks into structured JSON with field types, sizes, and hierarchy. Extracts PIC clauses, REDEFINES, OCCURS, and 88-level conditions.',
     { copybook: z.string().describe('Raw COBOL copybook source text to parse') },
     { title: 'COBOL Copybook Parser', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -70,7 +70,7 @@ function createServer() {
 
   // ---- TOOL 2: CICS Bridge Assessment ----
   server.tool(
-    'cics-bridge-assessment',
+    'cics_bridge_assessment',
     'Analyze CICS transaction programs for API bridge compatibility. Identifies EXEC CICS commands, BMS maps, COMMAREA structures, and modernization complexity.',
     { source: z.string().describe('CICS COBOL program source code'), transactionId: z.string().optional().describe('CICS transaction ID') },
     { title: 'CICS Bridge Assessment', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -87,7 +87,7 @@ function createServer() {
 
   // ---- TOOL 3: JCL Batch Scanner ----
   server.tool(
-    'jcl-batch-scanner',
+    'jcl_batch_scanner',
     'Scan JCL job streams to extract step dependencies, dataset usage, program calls, and scheduling metadata for batch modernization planning.',
     { jcl: z.string().describe('JCL job stream source text') },
     { title: 'JCL Batch Scanner', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -106,7 +106,7 @@ function createServer() {
 
   // ---- TOOL 4: VSAM Mapper ----
   server.tool(
-    'vsam-mapper',
+    'vsam_mapper',
     'Map VSAM file structures (KSDS, ESDS, RRDS) to modern database schemas. Generates SQL DDL, index recommendations, and migration scripts.',
     { definition: z.string().describe('VSAM IDCAMS DEFINE or cluster definition'), targetDb: z.enum(['postgresql', 'mysql', 'mongodb', 'dynamodb']).optional().describe('Target database platform') },
     { title: 'VSAM Data Mapper', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -123,7 +123,7 @@ function createServer() {
 
   // ---- TOOL 5: EBCDIC Translator ----
   server.tool(
-    'ebcdic-translator',
+    'ebcdic_translator',
     'Translate EBCDIC-encoded data to ASCII/UTF-8 with support for packed decimal (COMP-3), binary (COMP), and zoned decimal conversions.',
     { hexData: z.string().describe('EBCDIC hex string to translate'), encoding: z.enum(['text', 'packed-decimal', 'binary', 'zoned-decimal']).optional().describe('Encoding type of the input data') },
     { title: 'EBCDIC Translator', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -144,7 +144,7 @@ function createServer() {
 
   // ---- TOOL 6: ISO 20022 Bridge ----
   server.tool(
-    'iso-20022-bridge',
+    'iso_20022_bridge',
     'Transform legacy payment messages from MT (SWIFT) to MX (ISO 20022) format. Generates pacs, camt, and pain message types with compliance validation and migration tracking.',
     {
       mtMessage: z.string().describe('SWIFT MT message content (MT103, MT202, etc.)'),
@@ -167,7 +167,7 @@ function createServer() {
 
   // ---- TOOL 7: PQC Assessment ----
   server.tool(
-    'pqc-assessment',
+    'pqc_assessment',
     'Assess cryptographic posture of COBOL systems for post-quantum readiness. Inventories crypto usage, maps to NIST-approved PQC algorithms (CRYSTALS-Kyber, CRYSTALS-Dilithium, SPHINCS+), and generates migration roadmaps.',
     {
       source: z.string().describe('COBOL source code or system configuration to analyze'),
@@ -187,7 +187,7 @@ function createServer() {
 
   // ---- TOOL 8: Regulatory Fingerprint ----
   server.tool(
-    'regulatory-fingerprint',
+    'regulatory_fingerprint',
     'Map COBOL systems to 76+ global regulations including DORA, GDPR, Basel III, SOX, PCI-DSS, HIPAA, and MiFID II. Performs gap analysis and generates compliance evidence documentation.',
     {
       source: z.string().describe('COBOL source code or system documentation to fingerprint'),
@@ -210,7 +210,7 @@ function createServer() {
 
   // ---- TOOL 9: COBOL Discovery ----
   server.tool(
-    'cobol-discovery',
+    'cobol_discovery',
     'AI-powered COBOL codebase discovery and cataloging. Performs dependency mapping, complexity analysis (cyclomatic, Halstead), dead code detection, and generates comprehensive modernization inventory.',
     {
       source: z.string().describe('COBOL source code to analyze'),
@@ -237,7 +237,7 @@ function createServer() {
 
   // ---- TOOL 10: API Generator ----
   server.tool(
-    'api-generator',
+    'api_generator',
     'Generate REST, GraphQL, and gRPC API definitions from COBOL copybooks and program interfaces. Produces OpenAPI 3.0 specs, GraphQL schemas, and Protocol Buffer definitions.',
     {
       copybook: z.string().describe('COBOL copybook or WORKING-STORAGE to generate API from'),
@@ -275,7 +275,7 @@ function createServer() {
 
   // ---- TOOL 11: Test Automation ----
   server.tool(
-    'test-automation',
+    'test_automation',
     'Capture COBOL program behavior as test baselines and detect regressions with intelligent diffing. Generates test cases from production data patterns, validates I/O transformations, and creates regression test suites.',
     {
       source: z.string().describe('COBOL program source code to generate tests for'),
@@ -315,18 +315,18 @@ function createServer() {
         mimeType: 'text/markdown',
         text: '# COBOL Bridge API Reference v2.0\n\n' +
           '## Core Legacy Tools\n' +
-          '- **copybook-parser**: Parse COBOL copybooks to JSON schemas\n' +
-          '- **cics-bridge-assessment**: Assess CICS transaction modernization\n' +
-          '- **jcl-batch-scanner**: Analyze JCL batch job dependencies\n' +
-          '- **vsam-mapper**: Map VSAM files to modern databases\n' +
-          '- **ebcdic-translator**: Convert EBCDIC to UTF-8 with codepage support\n\n' +
+          '- **copybook_parser**: Parse COBOL copybooks to JSON schemas\n' +
+          '- **cics_bridge_assessment**: Assess CICS transaction modernization\n' +
+          '- **jcl_batch_scanner**: Analyze JCL batch job dependencies\n' +
+          '- **vsam_mapper**: Map VSAM files to modern databases\n' +
+          '- **ebcdic_translator**: Convert EBCDIC to UTF-8 with codepage support\n\n' +
           '## Platform Tools\n' +
-          '- **iso-20022-bridge**: MT to MX message conversion (ISO 20022)\n' +
-          '- **pqc-assessment**: Post-quantum cryptography readiness\n' +
-          '- **regulatory-fingerprint**: Map code to 76+ regulations\n' +
-          '- **cobol-discovery**: Dependency mapping & complexity analysis\n' +
-          '- **api-generator**: Generate REST/GraphQL/gRPC from copybooks\n' +
-          '- **test-automation**: Generate test baselines & regression suites\n\n' +
+          '- **iso_20022_bridge**: MT to MX message conversion (ISO 20022)\n' +
+          '- **pqc_assessment**: Post-quantum cryptography readiness\n' +
+          '- **regulatory_fingerprint**: Map code to 76+ regulations\n' +
+          '- **cobol_discovery**: Dependency mapping & complexity analysis\n' +
+          '- **api_generator**: Generate REST/GraphQL/gRPC from copybooks\n' +
+          '- **test_automation**: Generate test baselines & regression suites\n\n' +
           '## Endpoint\n' +
           'POST https://cobol-bridge.vercel.app/mcp\n\n' +
           '## Authentication\nNo auth required for public tools.\n'
@@ -391,8 +391,8 @@ function createServer() {
         content: {
           type: 'text',
           text: 'Perform a comprehensive COBOL modernization assessment on the following program. ' +
-            'Use cobol-discovery to map dependencies, copybook-parser to analyze data structures, ' +
-            'jcl-batch-scanner to check batch dependencies, and regulatory-fingerprint to identify ' +
+            'Use cobol_discovery to map dependencies, copybook_parser to analyze data structures, ' +
+            'jcl_batch_scanner to check batch dependencies, and regulatory_fingerprint to identify ' +
             'compliance requirements. Provide a risk score (1-10), migration complexity estimate, ' +
             'and recommended modernization roadmap.\n\nProgram:\n' + programSource
         }
@@ -413,8 +413,8 @@ function createServer() {
         content: {
           type: 'text',
           text: 'Plan an ISO 20022 migration for ' + messageType + ' messages. ' +
-            'Use iso-20022-bridge to perform the conversion, regulatory-fingerprint to check ' +
-            'compliance requirements, and pqc-assessment to verify cryptographic security. ' +
+            'Use iso_20022_bridge to perform the conversion, regulatory_fingerprint to check ' +
+            'compliance requirements, and pqc_assessment to verify cryptographic security. ' +
             'Provide a complete migration plan with timeline, risks, and validation steps.' +
             (sampleMessage ? '\n\nSample message for testing:\n' + sampleMessage : '')
         }
@@ -432,8 +432,8 @@ function createServer() {
         content: {
           type: 'text',
           text: 'Conduct a comprehensive security audit on: ' + target + '. ' +
-            'Use pqc-assessment to evaluate post-quantum cryptography readiness, ' +
-            'regulatory-fingerprint to map compliance obligations, and cobol-discovery ' +
+            'Use pqc_assessment to evaluate post-quantum cryptography readiness, ' +
+            'regulatory_fingerprint to map compliance obligations, and cobol_discovery ' +
             'to identify security-sensitive code paths. Provide findings with severity ' +
             'ratings and remediation recommendations.'
         }
@@ -531,10 +531,10 @@ app.get('/', (req, res) => {
     mcp_endpoint: '/mcp',
     health_endpoint: '/health',
     tools: [
-      'copybook-parser', 'cics-bridge-assessment', 'jcl-batch-scanner',
-      'vsam-mapper', 'ebcdic-translator', 'iso-20022-bridge',
-      'pqc-assessment', 'regulatory-fingerprint', 'cobol-discovery',
-      'api-generator', 'test-automation'
+      'copybook_parser', 'cics_bridge_assessment', 'jcl_batch_scanner',
+      'vsam_mapper', 'ebcdic_translator', 'iso_20022_bridge',
+      'pqc_assessment', 'regulatory_fingerprint', 'cobol_discovery',
+      'api_generator', 'test_automation'
     ],
     documentation: 'https://cobolbridge.ai',
     organization: 'CSGA AI Research Institute'
