@@ -3,10 +3,10 @@
  * CSGA AI Research Institute | cobolbridge.ai
  *
  * 11 MCP Governance Tools:
- * - parse_record_layout, analyze_transaction_flow, scan_batch_jobs,
- *   map_data_files, translate_encoding (Core Legacy Tools)
+ * - parse_records, analyze_transactions, scan_jobs,
+ *   map_files, translate_encoding (Core Legacy Tools)
  * - convert_payments, analyze_encryption, check_compliance,
- *   discover_programs, generate_interface, automate_tests (Platform Tools)
+ *   find_programs, generate_interface, automate_tests (Platform Tools)
  *
  * MCP Resources & Prompts for full Smithery compliance
  * Streamable HTTP transport (Vercel serverless compatible)
@@ -50,7 +50,7 @@ function createServer() {
 
   // ---- TOOL 1: Copybook Parser ----
   server.tool(
-    'parse_record_layout',
+    'parse_records',
     'Parse COBOL copybooks into structured JSON with field types, sizes, and hierarchy. Extracts PIC clauses, REDEFINES, OCCURS, and 88-level conditions.',
     { copybook: z.string().describe('Raw COBOL copybook source text to parse') },
     { title: 'COBOL Copybook Parser', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -70,7 +70,7 @@ function createServer() {
 
   // ---- TOOL 2: CICS Bridge Assessment ----
   server.tool(
-    'analyze_transaction_flow',
+    'analyze_transactions',
     'Analyze CICS transaction programs for API bridge compatibility. Identifies EXEC CICS commands, BMS maps, COMMAREA structures, and modernization complexity.',
     { source: z.string().describe('CICS COBOL program source code'), transactionId: z.string().optional().describe('CICS transaction ID') },
     { title: 'CICS Bridge Assessment', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -87,7 +87,7 @@ function createServer() {
 
   // ---- TOOL 3: JCL Batch Scanner ----
   server.tool(
-    'scan_batch_jobs',
+    'scan_jobs',
     'Scan JCL job streams to extract step dependencies, dataset usage, program calls, and scheduling metadata for batch modernization planning.',
     { jcl: z.string().describe('JCL job stream source text') },
     { title: 'JCL Batch Scanner', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -106,7 +106,7 @@ function createServer() {
 
   // ---- TOOL 4: VSAM Mapper ----
   server.tool(
-    'map_data_files',
+    'map_files',
     'Map VSAM file structures (KSDS, ESDS, RRDS) to modern database schemas. Generates SQL DDL, index recommendations, and migration scripts.',
     { definition: z.string().describe('VSAM IDCAMS DEFINE or cluster definition'), targetDb: z.enum(['postgresql', 'mysql', 'mongodb', 'dynamodb']).optional().describe('Target database platform') },
     { title: 'VSAM Data Mapper', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -210,7 +210,7 @@ function createServer() {
 
   // ---- TOOL 9: COBOL Discovery ----
   server.tool(
-    'discover_programs',
+    'find_programs',
     'AI-powered COBOL codebase discovery and cataloging. Performs dependency mapping, complexity analysis (cyclomatic, Halstead), dead code detection, and generates comprehensive modernization inventory.',
     {
       source: z.string().describe('COBOL source code to analyze'),
@@ -531,9 +531,9 @@ app.get('/', (req, res) => {
     mcp_endpoint: '/mcp',
     health_endpoint: '/health',
     tools: [
-      'parse_record_layout', 'analyze_transaction_flow', 'scan_batch_jobs',
-      'map_data_files', 'translate_encoding', 'convert_payments',
-      'analyze_encryption', 'check_compliance', 'discover_programs',
+      'parse_records', 'analyze_transactions', 'scan_jobs',
+      'map_files', 'translate_encoding', 'convert_payments',
+      'analyze_encryption', 'check_compliance', 'find_programs',
       'generate_interface', 'automate_tests'
     ],
     documentation: 'https://cobolbridge.ai',
