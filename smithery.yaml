@@ -1,0 +1,30 @@
+# Smithery configuration for COBOL Bridge MCP Server
+# Remote HTTP server - no local startup needed
+startCommand:
+  type: http
+  configSchema:
+    type: object
+    properties:
+      url:
+        type: string
+        default: "https://cobol-bridge.vercel.app/mcp"
+        description: "MCP server endpoint URL"
+      apiKey:
+        type: string
+        description: "Optional API key for authenticated access"
+      outputFormat:
+        type: string
+        enum:
+          - json
+          - text
+        default: "json"
+        description: "Preferred output format for tool results"
+      timeout:
+        type: number
+        default: 30000
+        description: "Request timeout in milliseconds"
+      verbose:
+        type: boolean
+        default: false
+        description: "Enable verbose logging for debugging"
+    additionalProperties: false
