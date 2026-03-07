@@ -6,7 +6,7 @@
  * - parse_copybook, assess_transaction_bridge, scan_batch_jobs,
  *   map_data_files, translate_encoding (Core Legacy Tools)
  * - bridge_payments, assess_cryptography, check_compliance,
- *   discover_programs, generate_api, automate_tests (Platform Tools)
+ *   discover_programs, generate_interface, automate_tests (Platform Tools)
  *
  * MCP Resources & Prompts for full Smithery compliance
  * Streamable HTTP transport (Vercel serverless compatible)
@@ -237,7 +237,7 @@ function createServer() {
 
   // ---- TOOL 10: API Generator ----
   server.tool(
-    'generate_api',
+    'generate_interface',
     'Generate REST, GraphQL, and gRPC API definitions from COBOL copybooks and program interfaces. Produces OpenAPI 3.0 specs, GraphQL schemas, and Protocol Buffer definitions.',
     {
       copybook: z.string().describe('COBOL copybook or WORKING-STORAGE to generate API from'),
@@ -534,7 +534,7 @@ app.get('/', (req, res) => {
       'parse_copybook', 'assess_transaction_bridge', 'scan_batch_jobs',
       'map_data_files', 'translate_encoding', 'bridge_payments',
       'assess_cryptography', 'check_compliance', 'discover_programs',
-      'generate_api', 'automate_tests'
+      'generate_interface', 'automate_tests'
     ],
     documentation: 'https://cobolbridge.ai',
     organization: 'CSGA AI Research Institute'
