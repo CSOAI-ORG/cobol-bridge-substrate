@@ -462,7 +462,7 @@ app.post('/mcp', mcpRateLimit, async function(req, res) {
       server.close();
     });
     await server.connect(transport);
-    await transport.handleRequest(req, res);
+    await transport.handleRequest(req, res, req.body);
   } catch (err) {
     console.error('MCP error:', err);
     if (!res.headersSent) {
