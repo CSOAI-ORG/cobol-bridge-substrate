@@ -53,6 +53,7 @@ function createServer() {
     'copybook-parser',
     'Parse COBOL copybooks into structured JSON with field types, sizes, and hierarchy. Extracts PIC clauses, REDEFINES, OCCURS, and 88-level conditions.',
     { copybook: z.string().describe('Raw COBOL copybook source text to parse') },
+    { title: 'COBOL Copybook Parser', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var lines = params.copybook.split('\n');
       var fields = [];
@@ -72,6 +73,7 @@ function createServer() {
     'cics-bridge-assessment',
     'Analyze CICS transaction programs for API bridge compatibility. Identifies EXEC CICS commands, BMS maps, COMMAREA structures, and modernization complexity.',
     { source: z.string().describe('CICS COBOL program source code'), transactionId: z.string().optional().describe('CICS transaction ID') },
+    { title: 'CICS Bridge Assessment', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var src = params.source;
       var commands = (src.match(/EXEC\s+CICS/gi) || []).length;
@@ -88,6 +90,7 @@ function createServer() {
     'jcl-batch-scanner',
     'Scan JCL job streams to extract step dependencies, dataset usage, program calls, and scheduling metadata for batch modernization planning.',
     { jcl: z.string().describe('JCL job stream source text') },
+    { title: 'JCL Batch Scanner', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var lines = params.jcl.split('\n');
       var steps = []; var datasets = []; var programs = [];
@@ -106,6 +109,7 @@ function createServer() {
     'vsam-mapper',
     'Map VSAM file structures (KSDS, ESDS, RRDS) to modern database schemas. Generates SQL DDL, index recommendations, and migration scripts.',
     { definition: z.string().describe('VSAM IDCAMS DEFINE or cluster definition'), targetDb: z.enum(['postgresql', 'mysql', 'mongodb', 'dynamodb']).optional().describe('Target database platform') },
+    { title: 'VSAM Data Mapper', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var def = params.definition;
       var target = params.targetDb || 'postgresql';
@@ -122,6 +126,7 @@ function createServer() {
     'ebcdic-translator',
     'Translate EBCDIC-encoded data to ASCII/UTF-8 with support for packed decimal (COMP-3), binary (COMP), and zoned decimal conversions.',
     { hexData: z.string().describe('EBCDIC hex string to translate'), encoding: z.enum(['text', 'packed-decimal', 'binary', 'zoned-decimal']).optional().describe('Encoding type of the input data') },
+    { title: 'EBCDIC Translator', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var hex = params.hexData.replace(/\s/g, '');
       var encoding = params.encoding || 'text';
@@ -146,6 +151,7 @@ function createServer() {
       targetFormat: z.enum(['pacs.008', 'pacs.009', 'camt.053', 'camt.054', 'pain.001', 'pain.002']).optional().describe('Target ISO 20022 message type'),
       validateCompliance: z.boolean().optional().describe('Run compliance validation checks')
     },
+    { title: 'ISO 20022 Bridge Analyzer', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var mt = params.mtMessage;
       var target = params.targetFormat || 'pacs.008';
@@ -167,6 +173,7 @@ function createServer() {
       source: z.string().describe('COBOL source code or system configuration to analyze'),
       standard: z.enum(['nist', 'cnsa-2.0', 'etsi']).optional().describe('PQC standard framework to assess against')
     },
+    { title: 'Post-Quantum Cryptography Assessment', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var src = params.source;
       var std = params.standard || 'nist';
@@ -187,6 +194,7 @@ function createServer() {
       regulations: z.array(z.enum(['DORA', 'GDPR', 'BASEL_III', 'SOX', 'PCI_DSS', 'HIPAA', 'MIFID_II', 'CCPA', 'GLBA', 'FISMA'])).optional().describe('Specific regulations to check against'),
       industry: z.enum(['banking', 'insurance', 'healthcare', 'government', 'retail']).optional().describe('Industry vertical for targeted compliance')
     },
+    { title: 'Regulatory Fingerprint Scanner', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var src = params.source;
       var industry = params.industry || 'banking';
@@ -209,6 +217,7 @@ function createServer() {
       programName: z.string().optional().describe('Program name for catalog entry'),
       includeMetrics: z.boolean().optional().describe('Include detailed complexity metrics')
     },
+    { title: 'COBOL Discovery Scanner', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var src = params.source;
       var lines = src.split('\n');
@@ -235,6 +244,7 @@ function createServer() {
       apiType: z.enum(['rest', 'graphql', 'grpc']).optional().describe('Target API type to generate'),
       serviceName: z.string().optional().describe('Name for the generated API service')
     },
+    { title: 'API Generator', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var cb = params.copybook;
       var apiType = params.apiType || 'rest';
@@ -272,6 +282,7 @@ function createServer() {
       programName: z.string().optional().describe('Program name for test suite'),
       testType: z.enum(['unit', 'integration', 'regression', 'boundary']).optional().describe('Type of tests to generate')
     },
+    { title: 'Test Automation Generator', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     async function(params) {
       var src = params.source;
       var testType = params.testType || 'unit';
