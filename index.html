@@ -1,596 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COBOL Bridge | AI-Powered COBOL Modernization Platform</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            dark: { 900: '#0a0a0f', 800: '#12121a', 700: '#1a1a2e', 600: '#252540' },
-            cyan: { 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2' },
-            brand: { primary: '#06b6d4', glow: '#22d3ee' }
-          },
-          fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
-        }
-      }
-    }
-  </script>
-  <style>
-    body { background: #0a0a0f; font-family: 'Inter', sans-serif; }
-    .glow-text { text-shadow: 0 0 20px rgba(6,182,212,0.5), 0 0 40px rgba(6,182,212,0.3); }
-    .glow-border { box-shadow: 0 0 15px rgba(6,182,212,0.15), inset 0 0 15px rgba(6,182,212,0.05); }
-    .card-bg { background: linear-gradient(135deg, rgba(26,26,46,0.8), rgba(18,18,26,0.9)); border: 1px solid rgba(6,182,212,0.15); }
-    .gradient-border { border: 1px solid transparent; background-clip: padding-box; position: relative; }
-    .gradient-border::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, rgba(6,182,212,0.3), transparent, rgba(6,182,212,0.1)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
-    .hero-gradient { background: radial-gradient(ellipse at 50% 0%, rgba(6,182,212,0.15) 0%, transparent 60%); }
-    .animate-pulse-slow { animation: pulse 3s ease-in-out infinite; }
-    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-    .shimmer { overflow: hidden; position: relative; }
-    .shimmer::after { content: ''; position: absolute; top: 0; left: 0; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(6,182,212,0.1), transparent); animation: shimmer 3s infinite; }
-    .monitor-bar { height: 6px; border-radius: 3px; background: rgba(6,182,212,0.15); overflow: hidden; }
-    .monitor-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #06b6d4, #22d3ee); transition: width 1s ease; }
-    .watermark { position: absolute; font-size: 8rem; font-weight: 900; opacity: 0.03; color: white; pointer-events: none; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-    .faq-answer.open { max-height: 500px; }
-    .nav-blur { backdrop-filter: blur(20px); background: rgba(10,10,15,0.85); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COBOL Bridge AI - Bridge Legacy to AI Future</title>
+<meta name="description" content="Transform legacy COBOL systems into modern, AI-ready architectures with zero downtime migration.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{navy:{50:'#e7e9ef',100:'#c3c8d8',200:'#9ba4be',300:'#7380a4',400:'#556491',500:'#37487e',600:'#2f4076',700:'#26356b',800:'#1c2b61',900:'#0f1b4e',950:'#0a0e1a'},cyan:{50:'#e0feff',100:'#b0fcff',200:'#7af9ff',300:'#3ef5ff',400:'#22d3ee',500:'#06b6d4',600:'#0891b2',700:'#0e7490',800:'#155e75',900:'#164e63'},brand:{primary:'#22d3ee',secondary:'#818cf8',accent:'#f472b6',success:'#34d399',warning:'#fbbf24'}},fontFamily:{sans:['Inter','system-ui','sans-serif'],mono:['JetBrains Mono','monospace']}}}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:hidden}
+@keyframes glow-cyan{0%,100%{box-shadow:0 0 5px rgba(34,211,238,0.3),0 0 10px rgba(34,211,238,0.1)}50%{box-shadow:0 0 20px rgba(34,211,238,0.5),0 0 40px rgba(34,211,238,0.2)}}
+@keyframes glow-border{0%,100%{border-color:rgba(34,211,238,0.3)}50%{border-color:rgba(34,211,238,0.8)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes gradient-text{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes typing-cursor{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes monitor-line{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+@keyframes badge-glow{0%,100%{opacity:0.5}50%{opacity:1}}
+.glow-cyan{animation:glow-cyan 3s ease-in-out infinite}
+.float-animation{animation:float 6s ease-in-out infinite}
+.gradient-text{background:linear-gradient(135deg,#22d3ee,#818cf8,#f472b6);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradient-text 4s ease infinite}
+.hero-gradient{background:radial-gradient(ellipse at 50% 0%,rgba(34,211,238,0.15) 0%,rgba(129,140,248,0.05) 50%,transparent 70%)}
+.grid-bg{background-image:linear-gradient(rgba(34,211,238,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,0.03) 1px,transparent 1px);background-size:50px 50px}
+.card-hover{transition:all 0.3s ease;border:1px solid rgba(34,211,238,0.1)}.card-hover:hover{border-color:rgba(34,211,238,0.4);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.3),0 0 30px rgba(34,211,238,0.1)}
+.nav-blur{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.scroll-fade{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}.scroll-fade.visible{opacity:1;transform:translateY(0)}
+.accordion-content{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
+.shimmer{background:linear-gradient(90deg,transparent,rgba(34,211,238,0.1),transparent);background-size:200% 100%;animation:shimmer 3s infinite}
+.monitor-line{animation:monitor-line 2s linear infinite}
+</style>
 </head>
-<body class="text-gray-300 overflow-x-hidden">
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 nav-blur border-b border-gray-800/50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center font-mono font-bold text-white text-sm">CB</div>
-        <span class="text-xl font-bold text-white">COBOL Bridge</span>
-      </div>
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#platform" class="text-sm text-gray-400 hover:text-cyan-400 transition">Platform</a>
-        <a href="#industries" class="text-sm text-gray-400 hover:text-cyan-400 transition">Sectors</a>
-        <a href="#pricing" class="text-sm text-gray-400 hover:text-cyan-400 transition">Pricing</a>
-        <a href="#contact" class="text-sm text-gray-400 hover:text-cyan-400 transition">Contact</a>
-      </div>
-      <div class="flex items-center gap-4">
-        <a href="#contact" class="hidden md:inline-block px-5 py-2.5 bg-cyan-500 hover:bg-cyan-600 text-white text-sm font-semibold rounded-lg transition">Book a Demo</a>
-        <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-      <a href="#platform" class="block py-2 text-gray-400 hover:text-cyan-400">Platform</a>
-      <a href="#industries" class="block py-2 text-gray-400 hover:text-cyan-400">Sectors</a>
-      <a href="#pricing" class="block py-2 text-gray-400 hover:text-cyan-400">Pricing</a>
-      <a href="#contact" class="block py-2 text-gray-400 hover:text-cyan-400">Contact</a>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center hero-gradient pt-20">
-    <div class="watermark top-20 -left-10">COBOL</div>
-    <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-16 items-center">
-      <div>
-        <div class="flex flex-wrap gap-3 mb-8">
-          <span class="px-3 py-1 text-xs font-mono bg-cyan-500/10 text-cyan-400 rounded-full border border-cyan-500/20">76 Regulations</span>
-          <span class="px-3 py-1 text-xs font-mono bg-cyan-500/10 text-cyan-400 rounded-full border border-cyan-500/20">ISO 20022 Ready</span>
-          <span class="px-3 py-1 text-xs font-mono bg-cyan-500/10 text-cyan-400 rounded-full border border-cyan-500/20">PQC Assessment</span>
-        </div>
-        <h1 class="text-5xl lg:text-7xl font-black text-white leading-tight mb-6">
-          Bridge <span class="text-cyan-400 glow-text">Legacy</span> to <span class="text-cyan-400 glow-text">AI</span> Future
-        </h1>
-        <p class="text-lg text-gray-400 mb-8 max-w-lg">The world's first MCP-native AI governance platform for COBOL modernisation. Connect 220 billion lines of legacy code to modern AI ecosystems.</p>
-        <div class="flex flex-wrap gap-4 mb-10">
-          <a href="#contact" class="px-8 py-3.5 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition shimmer">Start Free Assessment</a>
-          <a href="#platform" class="px-8 py-3.5 border border-gray-700 hover:border-cyan-500/50 text-gray-300 font-semibold rounded-lg transition">View Platform</a>
-        </div>
-        <div class="card-bg rounded-xl p-4">
-          <div class="flex items-center gap-2 mb-2">
-            <div class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse-slow"></div>
-            <span class="text-xs font-mono text-cyan-400">ISO 20022 COUNTDOWN</span>
-          </div>
-          <div id="countdown" class="font-mono text-white"></div>
-        </div>
-      </div>
-      <!-- Live Monitor -->
-      <div class="card-bg rounded-2xl p-6 glow-border">
-        <div class="flex items-center justify-between mb-6">
-          <h3 class="text-sm font-mono text-cyan-400">LIVE SYSTEM MONITOR</h3>
-          <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-        </div>
-        <div class="grid grid-cols-3 gap-4 mb-6">
-          <div class="text-center"><div class="text-2xl font-bold text-white">99.9%</div><div class="text-xs text-gray-500">Uptime</div></div>
-          <div class="text-center"><div class="text-2xl font-bold text-white">2.5k</div><div class="text-xs text-gray-500">APIs/min</div></div>
-          <div class="text-center"><div class="text-2xl font-bold text-white">45ms</div><div class="text-xs text-gray-500">Latency</div></div>
-        </div>
-        <div id="monitor-services" class="space-y-3">
-          <div><div class="flex justify-between text-xs mb-1"><span class="text-gray-400">MCP Gateway</span><span class="text-cyan-400 latency-val" data-base="45">45ms</span></div><div class="monitor-bar"><div class="monitor-bar-fill" style="width:92%"></div></div></div>
-          <div><div class="flex justify-between text-xs mb-1"><span class="text-gray-400">COBOL Parser</span><span class="text-cyan-400 latency-val" data-base="78">78ms</span></div><div class="monitor-bar"><div class="monitor-bar-fill" style="width:87%"></div></div></div>
-          <div><div class="flex justify-between text-xs mb-1"><span class="text-gray-400">AI Governance</span><span class="text-cyan-400 latency-val" data-base="62">62ms</span></div><div class="monitor-bar"><div class="monitor-bar-fill" style="width:95%"></div></div></div>
-          <div><div class="flex justify-between text-xs mb-1"><span class="text-gray-400">Compliance Engine</span><span class="text-cyan-400 latency-val" data-base="55">55ms</span></div><div class="monitor-bar"><div class="monitor-bar-fill" style="width:90%"></div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Trust Bar -->
-  <section class="border-y border-gray-800/50 bg-dark-800/50">
-    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center gap-8 md:gap-16">
-      <div class="flex items-center gap-2"><span class="text-cyan-400 font-bold text-lg">4.9/5</span><span class="text-gray-500 text-sm">Analyst Rating</span></div>
-      <div class="flex items-center gap-2"><span class="text-cyan-400 font-bold text-lg">500+</span><span class="text-gray-500 text-sm">Organisations</span></div>
-      <div class="flex items-center gap-2"><span class="text-cyan-400 font-bold text-lg">$3T+</span><span class="text-gray-500 text-sm">Assets Protected</span></div>
-    </div>
-  </section>
-
-  <!-- Performance Stats -->
-  <section class="py-20">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        <div class="text-center"><div class="text-4xl font-black text-white mb-1">10x</div><div class="text-sm text-gray-500">Faster Migration</div></div>
-        <div class="text-center"><div class="text-4xl font-black text-white mb-1">99.9%</div><div class="text-sm text-gray-500">Uptime SLA</div></div>
-        <div class="text-center"><div class="text-4xl font-black text-white mb-1">$3T+</div><div class="text-sm text-gray-500">Assets Protected</div></div>
-        <div class="text-center"><div class="text-4xl font-black text-white mb-1">48h</div><div class="text-sm text-gray-500">To First API</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Trusted By -->
-  <section class="py-20 bg-dark-800/30">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-3xl font-bold text-white text-center mb-4">Trusted Across Critical Sectors</h2>
-      <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Serving the world's most regulated industries</p>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div class="card-bg rounded-xl p-6 text-center hover:border-cyan-500/30 transition"><div class="text-2xl mb-2">🏦</div><div class="text-sm font-semibold text-white">Banking</div></div>
-        <div class="card-bg rounded-xl p-6 text-center hover:border-cyan-500/30 transition"><div class="text-2xl mb-2">🏛️</div><div class="text-sm font-semibold text-white">Government</div></div>
-        <div class="card-bg rounded-xl p-6 text-center hover:border-cyan-500/30 transition"><div class="text-2xl mb-2">🏥</div><div class="text-sm font-semibold text-white">Healthcare</div></div>
-        <div class="card-bg rounded-xl p-6 text-center hover:border-cyan-500/30 transition"><div class="text-2xl mb-2">🛡️</div><div class="text-sm font-semibold text-white">Insurance</div></div>
-        <div class="card-bg rounded-xl p-6 text-center hover:border-cyan-500/30 transition"><div class="text-2xl mb-2">⚔️</div><div class="text-sm font-semibold text-white">Defence</div></div>
-        <div class="card-bg rounded-xl p-6 text-center hover:border-cyan-500/30 transition"><div class="text-2xl mb-2">📈</div><div class="text-sm font-semibold text-white">Capital Markets</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Strategic Advantages -->
-  <section class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <span class="text-cyan-400 font-mono text-sm tracking-wider uppercase">Why COBOL Bridge</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Strategic Advantages</h2>
-        <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Purpose-built for the unique challenges of COBOL modernization in regulated industries</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="card-bg rounded-2xl p-8 hover:border-cyan-500/30 transition-all duration-300">
-          <div class="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-3">ISO 20022 Bridge</h3>
-          <p class="text-gray-400 leading-relaxed">Automated mapping of legacy COBOL data structures to ISO 20022 message formats with full validation and compliance tracking.</p>
-          <div class="mt-6 flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-mono">MX Messages</span>
-            <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-mono">SWIFT</span>
-            <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-mono">Real-Time</span>
-          </div>
-        </div>
-        <div class="card-bg rounded-2xl p-8 hover:border-cyan-500/30 transition-all duration-300">
-          <div class="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-3">Regulatory Fingerprint™</h3>
-          <p class="text-gray-400 leading-relaxed">AI-powered regulatory mapping that identifies compliance requirements across 76+ frameworks and generates audit-ready documentation.</p>
-          <div class="mt-6 flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-mono">76+ Frameworks</span>
-            <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-mono">Auto-Audit</span>
-          </div>
-        </div>
-        <div class="card-bg rounded-2xl p-8 hover:border-cyan-500/30 transition-all duration-300">
-          <div class="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-3">PQC Assessment</h3>
-          <p class="text-gray-400 leading-relaxed">Post-Quantum Cryptography readiness assessment for COBOL systems, ensuring your modernization path is future-proof against quantum threats.</p>
-          <div class="mt-6 flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-mono">Quantum-Ready</span>
-            <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-mono">NIST PQC</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Platform Section -->
-  <section id="platform" class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <span class="text-cyan-400 font-mono text-sm tracking-wider uppercase">The Platform</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">9 Integrated Modules</h2>
-        <p class="text-gray-400 mt-4 max-w-2xl mx-auto">A comprehensive suite of AI-powered tools designed specifically for COBOL modernization</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center"><span class="text-cyan-400 font-mono font-bold text-sm">01</span></div><h3 class="text-white font-semibold">Code Analyzer</h3></div><p class="text-gray-400 text-sm">Deep analysis of COBOL codebases with dependency mapping and complexity scoring</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center"><span class="text-cyan-400 font-mono font-bold text-sm">02</span></div><h3 class="text-white font-semibold">AI Translator</h3></div><p class="text-gray-400 text-sm">Context-aware COBOL to modern language translation preserving business logic</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center"><span class="text-cyan-400 font-mono font-bold text-sm">03</span></div><h3 class="text-white font-semibold">Test Generator</h3></div><p class="text-gray-400 text-sm">Automated test suite generation with 99.9% business logic coverage</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center"><span class="text-cyan-400 font-mono font-bold text-sm">04</span></div><h3 class="text-white font-semibold">API Bridge</h3></div><p class="text-gray-400 text-sm">RESTful API layer generation for legacy COBOL programs</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center"><span class="text-cyan-400 font-mono font-bold text-sm">05</span></div><h3 class="text-white font-semibold">Data Mapper</h3></div><p class="text-gray-400 text-sm">Intelligent data structure mapping from COBOL copybooks to modern schemas</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center"><span class="text-cyan-400 font-mono font-bold text-sm">06</span></div><h3 class="text-white font-semibold">Compliance Engine</h3></div><p class="text-gray-400 text-sm">Real-time regulatory compliance checking across 76+ frameworks</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center"><span class="text-cyan-400 font-mono font-bold text-sm">07</span></div><h3 class="text-white font-semibold">Deploy Manager</h3></div><p class="text-gray-400 text-sm">Zero-downtime deployment orchestration with automatic rollback</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center"><span class="text-cyan-400 font-mono font-bold text-sm">08</span></div><h3 class="text-white font-semibold">Doc Generator</h3></div><p class="text-gray-400 text-sm">Automatic technical documentation from COBOL source analysis</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center"><span class="text-cyan-400 font-mono font-bold text-sm">09</span></div><h3 class="text-white font-semibold">Monitor Hub</h3></div><p class="text-gray-400 text-sm">Real-time monitoring dashboard for modernization progress and system health</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <span class="text-cyan-400 font-mono text-sm tracking-wider uppercase">Process</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">How It Works</h2>
-      </div>
-      <div class="grid md:grid-cols-4 gap-8">
-        <div class="text-center"><div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 glow-border"><span class="text-cyan-400 font-mono font-bold text-xl">01</span></div><h3 class="text-white font-bold mb-2">Connect</h3><p class="text-gray-400 text-sm">Point COBOL Bridge at your mainframe or upload COBOL source files</p></div>
-        <div class="text-center"><div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 glow-border"><span class="text-cyan-400 font-mono font-bold text-xl">02</span></div><h3 class="text-white font-bold mb-2">Model</h3><p class="text-gray-400 text-sm">AI analyzes your codebase, maps dependencies, and creates a modernization blueprint</p></div>
-        <div class="text-center"><div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 glow-border"><span class="text-cyan-400 font-mono font-bold text-xl">03</span></div><h3 class="text-white font-bold mb-2">Govern</h3><p class="text-gray-400 text-sm">Review AI-generated translations with full audit trail and compliance checks</p></div>
-        <div class="text-center"><div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 glow-border"><span class="text-cyan-400 font-mono font-bold text-xl">04</span></div><h3 class="text-white font-bold mb-2">Deploy</h3><p class="text-gray-400 text-sm">Zero-downtime deployment with automated testing and rollback capabilities</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Industries -->
-  <section id="sectors" class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <span class="text-cyan-400 font-mono text-sm tracking-wider uppercase">Industries</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Sector Expertise</h2>
-        <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Deep domain knowledge across critical infrastructure sectors</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex justify-between items-start mb-4"><h3 class="text-white font-bold text-lg">Banking & Finance</h3><span class="text-cyan-400 font-mono text-sm">150+ clients</span></div><p class="text-gray-400 text-sm">Core banking, payment processing, trading systems, and regulatory reporting modernization.</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex justify-between items-start mb-4"><h3 class="text-white font-bold text-lg">Government</h3><span class="text-cyan-400 font-mono text-sm">60+ agencies</span></div><p class="text-gray-400 text-sm">Tax processing, benefits administration, and citizen services transformation.</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex justify-between items-start mb-4"><h3 class="text-white font-bold text-lg">Healthcare</h3><span class="text-cyan-400 font-mono text-sm">45+ providers</span></div><p class="text-gray-400 text-sm">Claims processing, patient records, and healthcare administration modernization.</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex justify-between items-start mb-4"><h3 class="text-white font-bold text-lg">Insurance</h3><span class="text-cyan-400 font-mono text-sm">85+ firms</span></div><p class="text-gray-400 text-sm">Policy management, claims automation, and actuarial system modernization.</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex justify-between items-start mb-4"><h3 class="text-white font-bold text-lg">Defence</h3><span class="text-cyan-400 font-mono text-sm">25+ contracts</span></div><p class="text-gray-400 text-sm">Mission-critical systems, logistics, and command infrastructure modernization.</p></div>
-        <div class="card-bg rounded-xl p-6 hover:border-cyan-500/30 transition-all"><div class="flex justify-between items-start mb-4"><h3 class="text-white font-bold text-lg">Capital Markets</h3><span class="text-cyan-400 font-mono text-sm">120+ firms</span></div><p class="text-gray-400 text-sm">Trading platforms, settlement systems, and market data processing.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Security -->
-  <section class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <span class="text-cyan-400 font-mono text-sm tracking-wider uppercase">Security</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Security & Compliance</h2>
-      </div>
-      <div class="grid md:grid-cols-5 gap-4">
-        <div class="card-bg rounded-xl p-4 text-center"><div class="text-2xl mb-2">🛡️</div><h3 class="text-white font-semibold text-sm">SOC 2 Type II</h3></div>
-        <div class="card-bg rounded-xl p-4 text-center"><div class="text-2xl mb-2">🔒</div><h3 class="text-white font-semibold text-sm">ISO 27001</h3></div>
-        <div class="card-bg rounded-xl p-4 text-center"><div class="text-2xl mb-2">🏦</div><h3 class="text-white font-semibold text-sm">PCI DSS</h3></div>
-        <div class="card-bg rounded-xl p-4 text-center"><div class="text-2xl mb-2">🏥</div><h3 class="text-white font-semibold text-sm">HIPAA</h3></div>
-        <div class="card-bg rounded-xl p-4 text-center"><div class="text-2xl mb-2">🌐</div><h3 class="text-white font-semibold text-sm">GDPR</h3></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Case Studies -->
-  <section class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <span class="text-cyan-400 font-mono text-sm tracking-wider uppercase">Results</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Case Studies</h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="card-bg rounded-2xl p-8"><span class="text-cyan-400 font-mono text-xs">BANKING</span><h3 class="text-white font-bold text-xl mt-3 mb-4">Tier-1 Bank Core Modernization</h3><p class="text-gray-400 text-sm mb-6">Modernized 12M+ lines of COBOL across 3 core banking systems in 18 months, achieving 99.97% business logic preservation.</p><div class="grid grid-cols-2 gap-4"><div><div class="text-2xl font-bold text-cyan-400">12M+</div><div class="text-gray-500 text-xs">Lines Modernized</div></div><div><div class="text-2xl font-bold text-cyan-400">99.97%</div><div class="text-gray-500 text-xs">Logic Preserved</div></div></div></div>
-        <div class="card-bg rounded-2xl p-8"><span class="text-cyan-400 font-mono text-xs">GOVERNMENT</span><h3 class="text-white font-bold text-xl mt-3 mb-4">Federal Tax System Migration</h3><p class="text-gray-400 text-sm mb-6">Complete modernization of legacy tax processing systems serving 150M+ citizens with zero downtime during peak season.</p><div class="grid grid-cols-2 gap-4"><div><div class="text-2xl font-bold text-cyan-400">150M+</div><div class="text-gray-500 text-xs">Citizens Served</div></div><div><div class="text-2xl font-bold text-cyan-400">0</div><div class="text-gray-500 text-xs">Downtime Hours</div></div></div></div>
-        <div class="card-bg rounded-2xl p-8"><span class="text-cyan-400 font-mono text-xs">INSURANCE</span><h3 class="text-white font-bold text-xl mt-3 mb-4">Global Insurer Claims Platform</h3><p class="text-gray-400 text-sm mb-6">Transformed claims processing from batch to real-time, reducing settlement times from 14 days to 4 hours.</p><div class="grid grid-cols-2 gap-4"><div><div class="text-2xl font-bold text-cyan-400">14d→4h</div><div class="text-gray-500 text-xs">Settlement Time</div></div><div><div class="text-2xl font-bold text-cyan-400">340%</div><div class="text-gray-500 text-xs">ROI Year 1</div></div></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Comparison -->
-  <section class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <span class="text-cyan-400 font-mono text-sm tracking-wider uppercase">Compare</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Why Not Just Rewrite?</h2>
-      </div>
-      <div class="card-bg rounded-2xl overflow-hidden">
-        <table class="w-full text-left">
-          <thead><tr class="border-b border-gray-700/50"><th class="p-4 text-gray-400 font-mono text-sm">Feature</th><th class="p-4 text-cyan-400 font-mono text-sm">COBOL Bridge</th><th class="p-4 text-gray-400 font-mono text-sm">Full Rewrite</th><th class="p-4 text-gray-400 font-mono text-sm">API Wrapper</th></tr></thead>
-          <tbody>
-            <tr class="border-b border-gray-700/30"><td class="p-4 text-gray-300 text-sm">Time to Production</td><td class="p-4 text-cyan-400 text-sm font-semibold">Weeks</td><td class="p-4 text-gray-500 text-sm">Years</td><td class="p-4 text-gray-500 text-sm">Months</td></tr>
-            <tr class="border-b border-gray-700/30"><td class="p-4 text-gray-300 text-sm">Business Logic Preservation</td><td class="p-4 text-cyan-400 text-sm font-semibold">99.9%</td><td class="p-4 text-gray-500 text-sm">70-80%</td><td class="p-4 text-gray-500 text-sm">100% (unchanged)</td></tr>
-            <tr class="border-b border-gray-700/30"><td class="p-4 text-gray-300 text-sm">Compliance Automation</td><td class="p-4 text-cyan-400 text-sm font-semibold">Built-in</td><td class="p-4 text-gray-500 text-sm">Manual</td><td class="p-4 text-gray-500 text-sm">None</td></tr>
-            <tr class="border-b border-gray-700/30"><td class="p-4 text-gray-300 text-sm">Risk Level</td><td class="p-4 text-cyan-400 text-sm font-semibold">Low</td><td class="p-4 text-gray-500 text-sm">Very High</td><td class="p-4 text-gray-500 text-sm">Medium</td></tr>
-            <tr><td class="p-4 text-gray-300 text-sm">Cost Efficiency</td><td class="p-4 text-cyan-400 text-sm font-semibold">10x savings</td><td class="p-4 text-gray-500 text-sm">Baseline</td><td class="p-4 text-gray-500 text-sm">3x savings</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing" class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <span class="text-cyan-400 font-mono text-sm tracking-wider uppercase">Pricing</span>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Simple, Transparent Pricing</h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="card-bg rounded-2xl p-8">
-          <h3 class="text-white font-bold text-xl mb-2">Starter</h3>
-          <div class="text-4xl font-bold text-white mt-4">$799<span class="text-gray-500 text-lg font-normal">/mo</span></div>
-          <p class="text-gray-400 text-sm mt-4 mb-6">Perfect for small teams beginning their modernization journey</p>
-          <ul class="space-y-3 mb-8">
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> Up to 100K lines of COBOL</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> 3 modules included</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> Email support</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> Basic compliance reports</li>
-          </ul>
-          <button class="w-full py-3 border border-cyan-500/30 text-cyan-400 rounded-xl hover:bg-cyan-500/10 transition-all font-semibold">Get Started</button>
-        </div>
-        <div class="card-bg rounded-2xl p-8 border-cyan-500/30 relative">
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-500 text-dark-900 px-4 py-1 rounded-full text-xs font-bold">MOST POPULAR</div>
-          <h3 class="text-white font-bold text-xl mb-2">Professional</h3>
-          <div class="text-4xl font-bold text-white mt-4">$1,999<span class="text-gray-500 text-lg font-normal">/mo</span></div>
-          <p class="text-gray-400 text-sm mt-4 mb-6">For teams modernizing mission-critical systems</p>
-          <ul class="space-y-3 mb-8">
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> Up to 1M lines of COBOL</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> All 9 modules</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> Priority support</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> Full compliance suite</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> ISO 20022 Bridge</li>
-          </ul>
-          <button class="w-full py-3 bg-cyan-500 text-dark-900 rounded-xl hover:bg-cyan-400 transition-all font-bold">Start Free Trial</button>
-        </div>
-        <div class="card-bg rounded-2xl p-8">
-          <h3 class="text-white font-bold text-xl mb-2">Enterprise</h3>
-          <div class="text-4xl font-bold text-white mt-4">Custom</div>
-          <p class="text-gray-400 text-sm mt-4 mb-6">For large-scale enterprise modernization programs</p>
-          <ul class="space-y-3 mb-8">
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> Unlimited COBOL lines</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> All modules + custom</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> Dedicated success team</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> On-premise deployment</li>
-            <li class="text-gray-300 text-sm flex items-center gap-2"><span class="text-cyan-400">✓</span> SLA guarantee</li>
-          </ul>
-          <button class="w-full py-3 border border-cyan-500/30 text-cyan-400 rounded-xl hover:bg-cyan-500/10 transition-all font-semibold">Contact Sales</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="py-20 px-4">
-    <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-16">
-        <span class="text-cyan-400 text-sm font-semibold tracking-widest uppercase">FAQ</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-white mt-4">Common Questions</h2>
-      </div>
-      <div class="space-y-4">
-        <div class="card-bg rounded-xl overflow-hidden">
-          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
-            <span class="text-white font-semibold">How does COBOL Bridge handle mission-critical systems?</span>
-            <span class="faq-icon text-cyan-400 text-xl font-bold">+</span>
-          </button>
-          <div class="faq-answer px-6 pb-6 text-gray-400">Our platform uses a non-disruptive approach. We analyze and translate code while your existing systems continue running. Cutover happens only after comprehensive testing validates 100% functional equivalence.</div>
-        </div>
-        <div class="card-bg rounded-xl overflow-hidden">
-          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
-            <span class="text-white font-semibold">What languages can COBOL be translated to?</span>
-            <span class="faq-icon text-cyan-400 text-xl font-bold">+</span>
-          </button>
-          <div class="faq-answer px-6 pb-6 text-gray-400">COBOL Bridge supports translation to Java, C#, Python, and modern cloud-native languages. Our AI ensures idiomatic code output, not just syntactic conversion.</div>
-        </div>
-        <div class="card-bg rounded-xl overflow-hidden">
-          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
-            <span class="text-white font-semibold">How long does a typical modernization project take?</span>
-            <span class="faq-icon text-cyan-400 text-xl font-bold">+</span>
-          </button>
-          <div class="faq-answer px-6 pb-6 text-gray-400">Timeline depends on codebase size. A 1M-line COBOL system typically completes in 3-6 months with COBOL Bridge, compared to 2-5 years with manual rewriting. Our free assessment provides a detailed timeline.</div>
-        </div>
-        <div class="card-bg rounded-xl overflow-hidden">
-          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
-            <span class="text-white font-semibold">Is the translated code maintainable?</span>
-            <span class="faq-icon text-cyan-400 text-xl font-bold">+</span>
-          </button>
-          <div class="faq-answer px-6 pb-6 text-gray-400">Absolutely. Our AI generates clean, well-documented, idiomatic code that follows modern best practices. We also generate comprehensive documentation and test suites for the translated codebase.</div>
-        </div>
-        <div class="card-bg rounded-xl overflow-hidden">
-          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
-            <span class="text-white font-semibold">What about regulatory compliance during migration?</span>
-            <span class="faq-icon text-cyan-400 text-xl font-bold">+</span>
-          </button>
-          <div class="faq-answer px-6 pb-6 text-gray-400">Our Compliance Engine maintains full regulatory compliance throughout the migration. We support 76+ regulatory frameworks and provide continuous audit trails and compliance reporting.</div>
-        </div>
-        <div class="card-bg rounded-xl overflow-hidden">
-          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
-            <span class="text-white font-semibold">Do you offer support after migration?</span>
-            <span class="faq-icon text-cyan-400 text-xl font-bold">+</span>
-          </button>
-          <div class="faq-answer px-6 pb-6 text-gray-400">Yes. All plans include post-migration support. Professional and Enterprise plans include dedicated support engineers, 24/7 monitoring, and ongoing optimization services.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-20 px-4">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <span class="text-cyan-400 text-sm font-semibold tracking-widest uppercase">Contact</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-white mt-4">Book a Demo</h2>
-        <p class="text-gray-400 mt-4 max-w-2xl mx-auto">See how COBOL Bridge can transform your legacy systems</p>
-      </div>
-      <div class="grid md:grid-cols-2 gap-12">
-        <div>
-          <form onsubmit="event.preventDefault(); alert('Thank you! We will be in touch shortly.'); this.reset();" class="space-y-6">
-            <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-              <input type="text" required class="w-full px-4 py-3 bg-dark-800 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:outline-none transition" placeholder="John Smith">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2">Work Email</label>
-              <input type="email" required class="w-full px-4 py-3 bg-dark-800 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:outline-none transition" placeholder="john@company.com">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2">Company</label>
-              <input type="text" class="w-full px-4 py-3 bg-dark-800 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:outline-none transition" placeholder="Acme Corp">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
-              <textarea rows="4" class="w-full px-4 py-3 bg-dark-800 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:outline-none transition" placeholder="Tell us about your COBOL modernization needs..."></textarea>
-            </div>
-            <button type="submit" class="w-full py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition">Send Message</button>
-          </form>
-        </div>
-        <div class="space-y-8">
-          <div class="card-bg rounded-xl p-6">
-            <h3 class="text-white font-semibold text-lg mb-2">Sales Inquiries</h3>
-            <p class="text-gray-400">sales@cobolbridge.ai</p>
-          </div>
-          <div class="card-bg rounded-xl p-6">
-            <h3 class="text-white font-semibold text-lg mb-2">Technical Support</h3>
-            <p class="text-gray-400">support@cobolbridge.ai</p>
-          </div>
-          <div class="card-bg rounded-xl p-6">
-            <h3 class="text-white font-semibold text-lg mb-2">Partnerships</h3>
-            <p class="text-gray-400">partners@cobolbridge.ai</p>
-          </div>
-          <div class="card-bg rounded-xl p-6">
-            <h3 class="text-white font-semibold text-lg mb-2">Headquarters</h3>
-            <p class="text-gray-400">London, United Kingdom</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer CTA -->
-  <section class="py-20 px-4">
-    <div class="max-w-4xl mx-auto text-center card-bg rounded-2xl p-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Bridge the Gap?</h2>
-      <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Join 500+ organizations that have modernized their COBOL systems with AI-powered precision.</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#contact" class="px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition">Start Free Assessment</a>
-        <a href="#contact" class="px-8 py-3 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 font-semibold rounded-lg transition">Schedule Demo</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="border-t border-gray-800 py-12 px-4">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid md:grid-cols-4 gap-8 mb-8">
-        <div>
-          <div class="text-xl font-bold text-white mb-4">COBOL<span class="text-cyan-400">Bridge</span></div>
-          <p class="text-gray-500 text-sm">AI-Powered COBOL Modernization Platform. Bridge legacy to the future.</p>
-        </div>
-        <div>
-          <h4 class="text-white font-semibold mb-4">Platform</h4>
-          <ul class="space-y-2 text-gray-500 text-sm">
-            <li><a href="#platform" class="hover:text-cyan-400 transition">Code Analyzer</a></li>
-            <li><a href="#platform" class="hover:text-cyan-400 transition">AI Translator</a></li>
-            <li><a href="#platform" class="hover:text-cyan-400 transition">Compliance Engine</a></li>
-            <li><a href="#platform" class="hover:text-cyan-400 transition">API Bridge</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-white font-semibold mb-4">Company</h4>
-          <ul class="space-y-2 text-gray-500 text-sm">
-            <li><a href="#" class="hover:text-cyan-400 transition">About</a></li>
-            <li><a href="#" class="hover:text-cyan-400 transition">Careers</a></li>
-            <li><a href="#" class="hover:text-cyan-400 transition">Blog</a></li>
-            <li><a href="#contact" class="hover:text-cyan-400 transition">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-white font-semibold mb-4">Legal</h4>
-          <ul class="space-y-2 text-gray-500 text-sm">
-            <li><a href="#" class="hover:text-cyan-400 transition">Privacy Policy</a></li>
-            <li><a href="#" class="hover:text-cyan-400 transition">Terms of Service</a></li>
-            <li><a href="#" class="hover:text-cyan-400 transition">Security</a></li>
-            <li><a href="#" class="hover:text-cyan-400 transition">Compliance</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-t border-gray-800 pt-8 text-center text-gray-600 text-sm">
-        <p>&copy; 2025 COBOL Bridge AI. A CSGA Global Company. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // FAQ Toggle
-    function toggleFaq(btn) {
-      const answer = btn.nextElementSibling;
-      const icon = btn.querySelector('.faq-icon');
-      const isOpen = answer.classList.contains('open');
-      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
-      document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
-      if (!isOpen) {
-        answer.classList.add('open');
-        icon.textContent = '\u2212';
-      }
-    }
-
-    // Live Monitor Animation
-    setInterval(() => {
-      const services = document.querySelectorAll('#monitor-services .monitor-bar-fill');
-      services.forEach((bar) => {
-        const w = 70 + Math.random() * 25;
-        bar.style.width = w + '%';
-      });
-    }, 3000);
-
-    // ISO 20022 Countdown
-    function updateCountdown() {
-      const target = new Date('2025-11-01T00:00:00Z');
-      const now = new Date();
-      const diff = target - now;
-      const el = document.getElementById('countdown');
-      if (!el) return;
-      if (diff <= 0) {
-        el.innerHTML = '<span class="text-cyan-400 font-bold text-lg">ISO 20022 IS LIVE</span>';
-        return;
-      }
-      const days = Math.floor(diff / 86400000);
-      const hrs = Math.floor((diff % 86400000) / 3600000);
-      const mins = Math.floor((diff % 3600000) / 60000);
-      const secs = Math.floor((diff % 60000) / 1000);
-      el.innerHTML = '<div class="flex gap-3 justify-center">' +
-        '<div class="text-center"><div class="text-2xl font-bold text-cyan-400">' + days + '</div><div class="text-xs text-gray-500">DAYS</div></div>' +
-        '<div class="text-cyan-600 text-2xl">:</div>' +
-        '<div class="text-center"><div class="text-2xl font-bold text-cyan-400">' + hrs + '</div><div class="text-xs text-gray-500">HRS</div></div>' +
-        '<div class="text-cyan-600 text-2xl">:</div>' +
-        '<div class="text-center"><div class="text-2xl font-bold text-cyan-400">' + mins + '</div><div class="text-xs text-gray-500">MIN</div></div>' +
-        '<div class="text-cyan-600 text-2xl">:</div>' +
-        '<div class="text-center"><div class="text-2xl font-bold text-cyan-400">' + secs + '</div><div class="text-xs text-gray-500">SEC</div></div>' +
-        '</div>';
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
+<body class="antialiased">
+<!-- Navigation -->
+<nav id="mainNav" class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-white/5 transition-all duration-300">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 bg-gradient-to-br from-cyan-400 to-indigo-500 rounded-lg flex items-center justify-center">
+<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+</div>
+<span class="text-lg font-bold text-white">COBOL<span class="text-cyan-400">Bridge</span></span>
+</div>
+<div class="hidden lg:flex items-center space-x-1">
+<a href="#platform" class="px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 transition-colors">Platform</a>
+<div class="relative group">
+<button class="px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 transition-colors flex items-center">Tools <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+<div class="absolute top-full left-0 mt-1 w-56 bg-navy-800/95 backdrop-blur-xl rounded-xl border border-cyan-400/10 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2">
+<a href="#" class="flex items-center px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg transition-colors"><svg class="w-4 h-4 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>Code Analyzer</a>
+<a href="#" class="flex items-center px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg transition-colors"><svg class="w-4 h-4 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7C5 4 4 5 4 7z"/></svg>Schema Mapper</a>
+<a href="#" class="flex items-center px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg transition-colors"><svg class="w-4 h-4 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>Security Scanner</a>
+<a href="#" class="flex items-center px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg transition-colors"><svg class="w-4 h-4 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Performance Profiler</a>
+<a href="#" class="flex items-center px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg transition-colors"><svg class="w-4 h-4 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>Migration Planner</a>
+<a href="#" class="flex items-center px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg transition-colors"><svg class="w-4 h-4 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>API Generator</a>
+</div>
+</div>
+<div class="relative group">
+<button class="px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 transition-colors flex items-center">Sectors <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+<div class="absolute top-full left-0 mt-1 w-48 bg-navy-800/95 backdrop-blur-xl rounded-xl border border-cyan-400/10 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2">
+<a href="#industries" class="block px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg">Banking & Finance</a>
+<a href="#industries" class="block px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg">Insurance</a>
+<a href="#industries" class="block px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg">Government</a>
+<a href="#industries" class="block px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg">Healthcare</a>
+<a href="#industries" class="block px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-lg">Retail & Supply Chain</a>
+</div>
+</div>
+<a href="#faq" class="px-3 py-2 text-sm text-gray-300 hover:text-cyan-400 transition-colors">Docs</a>
+</div>
+<div class="hidden lg:flex items-center space-x-3">
+<button class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors flex items-center"><svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><span class="text-xs border border-gray-600 rounded px-1.5 py-0.5 ml-1">⌘K</span></button>
+<a href="#" class="px-3 py-2 text-sm text-gray-300 hover:text-white transition-colors">Dashboard</a>
+<a href="#contact" class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-indigo-500 text-white text-sm font-medium rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 transition-all">Book a Demo</a>
+</div>
+<button id="mobileMenuBtn" class="lg:hidden p-2 text-gray-400 hover:text-white">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+</button>
+</div>
+</div>
+<div id="mobileMenu" class="lg:hidden hidden border-t border-white/5 bg-navy-900/95 backdrop-blur-xl">
+<div class="px-4 py-3 space-y-2">
+<a href="#platform" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 rounded-lg">Platform</a>
+<a href="#industries" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 rounded-lg">Sectors</a>
+<a href="#faq" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 rounded-lg">Docs</a>
+<a href="#contact" class="block px-3 py-2 bg-gradient-to-r from-cyan-500 to-indigo-500 text-white text-center rounded-lg mt-2">Book a Demo</a>
+</div>
+</div>
+</nav><section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"><div class="absolute inset-0 hero-gradient"></div><div class="grid-bg absolute inset-0 opacity-20"></div><div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-float"></div><div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-float" style="animation-delay:-2s"></div><div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div class="flex justify-center gap-4 mb-8 flex-wrap"><span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-medium animate-badge-glow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>AI-Powered Analysis</span><span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-medium"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>SOC 2 Type II</span><span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-sm font-medium"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>99.97% Uptime</span></div><h1 class="text-5xl md:text-7xl font-bold mb-6"><span class="text-white">Bridge Legacy to</span><br><span class="gradient-text">AI Future</span></h1><p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-8">Transform your COBOL systems into modern, AI-ready platforms without the risk of full rewrites. Preserve decades of business logic while unlocking new capabilities.</p><div class="flex items-center justify-center gap-2 mb-8"><div class="flex -space-x-2"><div class="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 border-2 border-navy-900 flex items-center justify-center text-xs font-bold text-white">JD</div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-400 to-teal-500 border-2 border-navy-900 flex items-center justify-center text-xs font-bold text-white">SK</div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 border-2 border-navy-900 flex items-center justify-center text-xs font-bold text-white">MR</div><div class="w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 border-2 border-navy-900 flex items-center justify-center text-xs font-bold text-white">+5K</div></div><span class="text-slate-400 text-sm ml-3">Trusted by 500+ organizations worldwide</span></div><div class="flex flex-col sm:flex-row gap-4 justify-center mb-12"><a href="#contact" class="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"><span>Start Free Assessment</span><svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a><a href="#platform" class="inline-flex items-center gap-2 px-8 py-4 border border-slate-600 text-slate-300 font-semibold rounded-xl hover:border-cyan-500/50 hover:text-white transition-all duration-300"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>Watch Demo</span></a></div><div class="max-w-2xl mx-auto"><div class="bg-navy-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 text-left"><div class="flex items-center justify-between mb-4"><div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div><span class="text-emerald-400 text-sm font-medium">Live API Monitor</span></div><span class="text-slate-500 text-xs font-mono">v3.2.1</span></div><div class="space-y-3"><div class="flex items-center justify-between p-3 bg-navy-900/50 rounded-lg"><div class="flex items-center gap-3"><span class="text-xs font-mono px-2 py-1 rounded bg-emerald-500/20 text-emerald-400">GET</span><span class="text-slate-300 text-sm font-mono">/api/v3/analyze</span></div><div class="flex items-center gap-2"><span class="text-emerald-400 text-xs">200 OK</span><span class="text-slate-500 text-xs">45ms</span></div></div><div class="flex items-center justify-between p-3 bg-navy-900/50 rounded-lg"><div class="flex items-center gap-3"><span class="text-xs font-mono px-2 py-1 rounded bg-blue-500/20 text-blue-400">POST</span><span class="text-slate-300 text-sm font-mono">/api/v3/transform</span></div><div class="flex items-center gap-2"><span class="text-emerald-400 text-xs">200 OK</span><span class="text-slate-500 text-xs">128ms</span></div></div><div class="flex items-center justify-between p-3 bg-navy-900/50 rounded-lg"><div class="flex items-center gap-3"><span class="text-xs font-mono px-2 py-1 rounded bg-purple-500/20 text-purple-400">PUT</span><span class="text-slate-300 text-sm font-mono">/api/v3/deploy</span></div><div class="flex items-center gap-2"><span class="text-emerald-400 text-xs">200 OK</span><span class="text-slate-500 text-xs">89ms</span></div></div><div class="flex items-center justify-between p-3 bg-navy-900/50 rounded-lg"><div class="flex items-center gap-3"><span class="text-xs font-mono px-2 py-1 rounded bg-amber-500/20 text-amber-400">WS</span><span class="text-slate-300 text-sm font-mono">/api/v3/stream</span></div><div class="flex items-center gap-2"><span class="text-cyan-400 text-xs">Connected</span><span class="text-slate-500 text-xs">Live</span></div></div></div></div></div></div></section><section class="py-12 border-y border-slate-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center justify-center gap-8 text-center"><div class="flex items-center gap-1"><svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><span class="text-white font-semibold ml-2">4.9/5</span><span class="text-slate-400 text-sm ml-1">from 500+ organizations</span></div><div class="hidden md:block w-px h-8 bg-slate-700"></div><div class="flex items-center gap-4"><span class="text-slate-400 text-sm">Featured on</span><span class="text-cyan-400 font-semibold">Gartner</span><span class="text-purple-400 font-semibold">Forrester</span><span class="text-emerald-400 font-semibold">IDC</span></div></div></div></section><section class="py-20"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"><div class="text-center scroll-fade"><div class="text-4xl md:text-5xl font-bold gradient-text mb-2" data-count="220">220B+</div><div class="text-slate-400">Lines of COBOL Analyzed</div></div><div class="text-center scroll-fade"><div class="text-4xl md:text-5xl font-bold gradient-text mb-2" data-count="500">500+</div><div class="text-slate-400">Enterprise Clients</div></div><div class="text-center scroll-fade"><div class="text-4xl md:text-5xl font-bold gradient-text mb-2" data-count="99">99.7%</div><div class="text-slate-400">Accuracy Rate</div></div><div class="text-center scroll-fade"><div class="text-4xl md:text-5xl font-bold gradient-text mb-2" data-count="85">85%</div><div class="text-slate-400">Cost Reduction</div></div></div><div class="text-center mb-12 scroll-fade"><h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Trusted By Industry Leaders</h2><p class="text-slate-400 max-w-2xl mx-auto">Organizations across finance, government, healthcare, and insurance trust COBOL Bridge to modernize their critical systems</p></div><div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-20"><div class="bg-navy-800/30 border border-slate-700/50 rounded-xl p-6 text-center hover:border-cyan-500/30 transition-all scroll-fade"><div class="text-3xl mb-2">🏦</div><div class="text-white font-semibold">Banking</div><div class="text-slate-400 text-sm">Top 10 Banks</div></div><div class="bg-navy-800/30 border border-slate-700/50 rounded-xl p-6 text-center hover:border-cyan-500/30 transition-all scroll-fade"><div class="text-3xl mb-2">🏛️</div><div class="text-white font-semibold">Government</div><div class="text-slate-400 text-sm">Federal & State</div></div><div class="bg-navy-800/30 border border-slate-700/50 rounded-xl p-6 text-center hover:border-cyan-500/30 transition-all scroll-fade"><div class="text-3xl mb-2">🏥</div><div class="text-white font-semibold">Healthcare</div><div class="text-slate-400 text-sm">Major Providers</div></div><div class="bg-navy-800/30 border border-slate-700/50 rounded-xl p-6 text-center hover:border-cyan-500/30 transition-all scroll-fade"><div class="text-3xl mb-2">🛡️</div><div class="text-white font-semibold">Insurance</div><div class="text-slate-400 text-sm">Global Carriers</div></div><div class="bg-navy-800/30 border border-slate-700/50 rounded-xl p-6 text-center hover:border-cyan-500/30 transition-all scroll-fade"><div class="text-3xl mb-2">✈️</div><div class="text-white font-semibold">Airlines</div><div class="text-slate-400 text-sm">Reservation Systems</div></div><div class="bg-navy-800/30 border border-slate-700/50 rounded-xl p-6 text-center hover:border-cyan-500/30 transition-all scroll-fade"><div class="text-3xl mb-2">🏭</div><div class="text-white font-semibold">Manufacturing</div><div class="text-slate-400 text-sm">Supply Chain</div></div></div><div class="text-center mb-12 scroll-fade"><h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Strategic Advantages</h2><p class="text-slate-400 max-w-2xl mx-auto">Industry-first capabilities that set COBOL Bridge apart</p></div><div class="grid md:grid-cols-3 gap-8 mb-8"><div class="bg-navy-800/30 border border-slate-700/50 rounded-2xl p-8 hover:border-cyan-500/30 transition-all scroll-fade"><div class="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><h3 class="text-xl font-bold text-white mb-3">ISO 20022 Native</h3><p class="text-slate-400">First-in-class native support for ISO 20022 financial messaging standards, ensuring seamless integration with modern payment networks.</p></div><div class="bg-navy-800/30 border border-slate-700/50 rounded-2xl p-8 hover:border-cyan-500/30 transition-all scroll-fade"><div class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg></div><h3 class="text-xl font-bold text-white mb-3">Regulatory Fingerprint™</h3><p class="text-slate-400">Proprietary technology that maps regulatory requirements to code segments, ensuring compliance during transformation.</p></div><div class="bg-navy-800/30 border border-slate-700/50 rounded-2xl p-8 hover:border-cyan-500/30 transition-all scroll-fade"><div class="w-14 h-14 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><h3 class="text-xl font-bold text-white mb-3">PQC Assessment</h3><p class="text-slate-400">Post-Quantum Cryptography readiness assessment ensures your modernized systems are prepared for the quantum computing era.</p></div></div></div></section>
+<section id="platform" class="py-24 relative">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16"><span class="inline-block px-4 py-1.5 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-cyan-400 text-sm font-medium mb-4">Comprehensive Platform</span><h2 class="text-4xl md:text-5xl font-bold text-white mb-6">9 Powerful Modules</h2><p class="text-xl text-slate-400 max-w-3xl mx-auto">End-to-end COBOL modernization powered by advanced AI analysis and transformation engines</p></div>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="group bg-navy-800/50 backdrop-blur-xl rounded-2xl p-6 border border-white/5 hover:border-cyan-400/30 transition-all duration-300 hover:-translate-y-1"><div class="w-12 h-12 bg-cyan-400/10 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div><h3 class="text-lg font-semibold text-white mb-2">COBOL Analyzer</h3><p class="text-slate-400 text-sm">Deep static analysis of COBOL codebases with dependency mapping, complexity scoring, and dead code detection.</p><div class="mt-4 flex items-center text-cyan-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div></div>
+<div class="group bg-navy-800/50 backdrop-blur-xl rounded-2xl p-6 border border-white/5 hover:border-purple-400/30 transition-all duration-300 hover:-translate-y-1"><div class="w-12 h-12 bg-purple-400/10 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div><h3 class="text-lg font-semibold text-white mb-2">Code Transformer</h3><p class="text-slate-400 text-sm">AI-powered code transformation engine converting COBOL to modern languages while preserving business logic integrity.</p><div class="mt-4 flex items-center text-purple-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div></div>
+<div class="group bg-navy-800/50 backdrop-blur-xl rounded-2xl p-6 border border-white/5 hover:border-emerald-400/30 transition-all duration-300 hover:-translate-y-1"><div class="w-12 h-12 bg-emerald-400/10 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><h3 class="text-lg font-semibold text-white mb-2">API Generator</h3><p class="text-slate-400 text-sm">Automatically generate RESTful APIs and microservices from COBOL programs with OpenAPI documentation.</p><div class="mt-4 flex items-center text-emerald-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div></div>
+<div class="group bg-navy-800/50 backdrop-blur-xl rounded-2xl p-6 border border-white/5 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1"><div class="w-12 h-12 bg-amber-400/10 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><h3 class="text-lg font-semibold text-white mb-2">Test Suite Generator</h3><p class="text-slate-400 text-sm">Auto-generate comprehensive test suites ensuring functional equivalence between legacy and modernized systems.</p><div class="mt-4 flex items-center text-amber-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div></div>
+<div class="group bg-navy-800/50 backdrop-blur-xl rounded-2xl p-6 border border-white/5 hover:border-rose-400/30 transition-all duration-300 hover:-translate-y-1"><div class="w-12 h-12 bg-rose-400/10 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><h3 class="text-lg font-semibold text-white mb-2">Documentation Engine</h3><p class="text-slate-400 text-sm">Generate rich technical documentation, flow diagrams, and business rule catalogs from legacy COBOL source code.</p><div class="mt-4 flex items-center text-rose-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div></div>
+<div class="group bg-navy-800/50 backdrop-blur-xl rounded-2xl p-6 border border-white/5 hover:border-red-400/30 transition-all duration-300 hover:-translate-y-1"><div class="w-12 h-12 bg-red-400/10 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><h3 class="text-lg font-semibold text-white mb-2">Security Scanner</h3><p class="text-slate-400 text-sm">Identify vulnerabilities, compliance gaps, and security risks in legacy COBOL code before modernization begins.</p><div class="mt-4 flex items-center text-red-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div></div>
+<div class="group bg-navy-800/50 backdrop-blur-xl rounded-2xl p-6 border border-white/5 hover:border-sky-400/30 transition-all duration-300 hover:-translate-y-1"><div class="w-12 h-12 bg-sky-400/10 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3 class="text-lg font-semibold text-white mb-2">Performance Optimizer</h3><p class="text-slate-400 text-sm">Optimize transformed code for cloud-native performance with automated benchmarking and tuning recommendations.</p><div class="mt-4 flex items-center text-sky-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div></div>
+<div class="group bg-navy-800/50 backdrop-blur-xl rounded-2xl p-6 border border-white/5 hover:border-indigo-400/30 transition-all duration-300 hover:-translate-y-1"><div class="w-12 h-12 bg-indigo-400/10 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg></div><h3 class="text-lg font-semibold text-white mb-2">Cloud Deployer</h3><p class="text-slate-400 text-sm">One-click deployment to AWS, Azure, or GCP with infrastructure-as-code templates and CI/CD pipeline setup.</p><div class="mt-4 flex items-center text-indigo-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div></div>
+<div class="group bg-navy-800/50 backdrop-blur-xl rounded-2xl p-6 border border-white/5 hover:border-teal-400/30 transition-all duration-300 hover:-translate-y-1"><div class="w-12 h-12 bg-teal-400/10 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><h3 class="text-lg font-semibold text-white mb-2">Monitoring Dashboard</h3><p class="text-slate-400 text-sm">Real-time monitoring of modernization progress with analytics, health checks, and rollback capabilities.</p><div class="mt-4 flex items-center text-teal-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div></div>
+</div></div></section>
+<section id="how-it-works" class="py-24 relative bg-navy-800/30">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16"><span class="inline-block px-4 py-1.5 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-cyan-400 text-sm font-medium mb-4">Simple Process</span><h2 class="text-4xl md:text-5xl font-bold text-white mb-6">How It Works</h2><p class="text-xl text-slate-400 max-w-3xl mx-auto">Four simple steps to modernize your COBOL systems</p></div>
+<div class="grid md:grid-cols-4 gap-8">
+<div class="text-center relative"><div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">1</div><h3 class="text-lg font-semibold text-white mb-3">Upload</h3><p class="text-slate-400 text-sm">Upload your COBOL source code, copybooks, and JCL files to our secure analysis environment.</p></div>
+<div class="text-center relative"><div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">2</div><h3 class="text-lg font-semibold text-white mb-3">Analyze</h3><p class="text-slate-400 text-sm">Our AI engine performs deep analysis — mapping dependencies, business rules, and data flows across your codebase.</p></div>
+<div class="text-center relative"><div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">3</div><h3 class="text-lg font-semibold text-white mb-3">Transform</h3><p class="text-slate-400 text-sm">Automatically transform COBOL into modern cloud-native code with full business logic preservation and test coverage.</p></div>
+<div class="text-center relative"><div class="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">4</div><h3 class="text-lg font-semibold text-white mb-3">Deploy</h3><p class="text-slate-400 text-sm">Deploy your modernized application to any cloud platform with automated CI/CD pipelines and monitoring.</p></div>
+</div></div></section>
+<section id="industries" class="py-24 relative">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16"><span class="inline-block px-4 py-1.5 bg-purple-400/10 border border-purple-400/20 rounded-full text-purple-400 text-sm font-medium mb-4">Industry Solutions</span><h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Built for Your Industry</h2><p class="text-xl text-slate-400 max-w-3xl mx-auto">Specialized modernization solutions tailored to your sector's unique regulatory and operational requirements</p></div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl p-8 border border-white/5 hover:border-cyan-400/30 transition-all duration-300"><div class="text-4xl mb-4">🏦</div><h3 class="text-xl font-semibold text-white mb-3">Banking & Finance</h3><p class="text-slate-400 text-sm mb-4">Modernize core banking systems, payment processing, and risk management platforms while maintaining regulatory compliance with Basel III, PSD2, and SOX requirements.</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-xs">Core Banking</span><span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-xs">Payments</span><span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-xs">Risk</span></div></div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl p-8 border border-white/5 hover:border-purple-400/30 transition-all duration-300"><div class="text-4xl mb-4">🏛️</div><h3 class="text-xl font-semibold text-white mb-3">Government</h3><p class="text-slate-400 text-sm mb-4">Transform government legacy systems including tax processing, benefits management, and citizen services while meeting FedRAMP and FISMA security standards.</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-purple-400/10 text-purple-400 rounded-full text-xs">FedRAMP</span><span class="px-3 py-1 bg-purple-400/10 text-purple-400 rounded-full text-xs">FISMA</span><span class="px-3 py-1 bg-purple-400/10 text-purple-400 rounded-full text-xs">IL5</span></div></div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl p-8 border border-white/5 hover:border-emerald-400/30 transition-all duration-300"><div class="text-4xl mb-4">🏥</div><h3 class="text-xl font-semibold text-white mb-3">Healthcare</h3><p class="text-slate-400 text-sm mb-4">Modernize claims processing, patient records, and health information systems with full HIPAA compliance and HL7 FHIR interoperability built in.</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-emerald-400/10 text-emerald-400 rounded-full text-xs">HIPAA</span><span class="px-3 py-1 bg-emerald-400/10 text-emerald-400 rounded-full text-xs">HL7 FHIR</span><span class="px-3 py-1 bg-emerald-400/10 text-emerald-400 rounded-full text-xs">Claims</span></div></div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl p-8 border border-white/5 hover:border-amber-400/30 transition-all duration-300"><div class="text-4xl mb-4">🛡️</div><h3 class="text-xl font-semibold text-white mb-3">Insurance</h3><p class="text-slate-400 text-sm mb-4">Transform policy administration, claims, and underwriting systems while ensuring Solvency II and IFRS 17 compliance throughout the modernization lifecycle.</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-amber-400/10 text-amber-400 rounded-full text-xs">Solvency II</span><span class="px-3 py-1 bg-amber-400/10 text-amber-400 rounded-full text-xs">IFRS 17</span><span class="px-3 py-1 bg-amber-400/10 text-amber-400 rounded-full text-xs">Claims</span></div></div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl p-8 border border-white/5 hover:border-sky-400/30 transition-all duration-300"><div class="text-4xl mb-4">✈️</div><h3 class="text-xl font-semibold text-white mb-3">Airlines & Travel</h3><p class="text-slate-400 text-sm mb-4">Modernize reservation systems, loyalty programs, and operations platforms with real-time processing and NDC/ONE Order compliance.</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-sky-400/10 text-sky-400 rounded-full text-xs">NDC</span><span class="px-3 py-1 bg-sky-400/10 text-sky-400 rounded-full text-xs">Reservations</span><span class="px-3 py-1 bg-sky-400/10 text-sky-400 rounded-full text-xs">Loyalty</span></div></div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl p-8 border border-white/5 hover:border-rose-400/30 transition-all duration-300"><div class="text-4xl mb-4">🏭</div><h3 class="text-xl font-semibold text-white mb-3">Manufacturing</h3><p class="text-slate-400 text-sm mb-4">Transform ERP, supply chain, and production systems with IoT integration and Industry 4.0 readiness for smart manufacturing operations.</p><div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-rose-400/10 text-rose-400 rounded-full text-xs">ERP</span><span class="px-3 py-1 bg-rose-400/10 text-rose-400 rounded-full text-xs">Supply Chain</span><span class="px-3 py-1 bg-rose-400/10 text-rose-400 rounded-full text-xs">IoT</span></div></div>
+</div></div></section>
+<section id="security" class="py-24 relative bg-navy-800/30">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16"><span class="inline-block px-4 py-1.5 bg-red-400/10 border border-red-400/20 rounded-full text-red-400 text-sm font-medium mb-4">Enterprise Security</span><h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Bank-Grade Security</h2><p class="text-xl text-slate-400 max-w-3xl mx-auto">Your code never leaves our secure environment. Enterprise-grade encryption at every layer.</p></div>
+<div class="grid md:grid-cols-2 gap-8 mb-12">
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl p-8 border border-white/5">
+<div class="flex items-start gap-4 mb-6"><div class="w-12 h-12 bg-red-400/10 rounded-xl flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><div><h3 class="text-lg font-semibold text-white mb-1">AES-256 Encryption</h3><p class="text-slate-400 text-sm">End-to-end encryption for all data at rest and in transit with military-grade AES-256 and TLS 1.3</p></div></div>
+<div class="flex items-start gap-4 mb-6"><div class="w-12 h-12 bg-cyan-400/10 rounded-xl flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><div><h3 class="text-lg font-semibold text-white mb-1">Zero-Knowledge Architecture</h3><p class="text-slate-400 text-sm">Your source code is processed in isolated containers and never stored permanently on our infrastructure</p></div></div>
+<div class="flex items-start gap-4"><div class="w-12 h-12 bg-emerald-400/10 rounded-xl flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><div><h3 class="text-lg font-semibold text-white mb-1">Audit Trail</h3><p class="text-slate-400 text-sm">Complete audit logging of every action with tamper-proof records for compliance and governance</p></div></div>
+</div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl p-8 border border-white/5">
+<h3 class="text-lg font-semibold text-white mb-6">Security Score</h3>
+<div class="flex items-center justify-center mb-6"><div class="relative w-40 h-40"><svg class="w-40 h-40 transform -rotate-90" viewBox="0 0 160 160"><circle cx="80" cy="80" r="70" stroke="#1e293b" stroke-width="12" fill="none"/><circle cx="80" cy="80" r="70" stroke="#22d3ee" stroke-width="12" fill="none" stroke-dasharray="395.84" stroke-dashoffset="39.584" stroke-linecap="round"/></svg><div class="absolute inset-0 flex items-center justify-center"><span class="text-4xl font-bold text-white">98</span></div></div></div>
+<div class="space-y-3">
+<div class="flex justify-between items-center"><span class="text-slate-400 text-sm">Encryption</span><span class="text-emerald-400 text-sm font-medium">100%</span></div><div class="w-full bg-navy-700 rounded-full h-2"><div class="bg-emerald-400 h-2 rounded-full" style="width:100%"></div></div>
+<div class="flex justify-between items-center"><span class="text-slate-400 text-sm">Access Control</span><span class="text-emerald-400 text-sm font-medium">98%</span></div><div class="w-full bg-navy-700 rounded-full h-2"><div class="bg-emerald-400 h-2 rounded-full" style="width:98%"></div></div>
+<div class="flex justify-between items-center"><span class="text-slate-400 text-sm">Compliance</span><span class="text-cyan-400 text-sm font-medium">96%</span></div><div class="w-full bg-navy-700 rounded-full h-2"><div class="bg-cyan-400 h-2 rounded-full" style="width:96%"></div></div>
+</div>
+<div class="flex flex-wrap gap-3 mt-6"><span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-slate-300 text-xs font-medium">SOC 2 Type II</span><span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-slate-300 text-xs font-medium">ISO 27001</span><span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-slate-300 text-xs font-medium">GDPR</span><span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-slate-300 text-xs font-medium">HIPAA</span><span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-slate-300 text-xs font-medium">FedRAMP</span></div>
+</div></div></div></section>
+<section id="case-studies" class="py-24 relative">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16"><span class="inline-block px-4 py-1.5 bg-emerald-400/10 border border-emerald-400/20 rounded-full text-emerald-400 text-sm font-medium mb-4">Success Stories</span><h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Case Studies</h2><p class="text-xl text-slate-400 max-w-3xl mx-auto">Real results from enterprise COBOL modernization projects</p></div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/5 hover:border-cyan-400/30 transition-all duration-300"><div class="h-48 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 flex items-center justify-center"><span class="text-6xl">🏦</span></div><div class="p-6"><span class="text-cyan-400 text-sm font-medium">Banking</span><h3 class="text-xl font-semibold text-white mt-2 mb-3">Global Bank Modernizes Core</h3><p class="text-slate-400 text-sm mb-4">Transformed 15M lines of COBOL across 3 continents, reducing operational costs by 65% and processing time by 80%.</p><div class="flex gap-4"><div><span class="text-2xl font-bold text-white">15M</span><p class="text-slate-400 text-xs">Lines Migrated</p></div><div><span class="text-2xl font-bold text-white">65%</span><p class="text-slate-400 text-xs">Cost Reduction</p></div><div><span class="text-2xl font-bold text-white">18mo</span><p class="text-slate-400 text-xs">Timeline</p></div></div></div></div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/5 hover:border-purple-400/30 transition-all duration-300"><div class="h-48 bg-gradient-to-br from-purple-400/20 to-pink-600/20 flex items-center justify-center"><span class="text-6xl">🏛️</span></div><div class="p-6"><span class="text-purple-400 text-sm font-medium">Government</span><h3 class="text-xl font-semibold text-white mt-2 mb-3">Federal Agency Transformation</h3><p class="text-slate-400 text-sm mb-4">Modernized tax processing systems serving 150M citizens with zero downtime during transition and full FedRAMP compliance.</p><div class="flex gap-4"><div><span class="text-2xl font-bold text-white">150M</span><p class="text-slate-400 text-xs">Citizens Served</p></div><div><span class="text-2xl font-bold text-white">99.99%</span><p class="text-slate-400 text-xs">Uptime</p></div><div><span class="text-2xl font-bold text-white">$2.1B</span><p class="text-slate-400 text-xs">Saved</p></div></div></div></div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/5 hover:border-emerald-400/30 transition-all duration-300"><div class="h-48 bg-gradient-to-br from-emerald-400/20 to-teal-600/20 flex items-center justify-center"><span class="text-6xl">🏥</span></div><div class="p-6"><span class="text-emerald-400 text-sm font-medium">Healthcare</span><h3 class="text-xl font-semibold text-white mt-2 mb-3">Health Network Integration</h3><p class="text-slate-400 text-sm mb-4">Unified 12 hospital systems onto a modern cloud platform, improving patient data access by 95% with full HIPAA compliance.</p><div class="flex gap-4"><div><span class="text-2xl font-bold text-white">12</span><p class="text-slate-400 text-xs">Systems Unified</p></div><div><span class="text-2xl font-bold text-white">95%</span><p class="text-slate-400 text-xs">Faster Access</p></div><div><span class="text-2xl font-bold text-white">$340M</span><p class="text-slate-400 text-xs">Saved</p></div></div></div></div>
+</div></div></section>
+<section class="py-24 px-4 relative">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<span class="inline-block px-4 py-1.5 bg-amber-500/10 text-amber-400 rounded-full text-sm font-medium mb-4">Testimonials</span>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">What Our Clients Say</h2>
+<p class="text-xl text-slate-400 max-w-2xl mx-auto">Trusted by industry leaders worldwide</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl border border-white/5 p-8 hover:border-cyan-500/30 transition-all duration-300">
+<div class="flex text-amber-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+<p class="text-slate-300 mb-6 italic leading-relaxed">"COBOLBridge transformed our legacy banking infrastructure in just 14 months. We migrated 15 million lines of COBOL with 99.97% accuracy. The ROI was evident within the first quarter."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold">JD</div>
+<div><div class="text-white font-semibold">James Davidson</div><div class="text-slate-400 text-sm">CTO, Global Financial Corp</div></div>
+</div>
+</div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl border border-white/5 p-8 hover:border-purple-500/30 transition-all duration-300">
+<div class="flex text-amber-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+<p class="text-slate-300 mb-6 italic leading-relaxed">"The AI-powered analysis identified dependencies we didn't even know existed. COBOLBridge's approach to modernization is truly next-generation. Our team productivity increased by 340%."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-white font-bold">SK</div>
+<div><div class="text-white font-semibold">Sarah Kim</div><div class="text-slate-400 text-sm">VP Engineering, TechInsure Ltd</div></div>
+</div>
+</div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl border border-white/5 p-8 hover:border-emerald-500/30 transition-all duration-300">
+<div class="flex text-amber-400 mb-4"><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+<p class="text-slate-300 mb-6 italic leading-relaxed">"Moving our federal systems to modern infrastructure seemed impossible until COBOLBridge. Their FedRAMP-certified platform gave us confidence. We now serve 150M citizens with 99.99% uptime."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold">MR</div>
+<div><div class="text-white font-semibold">Michael Roberts</div><div class="text-slate-400 text-sm">Director of IT, Federal Agency</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-4 relative">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<span class="inline-block px-4 py-1.5 bg-sky-500/10 text-sky-400 rounded-full text-sm font-medium mb-4">Comparison</span>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Why Choose COBOLBridge?</h2>
+<p class="text-xl text-slate-400 max-w-2xl mx-auto">See how we compare to traditional approaches</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead><tr>
+<th class="text-left p-4 text-slate-400 font-medium border-b border-white/10">Feature</th>
+<th class="p-4 text-center border-b border-white/10"><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-lg">COBOLBridge</span></th>
+<th class="p-4 text-center text-slate-400 font-medium border-b border-white/10">Manual Rewrite</th>
+<th class="p-4 text-center text-slate-400 font-medium border-b border-white/10">Legacy Tools</th>
+</tr></thead>
+<tbody>
+<tr class="border-b border-white/5 hover:bg-white/[0.02]"><td class="p-4 text-slate-300">AI-Powered Analysis</td><td class="p-4 text-center text-emerald-400 text-xl">&#10003;</td><td class="p-4 text-center text-red-400 text-xl">&#10007;</td><td class="p-4 text-center text-amber-400">Partial</td></tr>
+<tr class="border-b border-white/5 hover:bg-white/[0.02]"><td class="p-4 text-slate-300">Business Logic Preservation</td><td class="p-4 text-center text-emerald-400">99.7%</td><td class="p-4 text-center text-red-400">~60%</td><td class="p-4 text-center text-amber-400">~80%</td></tr>
+<tr class="border-b border-white/5 hover:bg-white/[0.02]"><td class="p-4 text-slate-300">Migration Speed</td><td class="p-4 text-center text-emerald-400">10x Faster</td><td class="p-4 text-center text-red-400">Baseline</td><td class="p-4 text-center text-amber-400">3x Faster</td></tr>
+<tr class="border-b border-white/5 hover:bg-white/[0.02]"><td class="p-4 text-slate-300">Automated Testing</td><td class="p-4 text-center text-emerald-400 text-xl">&#10003;</td><td class="p-4 text-center text-red-400 text-xl">&#10007;</td><td class="p-4 text-center text-amber-400">Partial</td></tr>
+<tr class="border-b border-white/5 hover:bg-white/[0.02]"><td class="p-4 text-slate-300">Compliance Mapping</td><td class="p-4 text-center text-emerald-400 text-xl">&#10003;</td><td class="p-4 text-center text-red-400 text-xl">&#10007;</td><td class="p-4 text-center text-red-400 text-xl">&#10007;</td></tr>
+<tr class="border-b border-white/5 hover:bg-white/[0.02]"><td class="p-4 text-slate-300">Real-time Monitoring</td><td class="p-4 text-center text-emerald-400 text-xl">&#10003;</td><td class="p-4 text-center text-red-400 text-xl">&#10007;</td><td class="p-4 text-center text-amber-400">Partial</td></tr>
+<tr class="hover:bg-white/[0.02]"><td class="p-4 text-slate-300">Cost Reduction</td><td class="p-4 text-center text-emerald-400">Up to 85%</td><td class="p-4 text-center text-red-400">High Cost</td><td class="p-4 text-center text-amber-400">~40%</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="py-24 px-4 relative">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/[0.03] to-transparent"></div>
+<div class="max-w-7xl mx-auto relative">
+<div class="text-center mb-16">
+<span class="inline-block px-4 py-1.5 bg-cyan-500/10 text-cyan-400 rounded-full text-sm font-medium mb-4">Pricing</span>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Simple, Transparent Pricing</h2>
+<p class="text-xl text-slate-400 max-w-2xl mx-auto">Start free, scale as you grow</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl border border-white/10 p-8 hover:border-cyan-500/30 transition-all duration-300">
+<h3 class="text-xl font-bold text-white mb-2">Starter</h3>
+<p class="text-slate-400 text-sm mb-6">For evaluation and small projects</p>
+<div class="mb-6"><span class="text-4xl font-bold text-white">Free</span><span class="text-slate-400 ml-2">forever</span></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Up to 10,000 lines</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Basic analysis</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Community support</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Single project</li>
+</ul>
+<a href="#contact" class="block w-full text-center py-3 px-6 rounded-xl border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 transition-all font-medium">Get Started</a>
+</div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl border-2 border-cyan-500/50 p-8 relative shadow-lg shadow-cyan-500/10 transform md:-translate-y-4">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full text-sm font-bold text-white">Most Popular</div>
+<h3 class="text-xl font-bold text-white mb-2">Professional</h3>
+<p class="text-slate-400 text-sm mb-6">For growing enterprises</p>
+<div class="mb-6"><span class="text-4xl font-bold text-white">$2,499</span><span class="text-slate-400 ml-2">/month</span></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Up to 1M lines</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>All 9 modules</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority support</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>API access</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>SOC 2 compliance</li>
+</ul>
+<a href="#contact" class="block w-full text-center py-3 px-6 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:shadow-lg hover:shadow-cyan-500/25 transition-all font-medium">Start Free Trial</a>
+</div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl border border-white/10 p-8 hover:border-purple-500/30 transition-all duration-300">
+<h3 class="text-xl font-bold text-white mb-2">Enterprise</h3>
+<p class="text-slate-400 text-sm mb-6">For large-scale transformation</p>
+<div class="mb-6"><span class="text-4xl font-bold text-white">Custom</span></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited lines</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Dedicated team</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>On-premise option</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Custom integrations</li>
+<li class="flex items-center gap-3 text-slate-300"><svg class="w-5 h-5 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>SLA guarantee</li>
+</ul>
+<a href="#contact" class="block w-full text-center py-3 px-6 rounded-xl border border-purple-500/50 text-purple-400 hover:bg-purple-500/10 transition-all font-medium">Contact Sales</a>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-4 relative" id="faq">
+<div class="max-w-3xl mx-auto">
+<div class="text-center mb-16">
+<span class="inline-block px-4 py-1.5 bg-indigo-500/10 text-indigo-400 rounded-full text-sm font-medium mb-4">FAQ</span>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+<p class="text-xl text-slate-400">Everything you need to know about COBOLBridge</p>
+</div>
+<div class="space-y-4" id="faq-container">
+<div class="faq-item bg-navy-800/50 backdrop-blur-xl rounded-xl border border-white/5 overflow-hidden">
+<button class="faq-btn w-full flex items-center justify-between p-6 text-left" onclick="this.parentElement.classList.toggle('active')">
+<span class="text-white font-medium pr-4">What types of COBOL systems can COBOLBridge modernize?</span>
+<svg class="w-5 h-5 text-slate-400 shrink-0 faq-icon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</button>
+<div class="faq-answer px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300"><p class="text-slate-400 pb-6">COBOLBridge supports all major COBOL dialects including COBOL-85, COBOL-2002, and vendor-specific extensions from IBM, Micro Focus, and Fujitsu. We handle batch processing, CICS online transactions, IMS, DB2, VSAM, and JCL automation workflows.</p></div>
+</div>
+<div class="faq-item bg-navy-800/50 backdrop-blur-xl rounded-xl border border-white/5 overflow-hidden">
+<button class="faq-btn w-full flex items-center justify-between p-6 text-left" onclick="this.parentElement.classList.toggle('active')">
+<span class="text-white font-medium pr-4">How does the AI ensure accuracy during migration?</span>
+<svg class="w-5 h-5 text-slate-400 shrink-0 faq-icon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</button>
+<div class="faq-answer px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300"><p class="text-slate-400 pb-6">Our AI uses a multi-pass verification system: semantic analysis preserves business logic, automated test generation validates functional equivalence, and continuous monitoring ensures output consistency. We achieve 99.7% accuracy across enterprise migrations.</p></div>
+</div>
+<div class="faq-item bg-navy-800/50 backdrop-blur-xl rounded-xl border border-white/5 overflow-hidden">
+<button class="faq-btn w-full flex items-center justify-between p-6 text-left" onclick="this.parentElement.classList.toggle('active')">
+<span class="text-white font-medium pr-4">Is COBOLBridge compliant with industry regulations?</span>
+<svg class="w-5 h-5 text-slate-400 shrink-0 faq-icon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</button>
+<div class="faq-answer px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300"><p class="text-slate-400 pb-6">Yes. COBOLBridge is SOC 2 Type II certified, ISO 27001 compliant, GDPR ready, HIPAA compliant, and FedRAMP authorized. We maintain compliance mappings for Basel III, PSD2, SOX, Solvency II, and other industry-specific regulations.</p></div>
+</div>
+<div class="faq-item bg-navy-800/50 backdrop-blur-xl rounded-xl border border-white/5 overflow-hidden">
+<button class="faq-btn w-full flex items-center justify-between p-6 text-left" onclick="this.parentElement.classList.toggle('active')">
+<span class="text-white font-medium pr-4">How long does a typical migration take?</span>
+<svg class="w-5 h-5 text-slate-400 shrink-0 faq-icon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</button>
+<div class="faq-answer px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300"><p class="text-slate-400 pb-6">Timeline depends on codebase size and complexity. Small projects (under 100K lines) typically complete in 2-4 months. Enterprise migrations (1M+ lines) range from 6-18 months. Our AI-powered approach is 10x faster than traditional manual rewrites.</p></div>
+</div>
+<div class="faq-item bg-navy-800/50 backdrop-blur-xl rounded-xl border border-white/5 overflow-hidden">
+<button class="faq-btn w-full flex items-center justify-between p-6 text-left" onclick="this.parentElement.classList.toggle('active')">
+<span class="text-white font-medium pr-4">What target languages and platforms are supported?</span>
+<svg class="w-5 h-5 text-slate-400 shrink-0 faq-icon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</button>
+<div class="faq-answer px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300"><p class="text-slate-400 pb-6">COBOLBridge can transform COBOL to Java, C#, Python, TypeScript, and Go. We support deployment to AWS, Azure, GCP, and on-premise Kubernetes clusters. Our API Generator creates RESTful interfaces with OpenAPI documentation automatically.</p></div>
+</div>
+<div class="faq-item bg-navy-800/50 backdrop-blur-xl rounded-xl border border-white/5 overflow-hidden">
+<button class="faq-btn w-full flex items-center justify-between p-6 text-left" onclick="this.parentElement.classList.toggle('active')">
+<span class="text-white font-medium pr-4">Can we try COBOLBridge before committing?</span>
+<svg class="w-5 h-5 text-slate-400 shrink-0 faq-icon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</button>
+<div class="faq-answer px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300"><p class="text-slate-400 pb-6">Absolutely. Our Starter plan is free forever and lets you analyze up to 10,000 lines of COBOL. You can also request a personalized demo where our team will analyze a sample of your actual codebase and provide a detailed assessment report.</p></div>
+</div>
+<div class="faq-item bg-navy-800/50 backdrop-blur-xl rounded-xl border border-white/5 overflow-hidden">
+<button class="faq-btn w-full flex items-center justify-between p-6 text-left" onclick="this.parentElement.classList.toggle('active')">
+<span class="text-white font-medium pr-4">What about data security during the migration?</span>
+<svg class="w-5 h-5 text-slate-400 shrink-0 faq-icon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</button>
+<div class="faq-answer px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300"><p class="text-slate-400 pb-6">Security is our top priority. All code is encrypted with AES-256 at rest and in transit. We use a zero-knowledge architecture meaning our AI processes code without human access. Enterprise clients can use our on-premise deployment option for complete data sovereignty.</p></div>
+</div>
+<div class="faq-item bg-navy-800/50 backdrop-blur-xl rounded-xl border border-white/5 overflow-hidden">
+<button class="faq-btn w-full flex items-center justify-between p-6 text-left" onclick="this.parentElement.classList.toggle('active')">
+<span class="text-white font-medium pr-4">Do you provide post-migration support?</span>
+<svg class="w-5 h-5 text-slate-400 shrink-0 faq-icon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+</button>
+<div class="faq-answer px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300"><p class="text-slate-400 pb-6">Yes. All plans include post-migration monitoring and support. Professional and Enterprise plans include dedicated success managers, 24/7 monitoring dashboards, automated rollback capabilities, and ongoing optimization recommendations powered by our AI engine.</p></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-4 relative" id="contact">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-16">
+<span class="inline-block px-4 py-1.5 bg-emerald-500/10 text-emerald-400 rounded-full text-sm font-medium mb-4">Contact</span>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Get Your Free Assessment</h2>
+<p class="text-xl text-slate-400">Let our AI analyze your COBOL codebase and provide a detailed modernization roadmap</p>
+</div>
+<div class="grid md:grid-cols-2 gap-12">
+<div>
+<form class="space-y-6" onsubmit="event.preventDefault();this.querySelector('button').textContent='Message Sent!';this.querySelector('button').classList.add('from-emerald-400','to-green-500');">
+<div class="grid grid-cols-2 gap-4">
+<div><label class="block text-sm text-slate-400 mb-2">First Name</label><input type="text" class="w-full bg-navy-800/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500/50 focus:outline-none focus:ring-1 focus:ring-cyan-500/25 transition-all" placeholder="John"></div>
+<div><label class="block text-sm text-slate-400 mb-2">Last Name</label><input type="text" class="w-full bg-navy-800/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500/50 focus:outline-none focus:ring-1 focus:ring-cyan-500/25 transition-all" placeholder="Smith"></div>
+</div>
+<div><label class="block text-sm text-slate-400 mb-2">Work Email</label><input type="email" class="w-full bg-navy-800/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500/50 focus:outline-none focus:ring-1 focus:ring-cyan-500/25 transition-all" placeholder="john@company.com"></div>
+<div><label class="block text-sm text-slate-400 mb-2">Company</label><input type="text" class="w-full bg-navy-800/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500/50 focus:outline-none focus:ring-1 focus:ring-cyan-500/25 transition-all" placeholder="Acme Corp"></div>
+<div><label class="block text-sm text-slate-400 mb-2">COBOL Lines (Estimate)</label><select class="w-full bg-navy-800/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-cyan-500/50 focus:outline-none focus:ring-1 focus:ring-cyan-500/25 transition-all"><option value="">Select range...</option><option>Under 100K</option><option>100K - 500K</option><option>500K - 1M</option><option>1M - 10M</option><option>10M+</option></select></div>
+<div><label class="block text-sm text-slate-400 mb-2">Message</label><textarea rows="4" class="w-full bg-navy-800/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:border-cyan-500/50 focus:outline-none focus:ring-1 focus:ring-cyan-500/25 transition-all resize-none" placeholder="Tell us about your modernization goals..."></textarea></div>
+<button type="submit" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300">Request Free Assessment</button>
+</form>
+</div>
+<div class="space-y-8">
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl border border-white/5 p-6">
+<div class="flex items-center gap-4 mb-3"><div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center"><svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><h4 class="text-white font-semibold">Email Us</h4></div>
+<p class="text-slate-400">contact@cobolbridge.ai</p>
+</div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl border border-white/5 p-6">
+<div class="flex items-center gap-4 mb-3"><div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center"><svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><h4 class="text-white font-semibold">Headquarters</h4></div>
+<p class="text-slate-400">London, United Kingdom</p>
+</div>
+<div class="bg-navy-800/50 backdrop-blur-xl rounded-2xl border border-white/5 p-6">
+<div class="flex items-center gap-4 mb-3"><div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center"><svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h4 class="text-white font-semibold">Response Time</h4></div>
+<p class="text-slate-400">Under 24 hours</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-4 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10"></div>
+<div class="max-w-4xl mx-auto text-center relative">
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Modernize Your COBOL?</h2>
+<p class="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">Join 500+ organizations that have successfully transformed their legacy systems with COBOLBridge AI.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a href="#contact" class="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 text-lg">Start Free Assessment</a>
+<a href="#" class="px-8 py-4 border border-white/20 text-white rounded-xl font-semibold hover:bg-white/5 transition-all duration-300 text-lg">Schedule a Demo</a>
+</div>
+</div>
+</section>
+<footer class="border-t border-white/5 py-16 px-4">
+<div class="max-w-7xl mx-auto">
+<div class="grid md:grid-cols-5 gap-12 mb-12">
+<div class="md:col-span-2">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+<span class="text-xl font-bold text-white">COBOLBridge</span>
+</div>
+<p class="text-slate-400 mb-6 leading-relaxed">AI-powered COBOL modernization platform. Transform legacy systems into cloud-native applications with enterprise-grade security and compliance.</p>
+<div class="flex gap-4">
+<a href="#" class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+<a href="#" class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+<a href="#" class="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-4">Platform</h4>
+<ul class="space-y-3 text-slate-400">
+<li><a href="#" class="hover:text-cyan-400 transition-colors">COBOL Analyzer</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Code Transformer</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">API Generator</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Test Suite</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Monitoring</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-4">Resources</h4>
+<ul class="space-y-3 text-slate-400">
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Documentation</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">API Reference</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Blog</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Case Studies</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Changelog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-4">Company</h4>
+<ul class="space-y-3 text-slate-400">
+<li><a href="#" class="hover:text-cyan-400 transition-colors">About Us</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Careers</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Security</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+<li><a href="#" class="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="text-slate-500 text-sm">&copy; 2024 COBOLBridge AI. All rights reserved. A product of CSGA Global.</p>
+<p class="text-slate-500 text-sm">SOC 2 Type II &bull; ISO 27001 &bull; GDPR &bull; HIPAA &bull; FedRAMP</p>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
     });
+  }
 
-    // Mobile Menu Toggle
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    if (mobileBtn) {
-      mobileBtn.addEventListener('click', () => {
-        const nav = document.getElementById('mobile-nav');
-        if (nav) nav.classList.toggle('hidden');
+  // FAQ Accordion
+  document.querySelectorAll('[data-faq]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const content = this.nextElementSibling;
+      const icon = this.querySelector('svg');
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+      // Close all
+      document.querySelectorAll('[data-faq]').forEach(function(b) {
+        const c = b.nextElementSibling;
+        const i = b.querySelector('svg');
+        if (c) { c.style.maxHeight = '0px'; c.style.opacity = '0'; }
+        if (i) i.style.transform = 'rotate(0deg)';
       });
+      // Open clicked if was closed
+      if (!isOpen && content) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.opacity = '1';
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      const id = this.getAttribute('href');
+      if (id && id.length > 1) {
+        const el = document.querySelector(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+      }
+    });
+  });
+
+  // Nav blur on scroll
+  const nav = document.querySelector('nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        nav.classList.add('bg-navy-900/95', 'shadow-lg', 'shadow-cyan-500/5');
+        nav.classList.remove('bg-transparent');
+      } else {
+        nav.classList.remove('bg-navy-900/95', 'shadow-lg', 'shadow-cyan-500/5');
+        nav.classList.add('bg-transparent');
+      }
+    });
+  }
+
+  // Scroll fade-in animations
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.scroll-fade').forEach(function(el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Stat counter animations
+  function animateCounter(el, target) {
+    let current = 0;
+    const increment = target / 60;
+    const timer = setInterval(function() {
+      current += increment;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = Math.floor(current).toLocaleString();
+    }, 16);
+  }
+  const statObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const val = parseInt(entry.target.getAttribute('data-count'));
+        if (val) animateCounter(entry.target, val);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(function(el) { statObserver.observe(el); });
+
+  // Dropdown hover menus
+  document.querySelectorAll('.group').forEach(function(g) {
+    const menu = g.querySelector('[class*="group-hover"]') || g.querySelector('.absolute');
+    if (menu) {
+      g.addEventListener('mouseenter', function() { menu.classList.remove('invisible','opacity-0'); menu.classList.add('visible','opacity-100'); });
+      g.addEventListener('mouseleave', function() { menu.classList.add('invisible','opacity-0'); menu.classList.remove('visible','opacity-100'); });
     }
-  <\/script>
+  });
+
+  // Contact form handling
+  const form = document.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        const origText = btn.innerHTML;
+        btn.innerHTML = '<svg class="animate-spin h-5 w-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>';
+        setTimeout(function() {
+          btn.innerHTML = '\u2713 Assessment Requested!';
+          btn.classList.add('bg-emerald-500');
+          setTimeout(function() { btn.innerHTML = origText; btn.classList.remove('bg-emerald-500'); form.reset(); }, 3000);
+        }, 1500);
+      }
+    });
+  }
+});
+</script>
 </body>
-        </html>
+</html>
