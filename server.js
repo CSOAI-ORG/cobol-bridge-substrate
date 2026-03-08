@@ -3,10 +3,10 @@
  * CSGA AI Research Institute | cobolbridge.ai
  *
  * 11 MCP Governance Tools:
- * - parse_cobol_records, analyze_cobol_transactions, scan_batch_jobs,
- *   map_copybook_files, translate_ebcdic_encoding (Core Legacy Tools)
- * - convert_iso20022_payments, audit_tls_encryption, check_regulatory_compliance,
- *   find_cobol_programs, generate_api_interface, automate_regression_tests (Platform Tools)
+ * - cobol.parse_records, cobol.analyze_transactions, cobol.scan_jobs,
+ *   cobol.map_copybooks, cobol.translate_encoding (cobol.* — Core Legacy Tools)
+ * - bridge.convert_payments, bridge.audit_encryption, bridge.check_compliance,
+ *   cobol.find_programs, bridge.generate_interface, bridge.automate_tests (bridge.* — Platform Tools)
  *
  * MCP Resources & Prompts for full Smithery compliance
  * Streamable HTTP transport (Vercel serverless compatible)
@@ -50,7 +50,7 @@ function createServer() {
 
   // ---- TOOL 1: Copybook Parser ----
   server.tool(
-    'parse_cobol_records',
+    'cobol.parse_records',
     'Parse COBOL copybooks into structured JSON with field types, sizes, and hierarchy. Extracts PIC clauses, REDEFINES, OCCURS, and 88-level conditions.',
     { copybook: z.string().describe('Raw COBOL copybook source text to parse') },
     { title: 'COBOL Copybook Parser', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -70,7 +70,7 @@ function createServer() {
 
   // ---- TOOL 2: CICS Bridge Assessment ----
   server.tool(
-    'analyze_cobol_transactions',
+    'cobol.analyze_transactions',
     'Analyze CICS transaction programs for API bridge compatibility. Identifies EXEC CICS commands, BMS maps, COMMAREA structures, and modernization complexity.',
     { source: z.string().describe('CICS COBOL program source code'), transactionId: z.string().optional().describe('CICS transaction ID') },
     { title: 'CICS Bridge Assessment', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -87,7 +87,7 @@ function createServer() {
 
   // ---- TOOL 3: JCL Batch Scanner ----
   server.tool(
-    'scan_batch_jobs',
+    'cobol.scan_jobs',
     'Scan JCL job streams to extract step dependencies, dataset usage, program calls, and scheduling metadata for batch modernization planning.',
     { jcl: z.string().describe('JCL job stream source text') },
     { title: 'JCL Batch Scanner', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -106,7 +106,7 @@ function createServer() {
 
   // ---- TOOL 4: VSAM Mapper ----
   server.tool(
-    'map_copybook_files',
+    'cobol.map_copybooks',
     'Map VSAM file structures (KSDS, ESDS, RRDS) to modern database schemas. Generates SQL DDL, index recommendations, and migration scripts.',
     { definition: z.string().describe('VSAM IDCAMS DEFINE or cluster definition'), targetDb: z.enum(['postgresql', 'mysql', 'mongodb', 'dynamodb']).optional().describe('Target database platform') },
     { title: 'VSAM Data Mapper', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -123,7 +123,7 @@ function createServer() {
 
   // ---- TOOL 5: EBCDIC Translator ----
   server.tool(
-    'translate_ebcdic_encoding',
+    'cobol.translate_encoding',
     'Translate EBCDIC-encoded data to ASCII/UTF-8 with support for packed decimal (COMP-3), binary (COMP), and zoned decimal conversions.',
     { hexData: z.string().describe('EBCDIC hex string to translate'), encoding: z.enum(['text', 'packed-decimal', 'binary', 'zoned-decimal']).optional().describe('Encoding type of the input data') },
     { title: 'EBCDIC Translator', readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
@@ -144,7 +144,7 @@ function createServer() {
 
   // ---- TOOL 6: ISO 20022 Bridge ----
   server.tool(
-    'convert_iso20022_payments',
+    'bridge.convert_payments',
     'Transform legacy payment messages from MT (SWIFT) to MX (ISO 20022) format. Generates pacs, camt, and pain message types with compliance validation and migration tracking.',
     {
       mtMessage: z.string().describe('SWIFT MT message content (MT103, MT202, etc.)'),
@@ -167,7 +167,7 @@ function createServer() {
 
   // ---- TOOL 7: PQC Assessment ----
   server.tool(
-    'audit_tls_encryption',
+    'bridge.audit_encryption',
     'Assess cryptographic posture of COBOL systems for post-quantum readiness. Inventories crypto usage, maps to NIST-approved PQC algorithms (CRYSTALS-Kyber, CRYSTALS-Dilithium, SPHINCS+), and generates migration roadmaps.',
     {
       source: z.string().describe('COBOL source code or system configuration to analyze'),
@@ -187,7 +187,7 @@ function createServer() {
 
   // ---- TOOL 8: Regulatory Fingerprint ----
   server.tool(
-    'check_regulatory_compliance',
+    'bridge.check_compliance',
     'Map COBOL systems to 76+ global regulations including DORA, GDPR, Basel III, SOX, PCI-DSS, HIPAA, and MiFID II. Performs gap analysis and generates compliance evidence documentation.',
     {
       source: z.string().describe('COBOL source code or system documentation to fingerprint'),
@@ -210,7 +210,7 @@ function createServer() {
 
   // ---- TOOL 9: COBOL Discovery ----
   server.tool(
-    'find_cobol_programs',
+    'cobol.find_programs',
     'AI-powered COBOL codebase discovery and cataloging. Performs dependency mapping, complexity analysis (cyclomatic, Halstead), dead code detection, and generates comprehensive modernization inventory.',
     {
       source: z.string().describe('COBOL source code to analyze'),
@@ -237,7 +237,7 @@ function createServer() {
 
   // ---- TOOL 10: API Generator ----
   server.tool(
-    'generate_api_interface',
+    'bridge.generate_interface',
     'Generate REST, GraphQL, and gRPC API definitions from COBOL copybooks and program interfaces. Produces OpenAPI 3.0 specs, GraphQL schemas, and Protocol Buffer definitions.',
     {
       copybook: z.string().describe('COBOL copybook or WORKING-STORAGE to generate API from'),
@@ -275,7 +275,7 @@ function createServer() {
 
   // ---- TOOL 11: Test Automation ----
   server.tool(
-    'automate_regression_tests',
+    'bridge.automate_tests',
     'Capture COBOL program behavior as test baselines and detect regressions with intelligent diffing. Generates test cases from production data patterns, validates I/O transformations, and creates regression test suites.',
     {
       source: z.string().describe('COBOL program source code to generate tests for'),
@@ -531,10 +531,10 @@ app.get('/', (req, res) => {
     mcp_endpoint: '/mcp',
     health_endpoint: '/health',
     tools: [
-      'parse_cobol_records', 'analyze_cobol_transactions', 'scan_batch_jobs',
-      'map_copybook_files', 'translate_ebcdic_encoding', 'convert_iso20022_payments',
-      'audit_tls_encryption', 'check_regulatory_compliance', 'find_cobol_programs',
-      'generate_api_interface', 'automate_regression_tests'
+      'cobol.parse_records', 'cobol.analyze_transactions', 'cobol.scan_jobs',
+      'cobol.map_copybooks', 'cobol.translate_encoding', 'bridge.convert_payments',
+      'bridge.audit_encryption', 'bridge.check_compliance', 'cobol.find_programs',
+      'bridge.generate_interface', 'bridge.automate_tests'
     ],
     documentation: 'https://cobolbridge.ai',
     organization: 'CSGA AI Research Institute'
