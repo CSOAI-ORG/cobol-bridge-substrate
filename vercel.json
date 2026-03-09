@@ -21,10 +21,14 @@
         { "src": "/finance$", "dest": "/finance.html" },
         { "src": "/dora-compliance$", "dest": "/dora-compliance.html" },
         { "src": "/ai-explainability$", "dest": "/ai-explainability.html" },
-        { "src": "/regulatory-digital-twin$", "dest": "/regulatory-digital-twin.html" },
+        { "src": "/legacy-modernisation$", "dest": "/legacy-modernisation.html" },
         { "src": "/real-time-payments$", "dest": "/real-time-payments.html" },
         { "src": "/cobol-bridge-express$", "dest": "/cobol-bridge-express.html" },
-                    { "src": "/products$", "dest": "/products.html" },
+        { "src": "/products$", "dest": "/products.html" },
+        { "src": "/privacy$", "dest": "/index.html" },
+        { "src": "/terms$", "dest": "/index.html" },
+        { "src": "/cookies$", "dest": "/index.html" },
+        { "src": "/security$", "dest": "/index.html" },
         { "src": "/assets/(.*)", "dest": "/assets/$1" },
         { "src": "^/$", "dest": "/index.html" }
     ]
