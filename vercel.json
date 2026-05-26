@@ -7,6 +7,8 @@
     "routes": [
         { "src": "/health", "dest": "server.js" },
         { "src": "/mcp", "dest": "server.js" },
+        { "src": "/api/stripe-checkout", "dest": "server.js" },
+        { "src": "/api/stripe-webhook", "dest": "server.js" },
         { "src": "/platform$", "dest": "/platform.html" },
         { "src": "/about$", "dest": "/about.html" },
         { "src": "/sectors$", "dest": "/sectors.html" },

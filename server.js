@@ -17,6 +17,7 @@ const cors = require('cors');
 const { McpServer } = require('@modelcontextprotocol/sdk/server/mcp.js');
 const { StreamableHTTPServerTransport } = require('@modelcontextprotocol/sdk/server/streamableHttp.js');
 const z = require('zod');
+const Stripe = require('stripe');
 
 const app = express();
 
@@ -543,6 +544,73 @@ app.get('/', (req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 3000;
+
+const stripeKey = process.env.STRIPE_SECRET_KEY;
+const stripe = stripeKey ? new Stripe(stripeKey, { apiVersion: '2025-02-24.acacia' }) : null;
+
+app.use(express.json({ limit: '5mb' }));
+
+if (stripe) {
+  app.post('/api/stripe-checkout', async (req, res) => {
+    try {
+      const { priceId, customerEmail, tier } = req.body;
+      if (!priceId || !priceId.startsWith('price_')) {
+        return res.status(400).json({ error: 'Invalid price ID' });
+      }
+
+      let customerParams = {};
+      if (customerEmail) {
+        const customers = await stripe.customers.list({ email: customerEmail, limit: 1 });
+        if (customers.data.length > 0) {
+          customerParams = { customer: customers.data[0].id };
+        } else {
+          customerParams = { customer_email: customerEmail };
+        }
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        ...customerParams,
+        payment_method_types: ['card'],
+        line_items: [{ price: priceId, quantity: 1 }],
+        mode: 'subscription',
+        success_url: (req.headers.origin || 'https://cobolbridge.ai') + '/success?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url: (req.headers.origin || 'https://cobolbridge.ai') + '/pricing',
+        metadata: { tier: tier || 'pro' },
+      });
+
+      res.json({ sessionId: session.id, url: session.url });
+    } catch (err) {
+      console.error('Stripe checkout error:', err);
+      res.status(500).json({ error: 'Failed to create checkout session' });
+    }
+  });
+
+  app.post('/api/stripe-webhook', async (req, res) => {
+    const signature = req.headers['stripe-signature'];
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    if (!signature) return res.status(400).json({ error: 'Missing signature' });
+    if (!webhookSecret) return res.status(500).json({ error: 'Webhook secret not configured' });
+
+    let rawBody = '';
+    req.on('data', chunk => rawBody += chunk);
+    req.on('end', async () => {
+      try {
+        const event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
+        if (event.type === 'checkout.session.completed') {
+          const session = event.data.object;
+          console.log('Payment succeeded:', session.customer_email);
+        }
+        res.json({ received: true });
+      } catch (err) {
+        res.status(400).json({ error: 'Signature verification failed' });
+      }
+    });
+  });
+} else {
+  app.post('/api/stripe-checkout', (req, res) => {
+    res.status(503).json({ error: 'Stripe not configured' });
+  });
+}
 app.listen(PORT, () => {
   console.log(`COBOL Bridge MCP Server v2.0 running on port ${PORT}`);
   console.log(`MCP endpoint: http://localhost:${PORT}/mcp`);
